@@ -4,7 +4,7 @@ var ResponseTypes = req('/constants/response-types');
 
 
 function load(key) {
-	return req('/lib/messages/server/' + key);
+	return req('/lib/server/messages/' + key);
 }
 
 module.exports = {
