@@ -15,6 +15,7 @@ module.exports = {
 
 	LOCALUSERS:             'RPL_LOCALUSERS',               // 265
 
+	GLOBALUSERS:            'RPL_GLOBALUSERS',              // 266
 	USERHOST:               'RPL_USERHOST',                 // 302
 
 	MOTD:                   'RPL_MOTD',                     // 372
@@ -22,3 +23,4 @@ module.exports = {
 	MOTDSTART:              'RPL_MOTDSTART',                // 375
 	ENDOFMOTD:              'RPL_ENDOFMOTD'                 // 376
 };
+

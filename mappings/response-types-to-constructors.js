@@ -25,8 +25,10 @@ module.exports = {
 
 	[ResponseTypes.LOCALUSERS]:     load('local-users'),            // 265
 
+	[ResponseTypes.GLOBALUSERS]:    load('global-users'),           // 266
 	[ResponseTypes.MOTD]:           load('motd'),                   // 372
 	[ResponseTypes.MOTDSTART]:      load('motd-start'),             // 375
 	[ResponseTypes.ENDOFMOTD]:      load('end-of-motd')             // 376
 
 };
+

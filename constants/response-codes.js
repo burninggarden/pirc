@@ -20,6 +20,7 @@ module.exports = {
 
 	'265': ResponseTypes.LOCALUSERS,
 
+	'266': ResponseTypes.GLOBALUSERS,
 	'302': ResponseTypes.USERHOST,
 
 	'372': ResponseTypes.MOTD,
@@ -27,3 +28,4 @@ module.exports = {
 	'375': ResponseTypes.MOTDSTART,
 	'376': ResponseTypes.ENDOFMOTD
 };
+
