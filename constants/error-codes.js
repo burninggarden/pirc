@@ -9,6 +9,7 @@ module.exports = {
 
 	INVALID_CLIENT_MESSAGE: 'invalid_client_message',
 	INVALID_COMMAND: 'invalid_command',
+	INVALID_MESSAGE_STRUCTURE: 'invalid_message_structure',
 	INVALID_NICK: 'invalid_nick',
 	INVALID_PARAMETER: 'invalid_parameter',
 	INVALID_REALNAME: 'invalid_realname',

@@ -26,6 +26,8 @@ module.exports = {
 	'372': ResponseTypes.MOTD,
 
 	'375': ResponseTypes.MOTDSTART,
-	'376': ResponseTypes.ENDOFMOTD
+	'376': ResponseTypes.ENDOFMOTD,
+
+	'433': ResponseTypes.NICKNAMEINUSE
 };
 

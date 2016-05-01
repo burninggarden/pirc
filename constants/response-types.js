@@ -21,6 +21,7 @@ module.exports = {
 	MOTD:                   'RPL_MOTD',                     // 372
 
 	MOTDSTART:              'RPL_MOTDSTART',                // 375
-	ENDOFMOTD:              'RPL_ENDOFMOTD'                 // 376
+	ENDOFMOTD:              'RPL_ENDOFMOTD',                // 376
+	NICKNAMEINUSE:          'ERR_NICKNAMEINUSE'             // 433
 };
 

@@ -1,4 +1,5 @@
 module.exports = {
+	GENERIC: 'generic',
 	OMITTED: 'omitted',
 	WRONG_TYPE: 'wrong_type',
 	OVER_MAXIMUM_LENGTH: 'over_maximum_length',
