@@ -1,9 +1,13 @@
+var
+	has = require('./has');
 
-function extend(target, source) {
+function extend(target, source, keys_to_omit) {
 	var key;
 
 	for (key in source) {
-		target[key] = source[key];
+		if (!has(keys_to_omit, key)) {
+			target[key] = source[key];
+		}
 	}
 
 	return target;

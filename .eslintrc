@@ -2,38 +2,28 @@
 	"parser": "babel-eslint",
 	"env": {
 		"browser": true,
-		"node": true
+		"node":    true
 	},
 	"settings": {
 		"ecmascript": 6
 	},
 	"ecmaFeatures": {
-		"blockBindings": true,
-		"templateStrings": true,
-		"classes": true,
-		"defaultParams": true,
-		"destructuring": true,
-		"objectLiteralComputedProperties": true,
+		"blockBindings":                    true,
+		"templateStrings":                  true,
+		"classes":                          true,
+		"defaultParams":                    true,
+		"destructuring":                    true,
+		"objectLiteralComputedProperties":  true,
 		"objectLiteralShorthandProperties": true,
-		"superInFunctions": true
+		"superInFunctions":                 true
 	},
 	"globals": {
-		// We use this as a persistent reference to the
-		// 'globals' object on both server and client:
-		"_": true,
-		"requireClient": true,
-		"requireJSON": true,
-		"requireServer": true,
-		"requireSafe": true,
-		"requireResource": true,
-		"requireResourceSafe": true,
-		"requireTemplate": true,
-		"translate": true
+		"req"
 	},
 	"rules": {
 		// The basics:
 		"camelcase": 0,
-		"indent": [
+		"indent":    [
 			2,
 			"tab",
 			{
@@ -48,7 +38,7 @@
 		"quotes": [2, "single", "avoid-escape"],
 		"curly": 2,
 
-		// More opinionated, BG-specific stylistic rules:
+		// More opinionated stylistic rules:
 		"no-multi-spaces": 0,
 		"no-loop-func": 0,
 		"no-use-before-define": 0,
@@ -67,7 +57,7 @@
 		"spaced-comment": 2,
 		"no-mixed-spaces-and-tabs": [2, "smart-tabs"],
 		"func-style": [2, "declaration"],
-		"no-inline-comments": 2,
+		"no-inline-comments": 0,
 		"no-empty-label": 0,
 
 		// Prevent common JS pitfalls:
@@ -118,7 +108,7 @@
 				"requireReturnDescription": false,
 				"prefer": {
 					"return": "returns",
-					"param": "param"
+					"param":  "param"
 				}
 			}
 		],

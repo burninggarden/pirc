@@ -1,7 +1,9 @@
 module.exports = {
-	PASS: 'PASS',
-	NICK: 'NICK',
-	USER: 'USER',
+	JOIN:   'JOIN',
+	NICK:   'NICK',
 	NOTICE: 'NOTICE',
-	PING: 'PING'
+	PART:   'PART',
+	PASS:   'PASS',
+	PING:   'PING',
+	USER:   'USER'
 };

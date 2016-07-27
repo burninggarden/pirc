@@ -45,5 +45,5 @@ function validate(nick) {
 }
 
 module.exports = {
-	validate: validate
+	validate
 };
