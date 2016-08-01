@@ -1,0 +1,133 @@
+{
+	"parser": "babel-eslint",
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"settings": {
+		"ecmascript": 6
+	},
+	"ecmaFeatures": {
+		"blockBindings": true,
+		"templateStrings": true,
+		"classes": true,
+		"defaultParams": true,
+		"destructuring": true,
+		"objectLiteralComputedProperties": true,
+		"objectLiteralShorthandProperties": true,
+		"superInFunctions": true
+	},
+	"globals": {
+		// We use this as a persistent reference to the
+		// 'globals' object on both server and client:
+		"_": true,
+		"requireClient": true,
+		"requireJSON": true,
+		"requireServer": true,
+		"requireSafe": true,
+		"requireResource": true,
+		"requireResourceSafe": true,
+		"requireTemplate": true,
+		"translate": true
+	},
+	"rules": {
+		// The basics:
+		"camelcase": 0,
+		"indent": [
+			2,
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		"semi": [2, "always"],
+
+		// Common stylistic rules:
+		"brace-style": 2,
+		"comma-style": 2,
+		"quotes": [2, "single", "avoid-escape"],
+		"curly": 2,
+
+		// More opinionated, BG-specific stylistic rules:
+		"no-multi-spaces": 0,
+		"no-loop-func": 0,
+		"no-use-before-define": 0,
+		"no-underscore-dangle": 0,
+		"space-before-blocks": 2,
+		"keyword-spacing": [
+			2,
+			{
+				"before": true,
+				"after": true
+			}
+		],
+		"space-in-brackets": 0,
+		"space-before-function-paren": [2, "never"],
+		"space-unary-ops": 2,
+		"spaced-comment": 2,
+		"no-mixed-spaces-and-tabs": [2, "smart-tabs"],
+		"func-style": [2, "declaration"],
+		"no-inline-comments": 2,
+		"no-empty-label": 0,
+
+		// Prevent common JS pitfalls:
+		"no-undef": 1,
+		"no-debugger": 2,
+		"no-dupe-keys": 2,
+		"no-empty": 1,
+		"no-empty-character-class": 1,
+		"no-ex-assign": 2,
+		"no-extra-boolean-cast": 2,
+		"no-extra-semi": 1,
+		"no-func-assign": 2,
+		"no-inner-declarations": 2,
+		"no-invalid-regexp": 2,
+		"no-irregular-whitespace": 2,
+		"no-negated-in-lhs": 2,
+		"no-unreachable": 1,
+		"use-isnan": 2,
+		"eqeqeq": 2,
+		"no-new": 0,
+		"func-names": 0,
+		"no-nested-ternary": 2,
+		"no-constant-condition": 0,
+		"no-labels": 0,
+		"new-cap": 0,
+
+		// Would like to turn this back on at some point:
+		"no-mixed-requires": 0,
+		"no-cond-assign": 0,
+		"no-shadow": 0,
+		"consistent-return": 0,
+		"yoda": 0,
+		"no-unused-vars": [
+			2,
+			{
+				"vars": "all",
+				"args": "none"
+			}
+		],
+
+		"no-extend-native": 0,
+
+		// Require specific JSDOC formatting:
+		"valid-jsdoc": [
+			2,
+			{
+				"requireParamDescription": false,
+				"requireReturnDescription": false,
+				"prefer": {
+					"return": "returns",
+					"param": "param"
+				}
+			}
+		],
+
+		// Don't require "use strict";
+		// our build step handles this:
+		"strict": 0,
+
+		// Node-specific stuff:
+		"no-process-exit": 0
+	}
+}

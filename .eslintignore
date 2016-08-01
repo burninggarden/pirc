@@ -1,0 +1,8 @@
+node_modules/*/*
+client/lib/*
+assets/js/dist/*
+assets/js/*bundle.js
+assets/js/templates/compiled/*
+assets/css/compiled/*
+assets/js/plugins/*/compiled*
+coverage/*
