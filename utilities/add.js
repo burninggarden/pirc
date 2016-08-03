@@ -1,0 +1,22 @@
+var req = require('req');
+
+var has = req('/utilities/has');
+
+function add(value) {
+
+	function to(array) {
+		if (!has(array, value)) {
+			array.push(value);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	return {
+		to: to
+	};
+
+}
+
+module.exports = add;

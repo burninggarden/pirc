@@ -12,8 +12,10 @@ client.connectToServer({
 	nick: 'chaba'
 }, function handler(error) {
 	if (error) {
-		console.warn(error);
-	} else {
-		console.log('yay');
+		return void console.warn(error);
 	}
+
+	client.joinChannel('#test', function handler(error) {
+		client.sendMessageToChannel('foobar', '#test');
+	});
 });
