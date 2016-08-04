@@ -3,9 +3,9 @@ var req = require('req');
 var has = req('/utilities/has');
 
 function add(value) {
-
 	function to(array) {
 		if (!has(array, value)) {
+
 			array.push(value);
 			return true;
 		} else {
@@ -13,10 +13,7 @@ function add(value) {
 		}
 	}
 
-	return {
-		to: to
-	};
-
+	return { to };
 }
 
 module.exports = add;
