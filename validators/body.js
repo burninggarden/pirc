@@ -5,10 +5,6 @@ var
 
 
 function validate(body) {
-	if (!body) {
-		throw new InvalidBodyError(body, ErrorReasons.OMITTED);
-	}
-
 	if (!isString(body)) {
 		throw new InvalidBodyError(body, ErrorReasons.WRONG_TYPE);
 	}

@@ -9,16 +9,19 @@ var
 
 
 var
-	NICK_REGEX_SOURCE      = '[' + prefix + '][' + suffix + ']+',
-	USER_IDENTIFIER_SOURCE = '(' + NICK_REGEX_SOURCE + ')!([^@]+)@(.+)';
+	NICK_SOURCE            = '[' + prefix + '][' + suffix + ']+',
+	USER_IDENTIFIER_SOURCE = '(' + NICK_SOURCE + ')!([^@]+)@(.+)',
+	CHANNEL_SOURCE         = '[&#!\\+][^\\s,]+';
 
 const
 
-	NICK_REGEX            = new RegExp('^' + NICK_REGEX_SOURCE + '$'),
-	USER_IDENTIFIER_REGEX = new RegExp('^' + USER_IDENTIFIER_SOURCE + '$');
+	NICK_REGEX            = new RegExp('^' + NICK_SOURCE + '$'),
+	USER_IDENTIFIER_REGEX = new RegExp('^' + USER_IDENTIFIER_SOURCE + '$'),
+	CHANNEL_REGEX         = new RegExp('^' + CHANNEL_SOURCE + '$');
 
 
 module.exports = {
 	NICK:            NICK_REGEX,
-	USER_IDENTIFIER: USER_IDENTIFIER_REGEX
+	USER_IDENTIFIER: USER_IDENTIFIER_REGEX,
+	CHANNEL:         CHANNEL_REGEX
 };

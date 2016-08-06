@@ -17,7 +17,6 @@ client.connectToServer({
 	}
 
 	client.joinChannel('#test', function handler(error, channel) {
-		channel.sendMessage('foobar');
 		client.sendMessageToChannel('foobar', '#test');
 	});
 
