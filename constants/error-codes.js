@@ -19,6 +19,7 @@ module.exports = {
 
 	INVALID_CLIENT_MESSAGE:          'invalid_client_message',
 	INVALID_COMMAND:                 'invalid_command',
+	INVALID_HOSTNAME:                'invalid_hostname',
 	INVALID_MESSAGE_STRUCTURE:       'invalid_message_structure',
 	INVALID_NICK:                    'invalid_nick',
 	INVALID_NUMERIC_REPLY:           'invalid_numeric_reply',
@@ -35,10 +36,13 @@ module.exports = {
 	INVALID_STRUCTURE_DEFINITION:    'invalid_structure_definition',
 
 	INVALID_TIMESTAMP:               'invalid_timestamp',
+	INVALID_TOPIC:                   'invalid_topic',
 
+	INVALID_USER_IDENTIFIER:         'invalid_user_identifier',
 	INVALID_USER_MODE:               'invalid_user_mode',
 	INVALID_USER_MODES:              'invalid_user_modes',
 	INVALID_USERNAME:                'invalid_username',
+
 
 	NO_SERVER_CONNECTION:            'no_server_connection',
 	NOT_CONNECTED:                   'not_connected',
