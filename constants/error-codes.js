@@ -13,6 +13,8 @@ module.exports = {
 
 	INVALID_CALLBACK:                'invalid_callback',
 
+	INVALID_CHANNEL_NAME:            'invalid_channel_name',
+
 	INVALID_CLIENT_MESSAGE:          'invalid_client_message',
 	INVALID_COMMAND:                 'invalid_command',
 	INVALID_MESSAGE_STRUCTURE:       'invalid_message_structure',

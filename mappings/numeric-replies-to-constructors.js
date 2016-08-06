@@ -30,6 +30,10 @@ module.exports = {
 	[NumericReplies.RPL_TOPIC]:         load('channel-topic'),          // 332
 	[NumericReplies.RPL_TOPICWHOTIME]:  load('channel-topic-details'),  // 333
 
+	[NumericReplies.RPL_NAMREPLY]:      load('names-reply'),            // 353
+
+	[NumericReplies.RPL_ENDOFNAMES]:    load('end-of-names'),           // 366
+
 	[NumericReplies.RPL_MOTD]:          load('motd'),                   // 372
 
 	[NumericReplies.RPL_MOTDSTART]:     load('motd-start'),             // 375
