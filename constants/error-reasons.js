@@ -2,6 +2,7 @@ module.exports = {
 	GENERIC:              'generic',
 	OMITTED:              'omitted',
 	WRONG_TYPE:           'wrong_type',
+	UNSUPPORTED:          'unsupported',
 	OVER_MAXIMUM_LENGTH:  'over_maximum_length',
 	UNDER_MINIMUM_LENGTH: 'under_minimum_length',
 	INVALID_CHARACTERS:   'invalid_characters',

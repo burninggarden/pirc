@@ -4,5 +4,6 @@ module.exports = {
 	COMMAND:       'command',
 	NUMERIC_REPLY: 'numeric_reply',
 	NICK:          'nick',
-	OTHER:         'other'
+	OTHER:         'other',
+	SERVER_NAME:   'server_name'
 };

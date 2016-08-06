@@ -11,6 +11,8 @@ module.exports = {
 	ALREADY_IN_CHANNEL:              'already_in_channel',
 	ALREADY_LISTENING:               'already_listening',
 
+	INVALID_BODY:                    'invalid_body',
+
 	INVALID_CALLBACK:                'invalid_callback',
 
 	INVALID_CHANNEL_NAME:            'invalid_channel_name',
@@ -31,6 +33,8 @@ module.exports = {
 	// Corresponds to errors when a message subclass
 	// doesn't define a proper structure definition.
 	INVALID_STRUCTURE_DEFINITION:    'invalid_structure_definition',
+
+	INVALID_TIMESTAMP:               'invalid_timestamp',
 
 	INVALID_USER_MODE:               'invalid_user_mode',
 	INVALID_USER_MODES:              'invalid_user_modes',

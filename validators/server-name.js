@@ -1,5 +1,3 @@
-var req = require('req');
-
 var
 	isString               = req('/utilities/is-string'),
 	InvalidServerNameError = req('/lib/errors/invalid-server-name'),
@@ -17,5 +15,5 @@ function validate(server_name) {
 }
 
 module.exports = {
-	validate: validate
+	validate
 };

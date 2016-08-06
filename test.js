@@ -2,6 +2,7 @@ var Pirc = require('./index');
 
 var server = new Pirc.Server();
 
+server.setName('irc.burninggarden.com');
 server.listen(6667);
 
 var client = new Pirc.Client();
@@ -15,7 +16,8 @@ client.connectToServer({
 		return void console.warn(error);
 	}
 
-	client.joinChannel('#test', function handler(error) {
+	client.joinChannel('#test', function handler(error, channel) {
+		channel.sendMessage('foobar');
 		client.sendMessageToChannel('foobar', '#test');
 	});
 
