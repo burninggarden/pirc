@@ -1,9 +1,9 @@
-var originalEscapeCharacters = require('../../utilities/escape-characters');
+var escapeCharacters = req('/utilities/escape-characters');
 
-function escapeCharacters(test) {
+function testEscapeCharacters(test) {
 	test.expect(1);
 
-	var result = originalEscapeCharacters('foobar\\baz/%');
+	var result = escapeCharacters('foobar\\baz/%');
 
 	test.equals(result, '\f\o\o\b\a\r\\\b\a\z\/\%');
 
@@ -11,5 +11,5 @@ function escapeCharacters(test) {
 }
 
 module.exports = {
-	escapeCharacters: escapeCharacters
+	testEscapeCharacters
 };

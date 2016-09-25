@@ -1,0 +1,11 @@
+{
+	"name": "pirc",
+	"description": "A combination IRC daemon / client library written in Node.js",
+	"version": "0.0.1",
+	"dependencies": {
+		"nodeunit": "0.9.1"
+	},
+	"scripts": {
+		"test": "./node_modules/nodeunit/bin/nodeunit tests/*"
+	}
+}

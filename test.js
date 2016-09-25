@@ -1,12 +1,11 @@
 var Pirc = require('./index');
 
-/*
 var server = new Pirc.Server();
 
 server.setName('irc.burninggarden.com');
 server.listen(6667);
-*/
 
+/*
 var client = new Pirc.Client();
 
 client.connectToServer({
@@ -34,3 +33,4 @@ client.connectToServer({
 		console.log('caught a disconnect');
 	});
 });
+*/
