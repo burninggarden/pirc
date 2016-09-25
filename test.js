@@ -5,11 +5,10 @@ var server = new Pirc.Server();
 server.setName('irc.burninggarden.com');
 server.listen(6667);
 
-/*
 var client = new Pirc.Client();
 
 client.connectToServer({
-	address: 'irc.freenode.org',
+	address: 'localhost',
 	port:    6667,
 	nick:    'chabaxbe'
 }, function handler(error) {
@@ -33,4 +32,3 @@ client.connectToServer({
 		console.log('caught a disconnect');
 	});
 });
-*/

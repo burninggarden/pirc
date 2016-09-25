@@ -22,7 +22,7 @@ module.exports = {
 	INVALID_HOSTNAME:                'invalid_hostname',
 	INVALID_MESSAGE_STRUCTURE:       'invalid_message_structure',
 	INVALID_NICK:                    'invalid_nick',
-	INVALID_NUMERIC_REPLY:           'invalid_numeric_reply',
+	INVALID_REPLY_NUMERIC:           'invalid_reply_numeric',
 	INVALID_PARAMETER:               'invalid_parameter',
 	INVALID_REALNAME:                'invalid_realname',
 
@@ -30,10 +30,6 @@ module.exports = {
 	INVALID_SERVER_PORT:             'invalid_server_port',
 	INVALID_SERVER_SSL:              'invalid_server_ssl',
 	INVALID_SERVER_NAME:             'invalid_server_name',
-
-	// Corresponds to errors when a message subclass
-	// doesn't define a proper structure definition.
-	INVALID_STRUCTURE_DEFINITION:    'invalid_structure_definition',
 
 	INVALID_TIMESTAMP:               'invalid_timestamp',
 	INVALID_TOPIC:                   'invalid_topic',
