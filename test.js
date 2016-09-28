@@ -1,16 +1,21 @@
 var Pirc = require('./index');
 
-var server = new Pirc.Server();
+var server = new Pirc.Server({
+	name: 'irc.burninggarden.com'
+});
 
-server.setName('irc.burninggarden.com');
 server.listen(6667);
+
+server.on('error', function handler(error) {
+	console.error(error);
+});
 
 var client = new Pirc.Client();
 
 client.connectToServer({
 	address: 'localhost',
 	port:    6667,
-	nick:    'chabaxbe'
+	nick:    'morrigan'
 }, function handler(error) {
 	if (error) {
 		return void console.warn(error);

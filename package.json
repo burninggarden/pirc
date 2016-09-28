@@ -6,6 +6,6 @@
 		"nodeunit": "0.9.1"
 	},
 	"scripts": {
-		"test": "./node_modules/nodeunit/bin/nodeunit tests/*"
+		"test": "./bin/test"
 	}
 }

@@ -2,7 +2,8 @@ var req = require('req');
 
 var
 	ClientPrivateMessage = req('/lib/client/messages/private'),
-	MessageBuilder       = req('/lib/message-builder');
+	MessageBuilder       = req('/lib/message-builder'),
+	ClientChannel        = req('/lib/client/channel');
 
 function buildMessagesFromLine(test) {
 	test.expect(1);
@@ -14,7 +15,9 @@ function buildMessagesFromLine(test) {
 			return 107;
 		};
 
-		message.setChannelName('#ganondorf');
+		var channel = new ClientChannel('#pikachu');
+
+		message.addTarget(channel);
 
 		return message;
 	}

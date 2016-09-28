@@ -1,0 +1,66 @@
+#!/usr/bin/env node
+
+/**
+ * I created this simple script to act as a MITM interceptor of all messages
+ * to / from a particular IRC server. I use this for debugging.
+ *
+ * I originally used IRSSI's raw logging feature, but because you have to
+ * actually be connected to a server before enabling raw logging, it was quite
+ * difficult to inspect the first few commands that were passed back and forth
+ * over the wire during the initial client registration lifecycle.
+ */
+
+require('req');
+
+var
+	Net               = require('net'),
+	FS                = require('fs'),
+	PortValidator     = req('/validators/port'),
+	HostnameValidator = req('/validators/hostname');
+
+
+var
+	local_port           = parseInt(process.argv[2]),
+	remote_host          = process.argv[3],
+	send_log_location    = process.argv[4],
+	receive_log_location = process.argv[5];
+
+var
+	send_log_stream    = FS.createWriteStream(send_log_location),
+	receive_log_stream = FS.createWriteStream(receive_log_location);
+
+
+PortValidator.validate(local_port);
+HostnameValidator.validate(remote_host);
+
+var server = new Net.Server();
+
+server.on('connection', function handleConnection(local_connection) {
+	var remote_connection = Net.createConnection(6667, remote_host);
+
+	local_connection.on('data', function handleLocalData(data) {
+		send_log_stream.write(data);
+		remote_connection.write(data);
+	});
+
+	remote_connection.on('data', function handleRemoteData(data) {
+		receive_log_stream.write(data);
+		local_connection.write(data);
+	});
+});
+
+server.on('error', function handleError(error) {
+	console.error(error);
+	process.exit(1);
+});
+
+server.on('close', function handleClose() {
+	console.log('server closed');
+	process.exit(0);
+});
+
+server.listen(local_port, function handler() {
+	console.log(
+		`Proxy server listening for local connections on port ${local_port}`
+	);
+});
