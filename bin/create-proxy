@@ -16,7 +16,8 @@ var
 	Net               = require('net'),
 	FS                = require('fs'),
 	PortValidator     = req('/validators/port'),
-	HostnameValidator = req('/validators/hostname');
+	HostnameValidator = req('/validators/hostname'),
+	TextFormatter     = req('/utilities/text-formatter');
 
 
 var
@@ -24,6 +25,22 @@ var
 	remote_host          = process.argv[3],
 	send_log_location    = process.argv[4],
 	receive_log_location = process.argv[5];
+
+if (isNaN(local_port)) {
+	local_port = 6667;
+}
+
+if (!remote_host) {
+	remote_host = 'irc.etsycorp.com';
+}
+
+if (!send_log_location) {
+	send_log_location = 'logs/outbound';
+}
+
+if (!receive_log_location) {
+	receive_log_location = 'logs/inbound';
+}
 
 var
 	send_log_stream    = FS.createWriteStream(send_log_location),
@@ -39,14 +56,29 @@ server.on('connection', function handleConnection(local_connection) {
 	var remote_connection = Net.createConnection(6667, remote_host);
 
 	local_connection.on('data', function handleLocalData(data) {
+		var prefix = TextFormatter.magenta('SEND: ');
+
+		console.log(prefix + data.toString('utf8'));
+
 		send_log_stream.write(data);
 		remote_connection.write(data);
 	});
 
 	remote_connection.on('data', function handleRemoteData(data) {
+		var prefix = TextFormatter.cyan('RECV: ');
+
+		console.log(prefix + data.toString('utf8'));
+
 		receive_log_stream.write(data);
 		local_connection.write(data);
 	});
+
+	setTimeout(function sendNamesCommand() {
+		console.log('SENDING NAMES REQ');
+		var data = new Buffer('NAMES');
+
+		remote_connection.write(data);
+	}, 20000);
 });
 
 server.on('error', function handleError(error) {

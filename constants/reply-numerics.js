@@ -23,7 +23,7 @@ module.exports = {
 	RPL_TOPIC:            '332',
 	RPL_TOPICWHOTIME:     '333',
 
-	RPL_NAMREPLY:         '355',
+	RPL_NAMREPLY:         '353',
 
 	RPL_ENDOFNAMES:       '366',
 

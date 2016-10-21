@@ -1,10 +1,26 @@
 var Pirc = require('./index');
 
+/*
+var log = console.log;
+
+console.log = function line() {
+	var stack;
+
+	try {
+		throw new Error('abstracted');
+	} catch (error) {
+		stack = error.stack;
+		log.apply(console, Array.prototype.slice.call(arguments));
+		log.call(console, stack.split('\n')[2]);
+	}
+};
+*/
+
 var server = new Pirc.Server({
 	name: 'irc.burninggarden.com'
 });
 
-server.listen(6667);
+server.listen(1234);
 
 server.on('error', function handler(error) {
 	console.error(error);
@@ -14,7 +30,7 @@ var client = new Pirc.Client();
 
 client.connectToServer({
 	address: 'localhost',
-	port:    6667,
+	port:    1234,
 	nick:    'morrigan'
 }, function handler(error) {
 	if (error) {
