@@ -38,7 +38,6 @@ client.connectToServer({
 	}
 
 	client.joinChannel('#ganondorf', function handler(error, channel) {
-
 		channel.on('message', function handler(message) {
 			console.log('CAUGHT MESSAGE:');
 			console.log('CAUGHT MESSAGE:');
@@ -53,3 +52,4 @@ client.connectToServer({
 		console.log('caught a disconnect');
 	});
 });
+

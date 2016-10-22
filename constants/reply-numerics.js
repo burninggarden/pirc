@@ -32,6 +32,8 @@ module.exports = {
 	RPL_MOTDSTART:        '375',
 	RPL_ENDOFMOTD:        '376',
 
+	ERR_NOMOTD:           '422',
+
 	ERR_NONICKNAMEGIVEN:  '431',
 	ERR_ERRONEUSNICKNAME: '432',
 	ERR_NICKNAMEINUSE:    '433',

@@ -2,6 +2,8 @@
 module.exports = {
 
 	CHANNEL: 'channel',
-	CLIENT:  'client'
+	NICK:    'nick',
+	SERVER:  'server',
+	USER:    'user'
 
 };

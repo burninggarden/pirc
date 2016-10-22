@@ -31,6 +31,8 @@ module.exports = {
 	INVALID_SERVER_SSL:              'invalid_server_ssl',
 	INVALID_SERVER_NAME:             'invalid_server_name',
 
+	INVALID_TARGET:                  'invalid_target',
+
 	INVALID_TIMESTAMP:               'invalid_timestamp',
 	INVALID_TOPIC:                   'invalid_topic',
 
