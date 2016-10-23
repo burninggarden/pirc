@@ -17,7 +17,7 @@ console.log = function line() {
 */
 
 var server = new Pirc.Server({
-	name: 'irc.burninggarden.com'
+	hostname: 'irc.burninggarden.com'
 });
 
 server.listen(1234);
@@ -29,7 +29,7 @@ server.on('error', function handler(error) {
 var client = new Pirc.Client();
 
 client.connectToServer({
-	address: 'localhost',
+	address: '127.0.0.1',
 	port:    1234,
 	nick:    'morrigan'
 }, function handler(error) {

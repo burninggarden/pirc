@@ -17,7 +17,9 @@ module.exports = {
 
 	INVALID_CHANNEL_NAME:            'invalid_channel_name',
 
+	INVALID_CLIENT_IDENTIFIER:       'invalid_client_identifier',
 	INVALID_CLIENT_MESSAGE:          'invalid_client_message',
+
 	INVALID_COMMAND:                 'invalid_command',
 	INVALID_HOSTNAME:                'invalid_hostname',
 	INVALID_MESSAGE_STRUCTURE:       'invalid_message_structure',
@@ -31,12 +33,12 @@ module.exports = {
 	INVALID_SERVER_SSL:              'invalid_server_ssl',
 	INVALID_SERVER_NAME:             'invalid_server_name',
 
+	INVALID_SOURCE:                  'invalid_source',
 	INVALID_TARGET:                  'invalid_target',
 
 	INVALID_TIMESTAMP:               'invalid_timestamp',
 	INVALID_TOPIC:                   'invalid_topic',
 
-	INVALID_USER_IDENTIFIER:         'invalid_user_identifier',
 	INVALID_USER_MODE:               'invalid_user_mode',
 	INVALID_USER_MODES:              'invalid_user_modes',
 	INVALID_USERNAME:                'invalid_username',
