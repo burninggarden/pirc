@@ -8,7 +8,7 @@ function serialize(test) {
 
 	var message = new NamesReplyMessage();
 
-	message.setChannelName('#ops');
+	message.setSourceChannelName('#ops');
 	message.addTarget(new NickTarget('pachet'));
 	message.setServerName('irc.burninggarden.com');
 	message.addName('victoire');
@@ -39,7 +39,7 @@ function deserialize(test) {
 		'cloudbreaker',
 		'petalblood'
 	]);
-	test.equals(message.getChannelName(), '#ops');
+	test.equals(message.getSourceChannelName(), '#ops');
 	test.done();
 }
 
