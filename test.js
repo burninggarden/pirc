@@ -1,55 +1,48 @@
 var Pirc = require('./index');
 
-/*
-var log = console.log;
-
-console.log = function line() {
-	var stack;
-
-	try {
-		throw new Error('abstracted');
-	} catch (error) {
-		stack = error.stack;
-		log.apply(console, Array.prototype.slice.call(arguments));
-		log.call(console, stack.split('\n')[2]);
-	}
-};
-*/
-
 var server = new Pirc.Server({
 	hostname: 'irc.burninggarden.com'
 });
 
 server.listen(1234);
 
-server.on('error', function handler(error) {
-	console.error(error);
-});
-
 var client = new Pirc.Client();
 
 client.connectToServer({
-	address: '127.0.0.1',
-	port:    1234,
-	nick:    'morrigan'
+	hostname: '127.0.0.1',
+	port:     1234,
+	nick:     'morrigan'
 }, function handler(error) {
 	if (error) {
-		return void console.warn(error);
+		console.error(error);
+		process.exit(1);
 	}
 
 	client.joinChannel('#ganondorf', function handler(error, channel) {
 		channel.on('message', function handler(message) {
-			console.log('CAUGHT MESSAGE:');
-			console.log('CAUGHT MESSAGE:');
-			console.log('CAUGHT MESSAGE:');
-			console.log(message);
 		});
 
-		client.sendMessageToChannel('foobar', '#ganondorf');
-	});
-
-	client.on('disconnect', function handler() {
-		console.log('caught a disconnect');
+		setInterval(function() {
+			client.sendMessageToChannel(Math.random().toString(16).slice(3), '#ganondorf');
+		}, 1000);
 	});
 });
 
+var client2 = new Pirc.Client();
+
+client2.connectToServer({
+	hostname: '127.0.0.1',
+	port:     1234,
+	nick:     'lilith'
+}, function handler() {
+	client2.joinChannel('#ganondorf', function handler(error, channel) {
+		if (error) {
+			throw error;
+		}
+
+		channel.on('message', function handler(message) {
+			console.log('CAUGHT A MESSAGE!');
+			console.log(message.body);
+		});
+	});
+});

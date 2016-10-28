@@ -1,7 +1,7 @@
 
 var
 	getTargetFromString = req('/utilities/get-target-from-string'),
-	ChannelTarget       = req('/lib/targets/channel');
+	ChannelDetails      = req('/lib/channel-details');
 
 
 function getChannelTarget(test) {
@@ -9,7 +9,7 @@ function getChannelTarget(test) {
 
 	var target = getTargetFromString('#ganondorf');
 
-	test.ok(target instanceof ChannelTarget);
+	test.ok(target instanceof ChannelDetails);
 	test.done();
 }
 

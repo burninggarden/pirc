@@ -17,7 +17,7 @@ function buildMessagesFromLine(test) {
 
 		var channel = new ClientChannel('#pikachu');
 
-		message.addTarget(channel.toTarget());
+		message.addTarget(channel.getChannelDetails());
 
 		return message;
 	}

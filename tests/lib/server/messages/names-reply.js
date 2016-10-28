@@ -1,6 +1,6 @@
 var
 	NamesReplyMessage = req('/lib/server/messages/names-reply'),
-	NickTarget        = req('/lib/targets/nick'),
+	ClientDetails     = req('/lib/client-details'),
 	Delimiters        = req('/constants/delimiters');
 
 function serialize(test) {
@@ -9,7 +9,11 @@ function serialize(test) {
 	var message = new NamesReplyMessage();
 
 	message.setChannelName('#ops');
-	message.addTarget(new NickTarget('pachet'));
+
+	var target = ClientDetails.fromNick('pachet');
+
+	message.addTarget(target);
+
 	message.setServerName('irc.burninggarden.com');
 	message.addName('victoire');
 	message.addName('cloudbreaker');
