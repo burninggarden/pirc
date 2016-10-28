@@ -1,5 +1,7 @@
 module.exports = {
+	CAP:     'CAP',
 	JOIN:    'JOIN',
+	MODE:    'MODE',
 	NICK:    'NICK',
 	NOTICE:  'NOTICE',
 	PART:    'PART',
@@ -7,5 +9,6 @@ module.exports = {
 	PING:    'PING',
 	PONG:    'PONG',
 	PRIVMSG: 'PRIVMSG',
+	QUIT:    'QUIT',
 	USER:    'USER'
 };

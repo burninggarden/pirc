@@ -1,32 +1,15 @@
 var
-	isString               = req('/utilities/is-string'),
-	InvalidServerNameError = req('/lib/errors/invalid-server-name'),
+	InvalidServerNameError = req('/lib/errors/invalid-body'),
 	ErrorReasons           = req('/constants/error-reasons'),
-	Regexes                = req('/constants/regexes');
+	isString               = req('/utilities/is-string');
 
 
-function validate(server_name) {
-	if (!server_name) {
-		throw new InvalidServerNameError(
-			server_name,
-			ErrorReasons.OMITTED
-		);
-	}
-
-	if (!isString(server_name)) {
-		throw new InvalidServerNameError(
-			server_name,
-			ErrorReasons.WRONG_TYPE
-		);
-	}
-
-	if (!Regexes.HOST.test(server_name)) {
-		throw new InvalidServerNameError(
-			server_name,
-			ErrorReasons.INVALID_CHARACTERS
-		);
+function validate(name) {
+	if (!isString(name)) {
+		throw new InvalidServerNameError(name, ErrorReasons.WRONG_TYPE);
 	}
 }
+
 
 module.exports = {
 	validate

@@ -4,13 +4,14 @@ var server = new Pirc.Server({
 	hostname: 'irc.burninggarden.com'
 });
 
-server.listen(1234);
+server.listen(6667);
 
+/*
 var client = new Pirc.Client();
 
 client.connectToServer({
 	hostname: '127.0.0.1',
-	port:     1234,
+	port:     6667,
 	nick:     'morrigan'
 }, function handler(error) {
 	if (error) {
@@ -32,7 +33,7 @@ var client2 = new Pirc.Client();
 
 client2.connectToServer({
 	hostname: '127.0.0.1',
-	port:     1234,
+	port:     6667,
 	nick:     'lilith'
 }, function handler() {
 	client2.joinChannel('#ganondorf', function handler(error, channel) {
@@ -46,3 +47,4 @@ client2.connectToServer({
 		});
 	});
 });
+*/
