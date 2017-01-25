@@ -13,11 +13,11 @@ var
 // with the ^ and $ delimiter tokens.
 var
 	NICK_SOURCE = '[' + prefix + '][' + suffix + ']+',
-	USER_SOURCE = '[^\s\0\r\n]+',
+	USER_SOURCE = '[^\\s\\0\\r\\n]+',
 
 	// The first group is for IPv4 addresses and hostmasks;
 	// the second group is for IPv6 addresses.
-	HOST_SOURCE            = '([A-Za-z0-9][A-Za-z0-9\-]+\\.[A-Za-z0-9])|([:0-9f]+\\.)',
+	HOST_SOURCE            = '([A-Za-z0-9][A-Za-z0-9\\-]+\\.[A-Za-z0-9\\-\\.]+)|([:0-9f]+\\.)',
 	USER_IDENTIFIER_SOURCE = '(' + NICK_SOURCE + ')!(' + USER_SOURCE + ')@(' + HOST_SOURCE +')',
 	CHANNEL_SOURCE         = '[&#!\\+][^\\s,]+';
 
