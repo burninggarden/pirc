@@ -10,5 +10,6 @@ module.exports = {
 	PONG:    'PONG',
 	PRIVMSG: 'PRIVMSG',
 	QUIT:    'QUIT',
+	TOPIC:   'TOPIC',
 	USER:    'USER'
 };

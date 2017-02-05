@@ -20,6 +20,7 @@ module.exports = {
 	RPL_GLOBALUSERS:      '266',
 	RPL_USERHOST:         '302',
 
+	RPL_NOTOPIC:          '331',
 	RPL_TOPIC:            '332',
 	RPL_TOPICWHOTIME:     '333',
 

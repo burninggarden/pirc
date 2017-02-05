@@ -1,3 +1,48 @@
+
+
+const POKEMON = [
+	'pikachu',
+	'charizard',
+	'butterfree',
+	'vaporeon',
+	'haunter',
+	'moltres',
+	'blastoise',
+	'venusaur',
+	'hitmonlee'
+];
+
+const POKEMON_TYPES = {
+	'pikachu':    'electric',
+	'charizard':  'fire',
+	'butterfree': 'grass/flying',
+	'vaporeon':   'water',
+	'haunter':    'ghost/psychic',
+	'moltres':    'fire/flying',
+	'blastoise':  'water',
+	'venusaur':   'grass',
+	'hitmonlee':  'fighting'
+};
+
+
+function getRandomPokemon() {
+	var index = Math.floor(Math.random() * POKEMON.length);
+
+	return POKEMON[index];
+}
+
+
+function getTypeForPokemon(pokemon) {
+	return POKEMON_TYPES[pokemon] || null;
+}
+
+
+function handleError(error) {
+	console.error(error);
+	process.exit(1);
+}
+
+
 var Pirc = require('./index');
 
 var server = new Pirc.Server({
@@ -15,19 +60,44 @@ client.connectToServer({
 	nick:     'morrigan'
 }, function handler(error) {
 	if (error) {
-		console.error(error);
-		process.exit(1);
+		return void handleError(error);
 	}
 
-	client.joinChannel('#ganondorf', function handler(error, channel) {
-		channel.on('message', function handler(message) {
-		});
+	var in_channel = false;
 
-		setInterval(function() {
-			client.sendMessageToChannel(Math.random().toString(16).slice(3), '#ganondorf');
-		}, 1000);
-	});
+	function dispatch() {
+		if (!in_channel) {
+			client.joinChannel('#ganondorf', function handler(error, channel) {
+				if (error) {
+					return void handleError(error);
+				}
+
+				in_channel = true;
+
+				client.sendMessageToChannel('hi!', '#ganondorf');
+
+				setTimeout(dispatch, 2000);
+			});
+		} else {
+			client.sendMessageToChannel('bye!', '#ganondorf');
+
+			client.leaveChannel('#ganondorf', function handler(error) {
+				if (error) {
+					return void handleError(error);
+				}
+
+				console.log('WE ARE HERE!!!!!!!');
+
+				in_channel = false;
+
+				setTimeout(dispatch, 2000);
+			});
+		}
+	}
+
+	dispatch();
 });
+*/
 
 var client2 = new Pirc.Client();
 
@@ -38,13 +108,28 @@ client2.connectToServer({
 }, function handler() {
 	client2.joinChannel('#ganondorf', function handler(error, channel) {
 		if (error) {
-			throw error;
+			return void handleError(error);
 		}
 
+		client2.setTopicForChannel(
+			'Today\'s Pokemon: ' + getRandomPokemon(),
+			'#ganondorf'
+		);
+
 		channel.on('message', function handler(message) {
-			console.log('CAUGHT A MESSAGE!');
-			console.log(message.body);
+			var type = getTypeForPokemon(message.body);
+
+			if (type) {
+				client2.sendMessageToChannel(
+					message.client.getNick() + ': ' + type,
+					channel
+				);
+
+				client2.setTopicForChannel(
+					'Today\'s Pokemon: ' + message.body,
+					'#ganondorf'
+				);
+			}
 		});
 	});
 });
-*/
