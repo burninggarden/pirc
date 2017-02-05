@@ -116,20 +116,23 @@ client2.connectToServer({
 			'#ganondorf'
 		);
 
-		channel.on('message', function handler(message) {
-			var type = getTypeForPokemon(message.body);
+		client2.sendMessageToNick(
+			'hey - is anyone there?',
+			'victoire'
+		);
+	});
 
-			if (type) {
-				client2.sendMessageToChannel(
-					message.client.getNick() + ': ' + type,
-					channel
-				);
+	client2.on('message', function handler(message) {
+		var type = getTypeForPokemon(message.getBody());
 
-				client2.setTopicForChannel(
-					'Today\'s Pokemon: ' + message.body,
-					'#ganondorf'
-				);
-			}
-		});
+		if (!type) {
+			return;
+		}
+
+		client2.respondToMessage(message, type);
+
+		var topic = 'Today\'s Pokemon: ' + message.getBody();
+
+		client2.setTopicForChannel(topic, '#ganondorf');
 	});
 });
