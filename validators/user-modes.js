@@ -20,5 +20,5 @@ function validate(user_modes) {
 }
 
 module.exports = {
-	validate: validate
+	validate
 };

@@ -1,6 +1,6 @@
 var
 	NamesReplyMessage = req('/lib/server/messages/names-reply'),
-	ClientDetails     = req('/lib/client-details'),
+	UserDetails       = req('/lib/user-details'),
 	Delimiters        = req('/constants/delimiters');
 
 function serialize(test) {
@@ -10,7 +10,7 @@ function serialize(test) {
 
 	message.setChannelName('#ops');
 
-	var target = ClientDetails.fromNick('pachet');
+	var target = UserDetails.fromNick('pachet');
 
 	message.addTarget(target);
 

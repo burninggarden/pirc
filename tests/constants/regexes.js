@@ -32,8 +32,8 @@ function testUserIdentifier(test) {
 	);
 
 	test.ok(
-		Regexes.CLIENT_IDENTIFIER.test('morrigan!~pirc@::ffff:127.0.0.1'),
-		'Make sure the client identifier regex works against localhost and ipv6'
+		Regexes.USER_IDENTIFIER.test('morrigan!~pirc@::ffff:127.0.0.1'),
+		'Make sure the user identifier regex works against localhost and ipv6'
 	);
 	test.done();
 }

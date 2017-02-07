@@ -17,22 +17,22 @@ var
 
 	// The first group is for IPv4 addresses and hostmasks;
 	// the second group is for IPv6 addresses.
-	HOST_SOURCE            = '([A-Za-z0-9][A-Za-z0-9\-\.]+[A-Za-z0-9])|([:0-9\.f]+)',
-	CLIENT_IDENTIFIER_SOURCE = '(' + NICK_SOURCE + ')!(' + USER_SOURCE + ')@(' + HOST_SOURCE +')',
+	HOST_SOURCE            = '([A-Za-z0-9][A-Za-z0-9\-]+\\.[A-Za-z0-9])|([:0-9f]+\\.)',
+	USER_IDENTIFIER_SOURCE = '(' + NICK_SOURCE + ')!(' + USER_SOURCE + ')@(' + HOST_SOURCE +')',
 	CHANNEL_SOURCE         = '[&#!\\+][^\\s,]+';
 
 const
-	NICK_REGEX              = new RegExp('^' + NICK_SOURCE + '$'),
-	USER_REGEX              = new RegExp('^' + USER_SOURCE + '$'),
-	HOST_REGEX              = new RegExp('^' + HOST_SOURCE + '$'),
-	CLIENT_IDENTIFIER_REGEX = new RegExp('^' + CLIENT_IDENTIFIER_SOURCE + '$'),
-	CHANNEL_REGEX           = new RegExp('^' + CHANNEL_SOURCE + '$');
+	NICK_REGEX            = new RegExp('^' + NICK_SOURCE + '$'),
+	USER_REGEX            = new RegExp('^' + USER_SOURCE + '$'),
+	HOST_REGEX            = new RegExp('^' + HOST_SOURCE + '$'),
+	USER_IDENTIFIER_REGEX = new RegExp('^' + USER_IDENTIFIER_SOURCE + '$'),
+	CHANNEL_REGEX         = new RegExp('^' + CHANNEL_SOURCE + '$');
 
 
 module.exports = {
-	NICK:              NICK_REGEX,
-	USER:              USER_REGEX,
-	HOST:              HOST_REGEX,
-	CLIENT_IDENTIFIER: CLIENT_IDENTIFIER_REGEX,
-	CHANNEL:           CHANNEL_REGEX
+	NICK:            NICK_REGEX,
+	USER:            USER_REGEX,
+	HOST:            HOST_REGEX,
+	USER_IDENTIFIER: USER_IDENTIFIER_REGEX,
+	CHANNEL:         CHANNEL_REGEX
 };

@@ -64,7 +64,16 @@ server.on('connection', function handleConnection(local_connection) {
 		remote_connection.write(data);
 	});
 
+	local_connection.on('error', function handleError() {
+		local_connection = null;
+		remote_connection.end();
+	});
+
 	remote_connection.on('data', function handleRemoteData(data) {
+		if (!local_connection) {
+			return;
+		}
+
 		var prefix = TextFormatter.cyan('RECV: ');
 
 		console.log(prefix + data.toString('utf8'));

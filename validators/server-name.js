@@ -1,5 +1,5 @@
 var
-	InvalidServerNameError = req('/lib/errors/invalid-body'),
+	InvalidServerNameError = req('/lib/errors/invalid-server-name'),
 	ErrorReasons           = req('/constants/error-reasons'),
 	isString               = req('/utilities/is-string');
 

@@ -46,7 +46,8 @@ function handleError(error) {
 var Pirc = require('./index');
 
 var server = new Pirc.Server({
-	hostname: 'irc.burninggarden.com'
+	hostname: 'irc.burninggarden.com',
+	motd:     'Sample MOTD'
 });
 
 server.listen(6667);
@@ -99,6 +100,7 @@ client.connectToServer({
 });
 */
 
+/*
 var client2 = new Pirc.Client();
 
 client2.connectToServer({
@@ -136,3 +138,7 @@ client2.connectToServer({
 		client2.setTopicForChannel(topic, '#ganondorf');
 	});
 });
+*/
+
+var regexes = require('./constants/regexes');
+console.log(regexes.NICK);

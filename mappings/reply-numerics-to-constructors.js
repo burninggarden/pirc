@@ -17,8 +17,10 @@ module.exports = {
 
 	[ReplyNumerics.RPL_YOURID]:        load('your-id'),                // 042
 
+	[ReplyNumerics.RPL_STATSCONN]:     load('connection-stats'),       // 250
 	[ReplyNumerics.RPL_LUSERCLIENT]:   load('l-user-client'),          // 251
 	[ReplyNumerics.RPL_LUSEROP]:       load('l-user-op'),              // 252
+	[ReplyNumerics.RPL_LUSERUNKNOWN]:  load('l-user-unknown'),         // 253
 
 	[ReplyNumerics.RPL_LUSERCHANNELS]: load('l-user-channels'),        // 254
 	[ReplyNumerics.RPL_LUSERME]:       load('l-user-me'),              // 255
@@ -43,7 +45,9 @@ module.exports = {
 
 	[ReplyNumerics.ERR_NOMOTD]:        load('no-motd'),                // 422
 
-	[ReplyNumerics.ERR_NICKNAMEINUSE]: load('nickname-in-use')         // 433
+	[ReplyNumerics.ERR_NICKNAMEINUSE]: load('nick-in-use'),            // 433
+
+	[ReplyNumerics.ERR_NOTREGISTERED]: load('not-registered')          // 451
 
 };
 

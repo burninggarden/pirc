@@ -16,8 +16,9 @@ module.exports = {
 	INVALID_CALLBACK:                'invalid_callback',
 
 	INVALID_CHANNEL_NAME:            'invalid_channel_name',
+	INVALID_CHANNEL_MODE:            'invalid_channel_mode',
+	INVALID_CHANNEL_MODES:           'invalid_channel_modes',
 
-	INVALID_CLIENT_IDENTIFIER:       'invalid_client_identifier',
 	INVALID_CLIENT_MESSAGE:          'invalid_client_message',
 
 	INVALID_COMMAND:                 'invalid_command',
@@ -38,6 +39,8 @@ module.exports = {
 
 	INVALID_TIMESTAMP:               'invalid_timestamp',
 	INVALID_TOPIC:                   'invalid_topic',
+
+	INVALID_USER_IDENTIFIER:         'invalid_user_identifier',
 
 	INVALID_USER_MODE:               'invalid_user_mode',
 	INVALID_USER_MODES:              'invalid_user_modes',

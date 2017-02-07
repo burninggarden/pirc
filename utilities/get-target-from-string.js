@@ -1,13 +1,17 @@
 
 var
-	ClientDetails  = req('/lib/client-details'),
+	UserDetails    = req('/lib/user-details'),
 	ChannelDetails = req('/lib/channel-details'),
 	ServerDetails  = req('/lib/server-details'),
 	Regexes        = req('/constants/regexes');
 
 function getTargetFromString(target_string) {
+	if (target_string === '*') {
+		return UserDetails.createPreregistrationStub();
+	}
+
 	if (Regexes.NICK.test(target_string)) {
-		return ClientDetails.fromNick(target_string);
+		return UserDetails.fromNick(target_string);
 	}
 
 	if (Regexes.CHANNEL.test(target_string)) {
@@ -15,11 +19,11 @@ function getTargetFromString(target_string) {
 	}
 
 	if (Regexes.HOST.test(target_string)) {
-		return ServerDetails.fromHostname(target_string);
+		return ServerDetails.fromIdentifier(target_string);
 	}
 
 	if (Regexes.USER.test(target_string)) {
-		return ClientDetails.fromUserIdentifier(target_string);
+		return UserDetails.fromIdentifier(target_string);
 	}
 
 	throw new Error('Could not parse target string: ' + target_string);
