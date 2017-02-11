@@ -18,6 +18,8 @@ module.exports = {
 	INVALID_CHANNEL_NAME:            'invalid_channel_name',
 	INVALID_CHANNEL_MODE:            'invalid_channel_mode',
 	INVALID_CHANNEL_MODES:           'invalid_channel_modes',
+	INVALID_CHANNEL_NICK_PREFIX:     'invalid_channel_nick_prefix',
+	INVALID_CHANNEL_USER_MODE:       'invalid_channel_user_mode',
 
 	INVALID_CLIENT_MESSAGE:          'invalid_client_message',
 

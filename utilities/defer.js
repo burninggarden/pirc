@@ -1,9 +1,10 @@
 var
-	toArray    = require('./to-array'),
-	isFunction = require('./is-function');
+	toArray    = req('/utilities/to-array'),
+	isFunction = req('/utilities/is-function');
 
 var
-	InvalidCallbackError = require('../lib/errors/invalid-callback');
+	ErrorReasons         = req('/constants/error-reasons'),
+	InvalidCallbackError = req('/lib/errors/invalid-callback');
 
 
 function defer() {
@@ -12,7 +13,15 @@ function defer() {
 		callback = args.shift();
 
 	if (!isFunction(callback)) {
-		throw new InvalidCallbackError(callback);
+		let reason;
+
+		if (!callback) {
+			reason = ErrorReasons.OMITTED;
+		} else {
+			reason = ErrorReasons.WRONG_TYPE;
+		}
+
+		throw new InvalidCallbackError(callback, reason);
 	}
 
 	setTimeout(function deferred() {

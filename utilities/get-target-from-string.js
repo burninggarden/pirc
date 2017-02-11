@@ -22,7 +22,7 @@ function getTargetFromString(target_string) {
 		return ServerDetails.fromIdentifier(target_string);
 	}
 
-	if (Regexes.USER.test(target_string)) {
+	if (Regexes.USER_IDENTIFIER.test(target_string)) {
 		return UserDetails.fromIdentifier(target_string);
 	}
 

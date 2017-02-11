@@ -1,6 +1,8 @@
 
 var Pirc = require('./index');
 
+var MarkovConstructor = require('/home/pachet/burninggarden/utility/markov/constructor');
+
 
 const POKEMON = [
 	'pikachu',
@@ -44,14 +46,30 @@ function handleError(error) {
 	process.exit(1);
 }
 
+function getRandomCardName() {
+	var name = MarkovConstructor.construct(require('/home/pachet/burninggarden/cards.json'));
+
+	var parts = name.slice(0, -1).split(' ');
+
+	parts = parts.map(function map(part) {
+		return part[0].toUpperCase() + part.slice(1);
+	});
+
+	return parts.join('');
+}
+
 
 var client = new Pirc.Client();
 
 client.connectToServer({
 	hostname: 'localhost',
 	port:     6667,
-	nick:     'crilbith'
-}, function handler() {
+	nick:     getRandomCardName()
+}, function handler(error) {
+	if (error) {
+		return void handleError(error);
+	}
+
 	client.joinChannel('#ganondorf', function handler(error, channel) {
 		if (error) {
 			return void handleError(error);
@@ -67,6 +85,10 @@ client.connectToServer({
 			'victoire'
 		);
 	});
+
+	client.joinChannel('##javascript');
+	client.joinChannel('#jquery');
+	client.joinChannel('#node.js');
 
 	client.on('message', function handler(message) {
 		var type = getTypeForPokemon(message.getBody());

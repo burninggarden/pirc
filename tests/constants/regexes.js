@@ -22,7 +22,7 @@ function testUserIdentifier(test) {
 	);
 
 	test.ok(
-		Regexes.USER.test('~pirc'),
+		Regexes.USERNAME.test('~pirc'),
 		'Make sure the user identifier regex works as expected'
 	);
 
