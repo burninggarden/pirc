@@ -4,7 +4,10 @@ global.req = require('req');
 
 var JoinMessage = req('/lib/server/messages/join');
 
-// var Regexes = req('/constants/regexes');
+var Regexes = req('/constants/regexes');
+
+console.log(Regexes.NICK.test('x'));
+process.exit(0);
 
 var message = new JoinMessage();
 

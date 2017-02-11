@@ -5,7 +5,7 @@ var
 	Regexes          = req('/constants/regexes');
 
 const
-	MINIMUM_NICK_LENGTH = 2,
+	MINIMUM_NICK_LENGTH = 1,
 	MAXIMUM_NICK_LENGTH = 16;
 
 

@@ -11,5 +11,6 @@ module.exports = {
 	PRIVMSG: 'PRIVMSG',
 	QUIT:    'QUIT',
 	TOPIC:   'TOPIC',
-	USER:    'USER'
+	USER:    'USER',
+	WHOIS:   'WHOIS'
 };

@@ -55,7 +55,9 @@ function getRandomCardName() {
 		return part[0].toUpperCase() + part.slice(1);
 	});
 
-	return parts.join('');
+	name = parts.join('');
+
+	return name.slice(0, 9);
 }
 
 
@@ -93,14 +95,32 @@ client.connectToServer({
 	client.on('message', function handler(message) {
 		var type = getTypeForPokemon(message.getBody());
 
-		if (!type) {
+		if (type) {
+			client.respondToMessage(message, type);
+
+			var topic = 'Today\'s Pokemon: ' + message.getBody();
+
+			client.setTopicForChannel(topic, '#ganondorf');
+		}
+
+		if (!message.hasChannel()) {
 			return;
 		}
 
-		client.respondToMessage(message, type);
+		if (!message.hasUser()) {
+			return;
+		}
 
-		var topic = 'Today\'s Pokemon: ' + message.getBody();
+		var nick = message.getNick();
 
-		client.setTopicForChannel(topic, '#ganondorf');
+		client.performWhoisQueryForNick(nick, function handler(error, user_details) {
+			user_details.getChannelNames().forEach(function each(channel_name) {
+				try {
+					client.joinChannel(channel_name);
+				} catch (error) {
+					// Drop on floor
+				}
+			});
+		});
 	});
 });

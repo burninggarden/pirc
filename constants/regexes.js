@@ -5,14 +5,14 @@ var
 var
 	special_characters = escapeCharacters(CharacterClasses.SPECIAL),
 	prefix             = 'A-z' + special_characters,
-	suffix             = 'A-z0-9' + special_characters;
+	suffix             = 'A-z0-9\\-' + special_characters;
 
 
 // These are denoted as "sources" in the sense that they constitute the
 // source of other composite regexes, which usually just wrap one of these
 // with the ^ and $ delimiter tokens.
 var
-	NICK_SOURCE = '[' + prefix + '][' + suffix + ']+',
+	NICK_SOURCE = '[' + prefix + ']([' + suffix + ']+)?',
 	USER_SOURCE = '[^\\s\\0\\r\\n]+',
 
 	// The first group is for IPv4 addresses and hostmasks;
