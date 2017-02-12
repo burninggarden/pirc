@@ -57,7 +57,9 @@ module.exports = {
 
 	[ReplyNumerics.ERR_NOTREGISTERED]: load('not-registered'),         // 451
 
-	[ReplyNumerics.ERR_LINKCHANNEL]:   load('link-channel')            // 470
+	[ReplyNumerics.ERR_LINKCHANNEL]:   load('link-channel'),           // 470
+
+	[ReplyNumerics.RPL_WHOISSECURE]:   load('whois-secure')            // 671
 
 };
 

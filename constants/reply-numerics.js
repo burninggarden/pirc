@@ -37,6 +37,8 @@ module.exports = {
 
 	RPL_CHANNEL_URL:      '328',
 
+	RPL_WHOISACCOUNT:     '330',
+
 	RPL_NOTOPIC:          '331',
 	RPL_TOPIC:            '332',
 	RPL_TOPICWHOTIME:     '333',
@@ -62,6 +64,8 @@ module.exports = {
 
 	ERR_NOTREGISTERED:    '451',
 
-	ERR_LINKCHANNEL:      '470'
+	ERR_LINKCHANNEL:      '470',
+
+	RPL_WHOISSECURE:      '671'
 
 };
