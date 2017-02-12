@@ -28,6 +28,7 @@ module.exports = {
 	RPL_LOCALUSERS:       '265',
 	RPL_GLOBALUSERS:      '266',
 
+	RPL_AWAY:             '301',
 	RPL_USERHOST:         '302',
 
 	RPL_WHOISUSER:        '311',
