@@ -30,6 +30,10 @@ module.exports = {
 	RPL_GLOBALUSERS:      '266',
 	RPL_USERHOST:         '302',
 
+	RPL_WHOISUSER:        '311',
+	RPL_ENDOFWHOIS:       '318',
+	RPL_WHOISCHANNELS:    '319',
+
 	RPL_CHANNEL_URL:      '328',
 
 	RPL_NOTOPIC:          '331',

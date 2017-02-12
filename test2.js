@@ -113,7 +113,7 @@ client.connectToServer({
 
 		var nick = message.getNick();
 
-		client.performWhoisQueryForNick(nick, function handler(error, user_details) {
+		client.sendWhoisQueryForNick(nick, function handler(error, user_details) {
 			user_details.getChannelNames().forEach(function each(channel_name) {
 				try {
 					client.joinChannel(channel_name);

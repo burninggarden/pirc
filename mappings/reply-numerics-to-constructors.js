@@ -29,6 +29,10 @@ module.exports = {
 
 	[ReplyNumerics.RPL_GLOBALUSERS]:   load('global-users'),           // 266
 
+	[ReplyNumerics.RPL_WHOISUSER]:     load('whois-user'),             // 311
+
+	[ReplyNumerics.RPL_WHOISCHANNELS]: load('whois-channels'),         // 319
+
 	[ReplyNumerics.RPL_CHANNEL_URL]:   load('channel-url'),            // 328
 
 	[ReplyNumerics.RPL_TOPIC]:         load('channel-topic'),          // 332

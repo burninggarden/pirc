@@ -5,6 +5,7 @@ module.exports = {
 	ADMIN:         '&',
 	OPERATOR:      '@',
 	HALF_OPERATOR: '%',
-	VOICED:        '+'
+	VOICED:        '+',
+	NONE:          ''
 
 };

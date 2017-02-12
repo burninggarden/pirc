@@ -52,7 +52,6 @@ var server = new Pirc.Server({
 
 server.listen(6667);
 
-/*
 var client = new Pirc.Client();
 
 client.connectToServer({
@@ -75,7 +74,7 @@ client.connectToServer({
 
 				in_channel = true;
 
-				client.sendMessageToChannel('hi!', '#ganondorf');
+				client.sendMessageToChannel(getRandomPokemon(), '#ganondorf');
 
 				setTimeout(dispatch, 2000);
 			});
@@ -98,9 +97,7 @@ client.connectToServer({
 
 	dispatch();
 });
-*/
 
-/*
 var client2 = new Pirc.Client();
 
 client2.connectToServer({
@@ -118,10 +115,21 @@ client2.connectToServer({
 			'#ganondorf'
 		);
 
+		var nick = 'victoire';
+
 		client2.sendMessageToNick(
 			'hey - is anyone there?',
-			'victoire'
+			nick
 		);
+
+
+		client2.sendWhoisQueryForNick(nick, function handler(error, user) {
+			if (error) {
+				return void handleError(error);
+			}
+
+			console.log(user.getChannels());
+		});
 	});
 
 	client2.on('message', function handler(message) {
@@ -138,7 +146,6 @@ client2.connectToServer({
 		client2.setTopicForChannel(topic, '#ganondorf');
 	});
 });
-*/
 
 var regexes = require('./constants/regexes');
 console.log(regexes.NICK);
