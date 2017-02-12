@@ -26,8 +26,8 @@ module.exports = {
 	RPL_LUSERME:          '255',
 
 	RPL_LOCALUSERS:       '265',
-
 	RPL_GLOBALUSERS:      '266',
+
 	RPL_USERHOST:         '302',
 
 	RPL_WHOISUSER:        '311',

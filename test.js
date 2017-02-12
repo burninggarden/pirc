@@ -28,12 +28,14 @@ function getRandomCardName() {
 	return name.slice(0, 9);
 }
 
+/*
 var server = new Pirc.Server({
 	hostname: 'irc.burninggarden.com',
-	// motd:     'Sample MOTD'
+	motd:     'we will take from the land\nif it refuses to give!'
 });
 
 server.listen(6667);
+*/
 
 var client = new Pirc.Client();
 
@@ -45,14 +47,6 @@ client.connectToServer({
 	if (error) {
 		return void handleError(error);
 	}
-
-	server.getMotd(function handler(error, motd) {
-		if (error) {
-			return void handleError(error);
-		}
-
-		console.log(motd);
-	});
 
 	client.joinChannel('##javascript');
 	client.joinChannel('#node.js');

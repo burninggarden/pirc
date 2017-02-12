@@ -17,7 +17,7 @@ module.exports = {
 
 	[ReplyNumerics.RPL_YOURID]:        load('your-id'),                // 042
 
-	[ReplyNumerics.RPL_STATSCONN]:     load('connection-stats'),       // 250
+	[ReplyNumerics.RPL_STATSCONN]:     load('stats-conn'),             // 250
 	[ReplyNumerics.RPL_LUSERCLIENT]:   load('l-user-client'),          // 251
 	[ReplyNumerics.RPL_LUSEROP]:       load('l-user-op'),              // 252
 	[ReplyNumerics.RPL_LUSERUNKNOWN]:  load('l-user-unknown'),         // 253
