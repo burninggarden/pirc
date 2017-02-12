@@ -54,7 +54,9 @@ module.exports = {
 
 	[ReplyNumerics.ERR_NICKNAMEINUSE]: load('nick-in-use'),            // 433
 
-	[ReplyNumerics.ERR_NOTREGISTERED]: load('not-registered')          // 451
+	[ReplyNumerics.ERR_NOTREGISTERED]: load('not-registered'),         // 451
+
+	[ReplyNumerics.ERR_LINKCHANNEL]:   load('link-channel')            // 470
 
 };
 

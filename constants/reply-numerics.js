@@ -59,6 +59,8 @@ module.exports = {
 
 	ERR_NOTONCHANNEL:     '442',
 
-	ERR_NOTREGISTERED:    '451'
+	ERR_NOTREGISTERED:    '451',
+
+	ERR_LINKCHANNEL:      '470'
 
 };

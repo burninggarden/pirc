@@ -50,9 +50,13 @@ module.exports = {
 
 
 	NO_SERVER_CONNECTION:            'no_server_connection',
+	NO_SERVER_MOTD:                  'no_server_motd',
+
 	NOT_CONNECTED:                   'not_connected',
 	NOT_IN_CHANNEL:                  'not_in_channel',
-	NOT_YET_IMPLEMENTED:             'not_yet_implemented'
+	NOT_YET_IMPLEMENTED:             'not_yet_implemented',
+
+	UNABLE_TO_JOIN_CHANNEL:          'unable_to_join_channel'
 
 };
 

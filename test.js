@@ -8,9 +8,29 @@ function handleError(error) {
 
 var Pirc = require('./index');
 
+var MarkovConstructor = require('/home/pachet/burninggarden/utility/markov/constructor');
+
+var AlreadyInChannelError = require('./lib/errors/already-in-channel');
+
+function getRandomCardName() {
+	var name = MarkovConstructor.construct(require('/home/pachet/burninggarden/cards.json'));
+
+	name = name.replace(/[^A-Za-z]/g, '');
+
+	var parts = name.slice(0, -1).split(' ');
+
+	parts = parts.map(function map(part) {
+		return part[0].toUpperCase() + part.slice(1);
+	});
+
+	name = parts.join('');
+
+	return name.slice(0, 9);
+}
+
 var server = new Pirc.Server({
 	hostname: 'irc.burninggarden.com',
-	motd:     'Sample MOTD'
+	// motd:     'Sample MOTD'
 });
 
 server.listen(6667);
@@ -20,59 +40,55 @@ var client = new Pirc.Client();
 client.connectToServer({
 	hostname: '127.0.0.1',
 	port:     6667,
-	nick:     'morrigan'
-}, function handler(error) {
+	nick:     getRandomCardName()
+}, function handler(error, server) {
 	if (error) {
 		return void handleError(error);
 	}
 
-	client.joinChannel('#ganondorf', function handler(error, channel) {
+	server.getMotd(function handler(error, motd) {
 		if (error) {
 			return void handleError(error);
 		}
 
-		setTimeout(function deferred() {
-			client.sendMessageToChannel('foo', channel);
-		}, 2000);
-	});
-});
-
-var client2 = new Pirc.Client();
-
-client2.connectToServer({
-	hostname: '127.0.0.1',
-	port:     6667,
-	nick:     'lilith'
-}, function handler(error) {
-	if (error) {
-		return void handleError(error);
-	}
-
-	client2.joinChannel('#ganondorf', function handler(error, channel) {
-		if (error) {
-			return void handleError(error);
-		}
+		console.log(motd);
 	});
 
-	client2.on('message', function handler(message) {
+	client.joinChannel('##javascript');
+	client.joinChannel('#node.js');
+	client.joinChannel('#jquery');
+	client.joinChannel('#python');
+
+	client.on('message', function handler(message) {
 		if (!message.hasNick()) {
 			return;
 		}
 
-		var nick = message.getNick();
+		if (!message.hasChannel()) {
+			return;
+		}
 
-		client2.sendWhoisQueryForNick(nick, function handler(error, user) {
+		var
+			nick         = message.getNick(),
+			channel_name = message.getChannelName();
+
+		console.log(channel_name + ' [' + nick + '] ' + message.getBody());
+
+		client.sendWhoisQueryForNick(nick, function handler(error, user) {
 			if (error) {
 				return void handleError(error);
 			}
 
-			console.log(user.getRealname());
-			console.log(user.getChannelNames());
-
-			process.exit(0);
+			user.getChannelNames.forEach(function each(channel_name) {
+				try {
+					client.joinChannel(channel_name);
+				} catch (error) {
+					if (!(error instanceof AlreadyInChannelError)) {
+						return void handleError(error);
+					}
+				}
+			});
 		});
 	});
 });
 
-var regexes = require('./constants/regexes');
-console.log(regexes.NICK);

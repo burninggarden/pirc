@@ -28,8 +28,6 @@ function validate(nick) {
 	}
 
 	if (!Regexes.NICK.test(nick)) {
-		console.log(Regexes.NICK);
-		console.log('>>' + nick + '<<');
 		throw new InvalidNickError(nick, ErrorReasons.INVALID_CHARACTERS);
 	}
 
