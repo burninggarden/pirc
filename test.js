@@ -68,25 +68,45 @@ client.connectToServer({
 
 		console.log(channel_name + ' [' + nick + '] ' + message.getBody());
 
-		client.sendWhoisQueryForNick(nick, function handler(error, user) {
-			if (error) {
-				return void handleError(error);
+		queryNick(nick);
+	});
+
+	setInterval(function deferred() {
+		var
+			channel = client.getRandomChannel(),
+			nick    = channel.getRandomNick();
+
+		if (nick) {
+			queryNick(nick);
+		}
+
+	}, 5000);
+
+});
+
+function queryNick(nick) {
+	client.sendWhoisQueryForNick(nick, function handler(error, user) {
+		if (error) {
+			return void handleError(error);
+		}
+
+		var channel_names = user.getChannelNames();
+
+		channel_names.forEach(function each(channel_name) {
+			if (client.isInChannel(channel_name)) {
+				return;
 			}
 
-			var channel_names = user.getChannelNames();
+			console.log('connecting to channel: ' + channel_name);
 
-			console.log('Connecting to channels: ' + channel_names.join(' '));
-
-			channel_names.forEach(function each(channel_name) {
-				try {
-					client.joinChannel(channel_name);
-				} catch (error) {
-					if (!(error instanceof AlreadyInChannelError)) {
-						return void handleError(error);
-					}
+			try {
+				client.joinChannel(channel_name);
+			} catch (error) {
+				if (!(error instanceof AlreadyInChannelError)) {
+					return void handleError(error);
 				}
-			});
+			}
 		});
 	});
-});
+}
 
