@@ -32,10 +32,14 @@ module.exports = {
 	[ReplyNumerics.RPL_WHOISUSER]:     load('whois-user'),             // 311
 	[ReplyNumerics.RPL_WHOISSERVER]:   load('whois-server'),           // 312
 
+	[ReplyNumerics.RPL_WHOISIDLE]:     load('whois-idle'),             // 317
+
 	[ReplyNumerics.RPL_ENDOFWHOIS]:    load('end-of-whois'),           // 318
 	[ReplyNumerics.RPL_WHOISCHANNELS]: load('whois-channels'),         // 319
 
 	[ReplyNumerics.RPL_CHANNEL_URL]:   load('channel-url'),            // 328
+
+	[ReplyNumerics.RPL_WHOISACCOUNT]:  load('whois-account'),          // 330
 
 	[ReplyNumerics.RPL_TOPIC]:         load('channel-topic'),          // 332
 	[ReplyNumerics.RPL_TOPICWHOTIME]:  load('channel-topic-details'),  // 333
