@@ -2,16 +2,11 @@
 
 global.req = require('req');
 
-var JoinMessage = req('/lib/server/messages/join');
+var WhoisUserMessage = req('/lib/server/messages/whois-user');
 
-var Regexes = req('/constants/regexes');
+var message = new WhoisUserMessage();
 
-console.log(Regexes.NICK.test('x*x'));
-process.exit(0);
-
-var message = new JoinMessage();
-
-var raw_message = ':WakiMiko!~WakiMiko@unaffiliated/wakimiko JOIN #Node.js';
+var raw_message = ':hitchcock.freenode.net 311 Ichorrats tcsc ~sid721 2620:101:8016:74::5:2d1 * :tcsc';
 
 message.setRawMessage(raw_message);
 
