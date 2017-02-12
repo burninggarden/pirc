@@ -6,7 +6,7 @@ var JoinMessage = req('/lib/server/messages/join');
 
 var Regexes = req('/constants/regexes');
 
-console.log(Regexes.NICK.test('x'));
+console.log(Regexes.NICK.test('x*x'));
 process.exit(0);
 
 var message = new JoinMessage();

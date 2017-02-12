@@ -31,6 +31,7 @@ module.exports = {
 
 	[ReplyNumerics.RPL_WHOISUSER]:     load('whois-user'),             // 311
 
+	[ReplyNumerics.RPL_ENDOFWHOIS]:    load('end-of-whois'),           // 318
 	[ReplyNumerics.RPL_WHOISCHANNELS]: load('whois-channels'),         // 319
 
 	[ReplyNumerics.RPL_CHANNEL_URL]:   load('channel-url'),            // 328
