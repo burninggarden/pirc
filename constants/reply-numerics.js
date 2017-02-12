@@ -68,6 +68,10 @@ module.exports = {
 
 	ERR_LINKCHANNEL:      '470',
 
+	// TODO: Cover cases where other IRCD's appropriate this numeric
+	// for other purposes:
+	ERR_NEEDREGGEDNICK:   '477',
+
 	RPL_WHOISSECURE:      '671'
 
 };

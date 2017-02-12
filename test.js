@@ -10,7 +10,6 @@ var Pirc = require('./index');
 
 var MarkovConstructor = require('/home/pachet/burninggarden/utility/markov/constructor');
 
-var AlreadyInChannelError = require('./lib/errors/already-in-channel');
 
 function getRandomCardName() {
 	var name = MarkovConstructor.construct(require('/home/pachet/burninggarden/cards.json'));
@@ -81,8 +80,11 @@ client.connectToServer({
 			queryNick(nick);
 		}
 
-	}, 2500);
+	}, 5000);
 
+	setTimeout(function deferred() {
+		queryNick('oogaw');
+	}, 5000);
 });
 
 function queryNick(nick) {
@@ -100,13 +102,11 @@ function queryNick(nick) {
 
 			console.log('connecting to channel: ' + channel_name);
 
-			try {
-				client.joinChannel(channel_name);
-			} catch (error) {
-				if (!(error instanceof AlreadyInChannelError)) {
-					return void handleError(error);
+			client.joinChannel(channel_name, function handler(error) {
+				if (error) {
+					console.error(error);
 				}
-			}
+			});
 		});
 	});
 }
