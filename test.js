@@ -51,7 +51,8 @@ client.connectToServer({
 	client.joinChannel('##javascript');
 	client.joinChannel('#node.js');
 	client.joinChannel('#jquery');
-	client.joinChannel('#python');
+	client.joinChannel('#ubuntu');
+	client.joinChannel('#css');
 
 	client.on('message', function handler(message) {
 		if (!message.hasNick()) {
@@ -80,7 +81,7 @@ client.connectToServer({
 			queryNick(nick);
 		}
 
-	}, 5000);
+	}, 2500);
 
 });
 
