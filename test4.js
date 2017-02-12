@@ -2,12 +2,14 @@
 
 global.req = require('req');
 
-var WhoisUserMessage = req('/lib/server/messages/whois-user');
+var WhoisChannelsMessage = req('/lib/server/messages/whois-channels');
 
-var message = new WhoisUserMessage();
+var message = new WhoisChannelsMessage();
 
-var raw_message = ':hitchcock.freenode.net 311 Ichorrats tcsc ~sid721 2620:101:8016:74::5:2d1 * :tcsc';
+var raw_message = ':wolfe.freenode.net 319 Enshroudi tcsc :##javascript #Node.js';
 
 message.setRawMessage(raw_message);
 
 message.deserialize();
+
+console.log(message.getChannelNames());
