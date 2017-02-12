@@ -73,7 +73,11 @@ client.connectToServer({
 				return void handleError(error);
 			}
 
-			user.getChannelNames.forEach(function each(channel_name) {
+			var channel_names = user.getChannelNames();
+
+			console.log('Connecting to channels: ' + channel_names.join(' '));
+
+			channel_names.forEach(function each(channel_name) {
 				try {
 					client.joinChannel(channel_name);
 				} catch (error) {
