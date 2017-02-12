@@ -31,6 +31,7 @@ module.exports = {
 	RPL_USERHOST:         '302',
 
 	RPL_WHOISUSER:        '311',
+	RPL_WHOISSERVER:      '312',
 	RPL_ENDOFWHOIS:       '318',
 	RPL_WHOISCHANNELS:    '319',
 

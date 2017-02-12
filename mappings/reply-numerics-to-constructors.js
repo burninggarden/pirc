@@ -30,6 +30,7 @@ module.exports = {
 	[ReplyNumerics.RPL_GLOBALUSERS]:   load('global-users'),           // 266
 
 	[ReplyNumerics.RPL_WHOISUSER]:     load('whois-user'),             // 311
+	[ReplyNumerics.RPL_WHOISSERVER]:   load('whois-server'),           // 312
 
 	[ReplyNumerics.RPL_ENDOFWHOIS]:    load('end-of-whois'),           // 318
 	[ReplyNumerics.RPL_WHOISCHANNELS]: load('whois-channels'),         // 319

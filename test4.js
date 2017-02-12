@@ -2,14 +2,14 @@
 
 global.req = require('req');
 
-var WhoisChannelsMessage = req('/lib/server/messages/whois-channels');
+var WhoisServerMessage = req('/lib/server/messages/whois-server');
 
-var message = new WhoisChannelsMessage();
+var message = new WhoisServerMessage();
 
-var raw_message = ':wolfe.freenode.net 319 Enshroudi tcsc :##javascript #Node.js';
+var raw_message = ':verne.freenode.net 312 Pillartom danneu moon.freenode.net :Atlanta, GA, US';
 
 message.setRawMessage(raw_message);
 
 message.deserialize();
 
-console.log(message.getChannelNames());
+console.log(message.getTargetUserDetails().getServerName());
