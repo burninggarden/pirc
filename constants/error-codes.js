@@ -26,6 +26,9 @@ module.exports = {
 	INVALID_COMMAND:                 'invalid_command',
 	INVALID_HOSTNAME:                'invalid_hostname',
 	INVALID_MESSAGE_STRUCTURE:       'invalid_message_structure',
+
+	INVALID_MODE_CHANGE:             'invalid_mode_change',
+
 	INVALID_NICK:                    'invalid_nick',
 	INVALID_REPLY_NUMERIC:           'invalid_reply_numeric',
 	INVALID_PARAMETER:               'invalid_parameter',
@@ -54,6 +57,7 @@ module.exports = {
 
 	NOT_CONNECTED:                   'not_connected',
 	NOT_IN_CHANNEL:                  'not_in_channel',
+	NOT_REGISTERED:                  'not_registered',
 	NOT_YET_IMPLEMENTED:             'not_yet_implemented',
 
 	UNABLE_TO_JOIN_CHANNEL:          'unable_to_join_channel'

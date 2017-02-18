@@ -1,0 +1,185 @@
+#!/usr/bin/env node
+
+/**
+ * Similar to the more basic "create-proxy" script, this allows us to MITM
+ * traffic intended for a remote IRC server, so that we can inspect the
+ * data being transmitted over the wire. However, this script offers additional
+ * functionality: it can be configured to talk to two backing servers at the
+ * same time, and compare the messages between them. I use this for testing
+ * to make sure that my server implementation is sending the same (or at least
+ * similar) responses back from client requests as other popular IRCDs.
+ */
+
+require('req');
+
+var
+	Net           = require('net'),
+	Delimiters    = req('/constants/delimiters'),
+	TextFormatter = req('/utilities/text-formatter');
+
+
+var
+	server = new Net.Server(),
+	port   = 6666;
+
+
+
+
+
+server.on('connection', function handleConnection(socket) {
+	var
+		control_server            = Net.createConnection(6667, 'localhost'),
+		test_server               = Net.createConnection(6668, 'localhost'),
+		control_messages          = [ ],
+		test_messages             = [ ],
+		control_message_remainder = null,
+		test_message_remainder    = null;
+
+	function checkMessages() {
+		var index = 0;
+
+		var max_index = Math.max(
+			control_messages.length,
+			test_messages.length
+		);
+
+		while (index < max_index) {
+			let
+				control_message = control_messages[index],
+				test_message    = test_messages[index];
+
+			if (control_message !== test_message) {
+				console.log(TextFormatter.magenta('MISMATCH: '));
+				console.log('\t' + control_message);
+				console.log(' ');
+				console.log('\t\t' + TextFormatter.magenta('VS'));
+				console.log(' ');
+				console.log('\t' + test_message);
+				console.log(' ');
+				process.exit(1);
+			}
+
+			index++;
+		}
+
+		control_messages = control_messages.slice(max_index);
+		test_messages    = test_messages.slice(max_index);
+	}
+
+	socket.on('data', function handleLocalData(data) {
+		if (control_server) {
+			control_server.write(data);
+		}
+
+		if (test_server) {
+			test_server.write(data);
+		}
+	});
+
+	function handleError() {
+		if (socket) {
+			socket.end();
+			socket = null;
+		}
+
+		if (control_server) {
+			control_server.end();
+			control_server = null;
+		}
+
+		if (test_server) {
+			test_server.end();
+			test_server = null;
+		}
+	}
+
+	socket.on('error', handleError);
+
+	control_server.on('data', function handleControlData(data) {
+		if (!socket) {
+			return;
+		}
+
+		socket.write(data);
+
+		var data_string = data.toString('utf8');
+
+		if (control_message_remainder) {
+			data_string = control_message_remainder + data_string;
+		}
+
+		var index = data_string.indexOf(Delimiters.CRLF);
+
+		while (index !== -1) {
+			let
+				message = data_string.slice(0, index),
+				prefix  = TextFormatter.cyan('RECV A: ');
+
+			console.log(prefix + message);
+			control_messages.push(message);
+
+			data_string = data_string.slice(index + Delimiters.CRLF.length);
+			index = data_string.indexOf(Delimiters.CRLF);
+		}
+
+		if (data_string.length > 0) {
+			control_message_remainder = data_string;
+		} else {
+			control_message_remainder = null;
+		}
+	});
+
+	control_server.on('error', handleError);
+
+	test_server.on('data', function handleTestData(data) {
+		if (!socket) {
+			return;
+		}
+
+		var data_string = data.toString('utf8');
+
+		if (test_message_remainder) {
+			data_string = test_message_remainder + data_string;
+		}
+
+		var index = data_string.indexOf(Delimiters.CRLF);
+
+		while (index !== -1) {
+			let
+				message = data_string.slice(0, index),
+				prefix  = TextFormatter.yellow('RECV B: ');
+
+			console.log(prefix + message);
+			test_messages.push(message);
+			checkMessages();
+
+			data_string = data_string.slice(index + Delimiters.CRLF.length);
+			index = data_string.indexOf(Delimiters.CRLF);
+		}
+
+		if (data_string.length > 0) {
+			test_message_remainder = data_string;
+		} else {
+			test_message_remainder = null;
+		}
+	});
+
+	test_server.on('error', handleError);
+
+});
+
+server.on('error', function handleError(error) {
+	console.error(error);
+	process.exit(1);
+});
+
+server.on('close', function handleClose() {
+	console.log('server closed');
+	process.exit(0);
+});
+
+server.listen(port, function handler() {
+	console.log(
+		`Proxy server listening for local connections on port ${port}`
+	);
+});

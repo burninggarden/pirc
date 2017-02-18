@@ -1,15 +1,17 @@
 
+var Pirc = require('./index');
+
+var MarkovConstructor = require('/home/pachet/burninggarden/utility/markov/constructor');
+
+
+const CLIENT_COUNT = 1;
+
+
 
 function handleError(error) {
 	console.error(error);
 	process.exit(1);
 }
-
-
-var Pirc = require('./index');
-
-var MarkovConstructor = require('/home/pachet/burninggarden/utility/markov/constructor');
-
 
 function getRandomCardName() {
 	var name = MarkovConstructor.construct(require('/home/pachet/burninggarden/cards.json'));
@@ -27,67 +29,62 @@ function getRandomCardName() {
 	return name.slice(0, 9);
 }
 
-/*
-var server = new Pirc.Server({
-	hostname: 'irc.burninggarden.com',
-	motd:     'we will take from the land\nif it refuses to give!'
-});
 
-server.listen(6667);
-*/
 
-var client = new Pirc.Client();
+function spawnClient() {
+	var client = new Pirc.Client();
 
-client.connectToServer({
-	hostname: '127.0.0.1',
-	port:     6667,
-	nick:     getRandomCardName()
-}, function handler(error, server) {
-	if (error) {
-		return void handleError(error);
-	}
-
-	client.joinChannel('##javascript');
-	client.joinChannel('#node.js');
-	client.joinChannel('#jquery');
-	client.joinChannel('#ubuntu');
-	client.joinChannel('#css');
-
-	client.on('message', function handler(message) {
-		if (!message.hasNick()) {
-			return;
+	client.connectToServer({
+		hostname: '127.0.0.1',
+		port:     6666,
+		nick:     getRandomCardName()
+	}, function handler(error, server) {
+		if (error) {
+			return void handleError(error);
 		}
 
-		if (!message.hasChannel()) {
-			return;
-		}
+		client.joinChannel('##javascript');
+		client.joinChannel('#node.js');
+		client.joinChannel('#jquery');
+		client.joinChannel('#ubuntu');
+		client.joinChannel('#css');
 
-		var
-			nick         = message.getNick(),
-			channel_name = message.getChannelName();
+		client.on('message', function handler(message) {
+			if (!message.hasNick()) {
+				return;
+			}
 
-		console.log(channel_name + ' [' + nick + '] ' + message.getBody());
+			if (!message.hasChannel()) {
+				return;
+			}
 
-		queryNick(nick);
+			var
+				nick         = message.getNick(),
+				channel_name = message.getChannelName();
+
+			console.log(channel_name + ' [' + nick + '] ' + message.getBody());
+
+			queryNickForClient(nick, client);
+		});
+
+		setInterval(function deferred() {
+			var
+				channel = client.getRandomChannel(),
+				nick    = channel.getRandomNick();
+
+			if (nick) {
+				queryNickForClient(nick, client);
+			}
+
+		}, 5000);
+
+		setTimeout(function deferred() {
+			queryNickForClient('oogaw', client);
+		}, 5000);
 	});
+}
 
-	setInterval(function deferred() {
-		var
-			channel = client.getRandomChannel(),
-			nick    = channel.getRandomNick();
-
-		if (nick) {
-			queryNick(nick);
-		}
-
-	}, 5000);
-
-	setTimeout(function deferred() {
-		queryNick('oogaw');
-	}, 5000);
-});
-
-function queryNick(nick) {
+function queryNickForClient(nick, client) {
 	client.sendWhoisQueryForNick(nick, function handler(error, user) {
 		if (error) {
 			return void handleError(error);
@@ -111,3 +108,16 @@ function queryNick(nick) {
 	});
 }
 
+var server = new Pirc.Server({
+	hostname: 'irc.burninggarden.com',
+	motd:     'we will take from the land\nif it refuses to give!'
+});
+
+server.listen(6668);
+
+var index = 0;
+
+while (index < CLIENT_COUNT) {
+	spawnClient();
+	index++;
+}

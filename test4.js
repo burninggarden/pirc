@@ -2,14 +2,12 @@
 
 global.req = require('req');
 
-var WhoisServerMessage = req('/lib/server/messages/whois-server');
+var ModeMessage = req('/lib/server/messages/mode');
 
-var message = new WhoisServerMessage();
+var message = new ModeMessage();
 
-var raw_message = ':verne.freenode.net 312 Pillartom danneu moon.freenode.net :Atlanta, GA, US';
+var raw_message = ':ChanServ!ChanServ@services. MODE #breadfish.de +v Elvisharc';
 
 message.setRawMessage(raw_message);
 
 message.deserialize();
-
-console.log(message.getTargetUserDetails().getServerName());
