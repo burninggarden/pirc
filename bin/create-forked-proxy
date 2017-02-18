@@ -38,7 +38,7 @@ server.on('connection', function handleConnection(socket) {
 	function checkMessages() {
 		var index = 0;
 
-		var max_index = Math.max(
+		var max_index = Math.min(
 			control_messages.length,
 			test_messages.length
 		);
@@ -47,6 +47,9 @@ server.on('connection', function handleConnection(socket) {
 			let
 				control_message = control_messages[index],
 				test_message    = test_messages[index];
+
+			control_message = control_message.replace(/827A[A-Z0-9]+/g, 'xxx');
+			test_message    = test_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 
 			if (control_message !== test_message) {
 				console.log(TextFormatter.magenta('MISMATCH: '));
@@ -117,6 +120,7 @@ server.on('connection', function handleConnection(socket) {
 
 			console.log(prefix + message);
 			control_messages.push(message);
+			checkMessages();
 
 			data_string = data_string.slice(index + Delimiters.CRLF.length);
 			index = data_string.indexOf(Delimiters.CRLF);
