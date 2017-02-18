@@ -39,6 +39,8 @@ module.exports = {
 	INVALID_SERVER_SSL:              'invalid_server_ssl',
 	INVALID_SERVER_NAME:             'invalid_server_name',
 
+	INVALID_SERVICE_TYPE:            'invalid_service_type',
+
 	INVALID_SOURCE:                  'invalid_source',
 	INVALID_TARGET:                  'invalid_target',
 
