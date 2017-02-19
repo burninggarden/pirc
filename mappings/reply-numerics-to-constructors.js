@@ -61,7 +61,7 @@ module.exports = {
 
 	[ReplyNumerics.ERR_NOMOTD]:         load('no-motd'),                // 422
 
-	[ReplyNumerics.ERR_NICKNAMEINUSE]:  load('nick-in-use'),            // 433
+	[ReplyNumerics.ERR_NICKNAMEINUSE]:  load('nickname-in-use'),        // 433
 
 	[ReplyNumerics.ERR_NOTREGISTERED]:  load('not-registered'),         // 451
 
