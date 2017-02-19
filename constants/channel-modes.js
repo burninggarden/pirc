@@ -2,18 +2,19 @@
 module.exports = {
 
 	ANONYMOUS:           'a',
-	INVITE_ONLY:         'i',
-	MODERATED:           'm',
-	NO_OUTSIDE_MESSAGES: 'n',
-	QUIET:               'q',
-	PRIVATE:             'p',
-	SECRET:              's',
-	SERVER_REOP:         'r',
-	TOPIC_OPERATOR_ONLY: 't',
-	KEY:                 'k',
-	LIMIT:               'l',
 	BAN_MASK:            'b',
 	EXCEPTION_MASK:      'e',
-	INVITATION_MASK:     'I'
+	INVITE_ONLY:         'i',
+	INVITATION_MASK:     'I',
+	KEY:                 'k',
+	LIMIT:               'l',
+	MODERATED:           'm',
+	NO_OUTSIDE_MESSAGES: 'n',
+	PRIVATE:             'p',
+	QUIET:               'q',
+	SERVER_REOP:         'r',
+	SECRET:              's',
+	TOPIC_OPERATOR_ONLY: 't',
+	VOICE:               'v'
 
 };

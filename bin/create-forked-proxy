@@ -24,7 +24,9 @@ var
 
 
 const SKIPPABLE_MESSAGES = [
-	'Could not resolve your hostname'
+	'Could not resolve your hostname',
+	'Your host is',
+	'This server was created'
 ];
 
 

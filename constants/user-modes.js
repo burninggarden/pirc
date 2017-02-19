@@ -2,15 +2,10 @@ module.exports = {
 
 	AWAY:             'a',
 	INVISIBLE:        'i',
-
-	LOCAL_OPERATOR:   'O',
-
 	OPERATOR:         'o',
-
-	RECEIVES_NOTICES: 's',
-
+	LOCAL_OPERATOR:   'O',
 	RESTRICTED:       'r',
-
+	RECEIVES_NOTICES: 's',
 	WALLOPS:          'w'
 
 };
