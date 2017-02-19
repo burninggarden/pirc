@@ -76,15 +76,18 @@ server.on('connection', function handleConnection(socket) {
 			}
 
 			control_message = control_message.replace(/827A[A-Z0-9]+/g, 'xxx');
+			control_message = control_message.replace(/\2/g, '');
 			test_message    = test_message.replace(/827A[A-Z0-9]+/g, 'xxx');
+			test_message    = test_message.replace(/\2/g, '');
+			test_message    = test_message.replace(/~pirc/g, 'pirc');
 
 			if (control_message !== test_message) {
 				console.log(TextFormatter.magenta('MISMATCH: '));
-				console.log('\t' + control_message);
+				console.log('\t> ' + control_message + ' <');
 				console.log(' ');
 				console.log('\t\t' + TextFormatter.magenta('VS'));
 				console.log(' ');
-				console.log('\t' + test_message);
+				console.log('\t> ' + test_message + ' <');
 				console.log(' ');
 				process.exit(1);
 			}

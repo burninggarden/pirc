@@ -12,7 +12,7 @@ var
 // source of other composite regexes, which usually just wrap one of these
 // with the ^ and $ delimiter tokens.
 var
-	NICK_SOURCE = '[' + prefix + ']([' + suffix + ']+)?',
+	NICK_SOURCE = '[' + prefix + ']([' + suffix + ']+){1,8}',
 	USER_SOURCE = '[^\\s\\0\\r\\n]+',
 
 	// The first group is for IPv4 addresses and hostmasks;

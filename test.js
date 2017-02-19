@@ -109,6 +109,7 @@ function queryNickForClient(nick, client) {
 }
 
 var server = new Pirc.Server({
+	name:     'BurningGarden',
 	hostname: 'irc.burninggarden.com',
 	motd:     'we will take from the land\nif it refuses to give!'
 });
