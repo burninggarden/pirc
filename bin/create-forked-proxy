@@ -23,14 +23,6 @@ var
 	port   = 6666;
 
 
-const SKIPPABLE_MESSAGES = [
-	'Could not resolve your hostname',
-	'Your host is',
-	'This server was created'
-];
-
-
-
 server.on('connection', function handleConnection(socket) {
 	var
 		control_server            = Net.createConnection(6667, 'localhost'),
@@ -38,7 +30,9 @@ server.on('connection', function handleConnection(socket) {
 		control_messages          = [ ],
 		test_messages             = [ ],
 		control_message_remainder = null,
-		test_message_remainder    = null;
+		test_message_remainder    = null,
+		has_seen_control_motd_end = false,
+		has_seen_test_motd_end    = false;
 
 	function checkMessages() {
 		var index = 0;
@@ -54,28 +48,6 @@ server.on('connection', function handleConnection(socket) {
 				test_message    = test_messages[index];
 
 			index++;
-
-			var
-				subindex = 0,
-				can_skip = false;
-
-			while (subindex < SKIPPABLE_MESSAGES.length) {
-				let skippable_message = SKIPPABLE_MESSAGES[subindex];
-
-				if (
-					   control_message.indexOf(skippable_message) !== -1
-					&& test_message.indexOf(skippable_message) !== -1
-				) {
-					can_skip = true;
-					break;
-				}
-
-				subindex++;
-			}
-
-			if (can_skip) {
-				continue;
-			}
 
 			control_message = control_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			control_message = control_message.replace(/\2/g, '');
@@ -93,7 +65,6 @@ server.on('connection', function handleConnection(socket) {
 				console.log(' ');
 				process.exit(1);
 			}
-
 		}
 
 		control_messages = control_messages.slice(max_index);
@@ -150,8 +121,15 @@ server.on('connection', function handleConnection(socket) {
 				prefix  = TextFormatter.cyan('RECV A: ');
 
 			console.log(prefix + message);
-			control_messages.push(message);
-			checkMessages();
+
+			if (has_seen_control_motd_end && has_seen_test_motd_end) {
+				control_messages.push(message);
+				checkMessages();
+			}
+
+			if (message.indexOf(' 376 ') !== -1) {
+				has_seen_control_motd_end = true;
+			}
 
 			data_string = data_string.slice(index + Delimiters.CRLF.length);
 			index = data_string.indexOf(Delimiters.CRLF);
@@ -185,8 +163,15 @@ server.on('connection', function handleConnection(socket) {
 				prefix  = TextFormatter.yellow('RECV B: ');
 
 			console.log(prefix + message);
-			test_messages.push(message);
-			checkMessages();
+
+			if (has_seen_test_motd_end && has_seen_control_motd_end) {
+				test_messages.push(message);
+				checkMessages();
+			}
+
+			if (message.indexOf(' 376 ') !== -1) {
+				has_seen_test_motd_end = true;
+			}
 
 			data_string = data_string.slice(index + Delimiters.CRLF.length);
 			index = data_string.indexOf(Delimiters.CRLF);
@@ -200,8 +185,8 @@ server.on('connection', function handleConnection(socket) {
 	});
 
 	test_server.on('error', handleError);
-
 });
+
 
 server.on('error', function handleError(error) {
 	console.error(error);

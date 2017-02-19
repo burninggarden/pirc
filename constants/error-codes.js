@@ -25,6 +25,11 @@ module.exports = {
 
 	INVALID_COMMAND:                 'invalid_command',
 	INVALID_HOSTNAME:                'invalid_hostname',
+
+	// Reserved for cases when an invalid ISUPPORT protocol extension
+	// parameter is supplied.
+	INVALID_I_SUPPORT_PARAMETER:     'invalid_i_support_parameter',
+
 	INVALID_MESSAGE_STRUCTURE:       'invalid_message_structure',
 
 	INVALID_MODE_CHANGE:             'invalid_mode_change',
