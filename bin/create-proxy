@@ -53,7 +53,7 @@ HostnameValidator.validate(remote_host);
 var server = new Net.Server();
 
 server.on('connection', function handleConnection(local_connection) {
-	var remote_connection = Net.createConnection(6667, remote_host);
+	var remote_connection = Net.createConnection(6668, remote_host);
 
 	local_connection.on('data', function handleLocalData(data) {
 		var prefix = TextFormatter.magenta('SEND: ');

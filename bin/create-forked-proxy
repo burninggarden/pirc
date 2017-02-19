@@ -23,6 +23,9 @@ var
 	port   = 6666;
 
 
+const SKIPPABLE_MESSAGES = [
+	'Could not resolve your hostname'
+];
 
 
 
@@ -48,6 +51,30 @@ server.on('connection', function handleConnection(socket) {
 				control_message = control_messages[index],
 				test_message    = test_messages[index];
 
+			index++;
+
+			var
+				subindex = 0,
+				can_skip = false;
+
+			while (subindex < SKIPPABLE_MESSAGES.length) {
+				let skippable_message = SKIPPABLE_MESSAGES[subindex];
+
+				if (
+					   control_message.indexOf(skippable_message) !== -1
+					&& test_message.indexOf(skippable_message) !== -1
+				) {
+					can_skip = true;
+					break;
+				}
+
+				subindex++;
+			}
+
+			if (can_skip) {
+				continue;
+			}
+
 			control_message = control_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			test_message    = test_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 
@@ -62,7 +89,6 @@ server.on('connection', function handleConnection(socket) {
 				process.exit(1);
 			}
 
-			index++;
 		}
 
 		control_messages = control_messages.slice(max_index);

@@ -56,6 +56,7 @@ module.exports = {
 	[ReplyNumerics.RPL_ENDOFMOTD]:      load('end-of-motd'),            // 376
 
 	[ReplyNumerics.RPL_WHOISHOST]:      load('whois-host'),             // 378
+	[ReplyNumerics.RPL_WHOISMODES]:     load('whois-modes'),            // 379
 
 	[ReplyNumerics.ERR_NOSUCHNICK]:     load('no-such-nick'),           // 401
 

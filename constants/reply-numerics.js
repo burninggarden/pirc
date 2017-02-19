@@ -55,6 +55,7 @@ module.exports = {
 	RPL_ENDOFMOTD:        '376',
 
 	RPL_WHOISHOST:        '378',
+	RPL_WHOISMODES:       '379',
 
 	ERR_NOSUCHNICK:       '401',
 
