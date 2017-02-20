@@ -51,6 +51,7 @@ server.on('connection', function handleConnection(socket) {
 
 			control_message = control_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			control_message = control_message.replace(/\2/g, '');
+			control_message = control_message.replace('JOIN :', 'JOIN ');
 			test_message    = test_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			test_message    = test_message.replace(/\2/g, '');
 			test_message    = test_message.replace(/~pirc/g, 'pirc');
@@ -127,7 +128,7 @@ server.on('connection', function handleConnection(socket) {
 				checkMessages();
 			}
 
-			if (message.indexOf(' 376 ') !== -1) {
+			if (message.indexOf(' 266 ') !== -1) {
 				has_seen_control_motd_end = true;
 			}
 
@@ -145,10 +146,6 @@ server.on('connection', function handleConnection(socket) {
 	control_server.on('error', handleError);
 
 	test_server.on('data', function handleTestData(data) {
-		if (!socket) {
-			return;
-		}
-
 		var data_string = data.toString('utf8');
 
 		if (test_message_remainder) {

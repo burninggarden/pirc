@@ -7,7 +7,6 @@ var MarkovConstructor = require('/home/pachet/burninggarden/utility/markov/const
 const CLIENT_COUNT = 1;
 
 
-
 function handleError(error) {
 	console.error(error);
 	process.exit(1);
@@ -68,9 +67,13 @@ function spawnClient() {
 		});
 
 		setInterval(function deferred() {
-			var
-				channel = client.getRandomChannel(),
-				nick    = channel.getRandomNick();
+			var channel = client.getRandomChannel();
+
+			if (!channel) {
+				return;
+			}
+
+			var nick = channel.getRandomNick();
 
 			if (nick) {
 				queryNickForClient(nick, client);
