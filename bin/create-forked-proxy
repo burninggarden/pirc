@@ -23,6 +23,17 @@ var
 	port   = 6666;
 
 
+function cleanWhoisChannelsMessage(message) {
+	var
+		parts     = message.split(':'),
+		last_part = parts.pop();
+
+	last_part = last_part.split(' ').sort().join(' ');
+	parts.push(last_part);
+
+	return parts.join(':');
+}
+
 server.on('connection', function handleConnection(socket) {
 	var
 		control_server            = Net.createConnection(6667, 'localhost'),
@@ -49,15 +60,36 @@ server.on('connection', function handleConnection(socket) {
 
 			index++;
 
+			// If both messages are RPL_WHOISIDLE replies, we can just skip
+			// the strict equivalence check, since it's unlikely the idle times
+			// will match exactly.
+			if (
+				   control_message.indexOf(' 317 ') !== -1
+				&& test_message.indexOf(' 317 ') !== -1
+			) {
+				continue;
+			}
+
 			control_message = control_message.trim();
 			control_message = control_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			control_message = control_message.replace(/\2/g, '');
 			control_message = control_message.replace('JOIN :', 'JOIN ');
 
+			// If this is a RPL_WHOISCHANNELS message, sort the channels in the
+			// response, because who knows how InspIRCd is sorting these...
+			if (control_message.indexOf(' 319 ') !== -1) {
+				control_message = cleanWhoisChannelsMessage(control_message);
+			}
+
 			test_message    = test_message.trim();
 			test_message    = test_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			test_message    = test_message.replace(/\2/g, '');
 			test_message    = test_message.replace(/~pirc/g, 'pirc');
+
+			// Same as above.
+			if (test_message.indexOf(' 319 ') !== -1) {
+				test_message = cleanWhoisChannelsMessage(test_message);
+			}
 
 			if (control_message !== test_message) {
 				console.log(TextFormatter.magenta('MISMATCH: '));
