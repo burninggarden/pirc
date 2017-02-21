@@ -49,9 +49,12 @@ server.on('connection', function handleConnection(socket) {
 
 			index++;
 
+			control_message = control_message.trim();
 			control_message = control_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			control_message = control_message.replace(/\2/g, '');
 			control_message = control_message.replace('JOIN :', 'JOIN ');
+
+			test_message    = test_message.trim();
 			test_message    = test_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			test_message    = test_message.replace(/\2/g, '');
 			test_message    = test_message.replace(/~pirc/g, 'pirc');
@@ -73,6 +76,10 @@ server.on('connection', function handleConnection(socket) {
 	}
 
 	socket.on('data', function handleLocalData(data) {
+		var prefix = TextFormatter.green('SEND  :');
+
+		console.log(prefix + data.toString('utf8'));
+
 		if (control_server) {
 			control_server.write(data);
 		}
