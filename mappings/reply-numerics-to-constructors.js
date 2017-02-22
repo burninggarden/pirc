@@ -67,6 +67,7 @@ module.exports = {
 	[ReplyNumerics.ERR_NOTREGISTERED]:  load('not-registered'),         // 451
 
 	[ReplyNumerics.ERR_LINKCHANNEL]:    load('link-channel'),           // 470
+	[ReplyNumerics.ERR_CHANNELISFULL]:  load('channel-is-full'),        // 470
 
 	[ReplyNumerics.ERR_NEEDREGGEDNICK]: load('need-regged-nick'),       // 477
 

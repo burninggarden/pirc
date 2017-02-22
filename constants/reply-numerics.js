@@ -71,6 +71,8 @@ module.exports = {
 
 	ERR_LINKCHANNEL:      '470',
 
+	ERR_CHANNELISFULL:    '471',
+
 	// TODO: Cover cases where other IRCD's appropriate this numeric
 	// for other purposes:
 	ERR_NEEDREGGEDNICK:   '477',
