@@ -43,7 +43,8 @@ server.on('connection', function handleConnection(socket) {
 		control_message_remainder = null,
 		test_message_remainder    = null,
 		has_seen_control_motd_end = false,
-		has_seen_test_motd_end    = false;
+		has_seen_test_motd_end    = false,
+		nick                      = null;
 
 	function checkMessages() {
 		var index = 0;
@@ -66,6 +67,19 @@ server.on('connection', function handleConnection(socket) {
 			if (
 				   control_message.indexOf(' 317 ') !== -1
 				&& test_message.indexOf(' 317 ') !== -1
+			) {
+				continue;
+			}
+
+			// If both messages are RPL_NAMREPLY, we should also skip the
+			// check, because InspIRCd uses memory locations as the iterator
+			// comparison value for the returned names, which we cannot
+			// emulate.
+			//
+			// TODO: reinstate checks somehow
+			if (
+				   control_message.indexOf(' 353 ') !== -1
+				&& test_message.indexOf(' 353 ') !== -1
 			) {
 				continue;
 			}
@@ -108,9 +122,21 @@ server.on('connection', function handleConnection(socket) {
 	}
 
 	socket.on('data', function handleLocalData(data) {
-		var prefix = TextFormatter.green('SEND  :');
+		var data_string = data.toString('utf8');
 
-		console.log(prefix + data.toString('utf8'));
+		if (!nick && data_string.indexOf('NICK ') === 0) {
+			nick = data_string.slice(5);
+
+			let crlf_index = nick.indexOf('\r\n');
+
+			if (crlf_index !== -1) {
+				nick = nick.slice(0, crlf_index);
+			}
+		}
+
+		var prefix = TextFormatter.green('SEND [' + nick + ']:');
+
+		console.log(prefix + data_string);
 
 		if (control_server) {
 			control_server.write(data);
@@ -158,7 +184,7 @@ server.on('connection', function handleConnection(socket) {
 		while (index !== -1) {
 			let
 				message = data_string.slice(0, index),
-				prefix  = TextFormatter.cyan('RECV A: ');
+				prefix  = TextFormatter.cyan('RECV A [' + nick + ']: ');
 
 			console.log(prefix + message);
 
@@ -196,7 +222,7 @@ server.on('connection', function handleConnection(socket) {
 		while (index !== -1) {
 			let
 				message = data_string.slice(0, index),
-				prefix  = TextFormatter.yellow('RECV B: ');
+				prefix  = TextFormatter.yellow('RECV B [' + nick + ']: ');
 
 			console.log(prefix + message);
 

@@ -3,8 +3,10 @@ var Pirc = require('./index');
 
 var MarkovConstructor = require('/home/pachet/burninggarden/utility/markov/constructor');
 
+var AlreadyInChannelError = require('./lib/errors/already-in-channel');
 
-const CLIENT_COUNT = 1;
+
+const CLIENT_COUNT = 200;
 
 
 function handleError(error) {
@@ -12,8 +14,16 @@ function handleError(error) {
 	process.exit(1);
 }
 
-function getRandomCardName() {
-	var name = MarkovConstructor.construct(require('/home/pachet/burninggarden/cards.json'));
+function getRandomCardString() {
+	return MarkovConstructor.construct(require('/home/pachet/burninggarden/cards.json'));
+}
+
+function getRandomQuestString() {
+	return MarkovConstructor.construct(require('/home/pachet/burninggarden/quests.json'));
+}
+
+function getRandomNick() {
+	var name = getRandomCardString();
 
 	name = name.replace(/[^A-Za-z]/g, '');
 
@@ -36,17 +46,11 @@ function spawnClient() {
 	client.connectToServer({
 		hostname: '127.0.0.1',
 		port:     6666,
-		nick:     getRandomCardName()
+		nick:     getRandomNick()
 	}, function handler(error, server) {
 		if (error) {
 			return void handleError(error);
 		}
-
-		client.joinChannel('##javascript');
-		client.joinChannel('#node.js');
-		client.joinChannel('#jquery');
-		client.joinChannel('#ubuntu');
-		client.joinChannel('#css');
 
 		client.on('message', function handler(message) {
 			if (!message.hasNick()) {
@@ -79,11 +83,29 @@ function spawnClient() {
 				queryNickForClient(nick, client);
 			}
 
-		}, 5000);
+			if (Math.random() < 0.25) {
+				client.sendMessageToChannel(getRandomQuestString(), channel);
+			}
 
-		setTimeout(function deferred() {
-			queryNickForClient('oogaw', client);
-		}, 5000);
+			if (Math.random() < 0.1) {
+				try {
+					client.joinChannel('#' + getRandomNick().toLowerCase());
+				} catch (error) {
+					if (!(error instanceof AlreadyInChannelError)) {
+						throw error;
+					}
+				}
+			}
+
+		}, 2000);
+
+		try {
+			client.joinChannel('#' + getRandomNick().toLowerCase());
+		} catch (error) {
+			if (!(error instanceof AlreadyInChannelError)) {
+				throw error;
+			}
+		}
 	});
 }
 
