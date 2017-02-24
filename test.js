@@ -28,7 +28,7 @@ function spawnClient() {
 
 		setInterval(function deferred() {
 			try {
-				client.sendRandomCommand();
+				client.sendRandomCommandMessage();
 			} catch (error) {
 				console.log(error);
 			}
