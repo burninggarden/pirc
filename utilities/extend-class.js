@@ -1,4 +1,6 @@
 var
+	has        = req('/utilities/has'),
+	add        = req('/utilities/add'),
 	isFunction = req('/utilities/is-function');
 
 function extendClass(target_class) {
@@ -9,12 +11,15 @@ function extendClass(target_class) {
 	}
 
 	function withInterface(source) {
+		var seen_keys = [ ];
+
 		while (source && source !== Function.prototype) {
 			let keys = Object.getOwnPropertyNames(source.prototype);
 
 			keys.forEach(function each(key) {
-				if (target_class[key] === undefined) {
+				if (!has(seen_keys, key)) {
 					target_class.prototype[key] = source.prototype[key];
+					add(key).to(seen_keys);
 				}
 			});
 

@@ -1,4 +1,8 @@
 
 global.req = require('req');
 
-req('/lib/server/messages/notice');
+var NoticeMessage = req('/lib/server/messages/notice');
+
+var message = new NoticeMessage();
+
+console.log(message.command);
