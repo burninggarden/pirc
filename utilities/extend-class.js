@@ -9,17 +9,19 @@ function extendClass(target_class) {
 	}
 
 	function withInterface(source) {
-		var keys = Object.getOwnPropertyNames(source.prototype);
-
-		keys.forEach(function each(key) {
-			target_class.prototype[key] = source.prototype[key];
-		});
-
 		while (source && source !== Function.prototype) {
+			let keys = Object.getOwnPropertyNames(source.prototype);
+
+			keys.forEach(function each(key) {
+				if (target_class[key] === undefined) {
+					target_class.prototype[key] = source.prototype[key];
+				}
+			});
+
 			keys = Object.getOwnPropertyNames(source);
 
 			keys.forEach(function each(key) {
-				if (isFunction(source[key])) {
+				if (isFunction(source[key] && !target_class[key])) {
 					target_class[key] = source[key];
 				}
 			});
