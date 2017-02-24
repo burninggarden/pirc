@@ -13,14 +13,27 @@
 require('req');
 
 var
+	FS            = require('fs'),
 	Net           = require('net'),
 	Delimiters    = req('/constants/delimiters'),
-	TextFormatter = req('/utilities/text-formatter');
+	TextFormatter = req('/utilities/text-formatter'),
+	MessageParser = req('/lib/message-parser');
 
 
 var
 	server = new Net.Server(),
 	port   = 6666;
+
+
+var parser = new MessageParser();
+
+var control_stream = FS.createWriteStream('/home/pachet/pirc/control_output', {
+	flags: 'a'
+});
+
+var test_stream = FS.createWriteStream('/home/pachet/pirc/test_output', {
+	flags: 'a'
+});
 
 
 function cleanWhoisChannelsMessage(message) {
@@ -49,17 +62,41 @@ server.on('connection', function handleConnection(socket) {
 	function checkMessages() {
 		var index = 0;
 
-		var max_index = Math.min(
-			control_messages.length,
-			test_messages.length
-		);
+		if (control_messages.length < 10 || test_messages.length < 10) {
+			return;
+		}
+
+		var max_index = 10;
 
 		while (index < max_index) {
-			let
-				control_message = control_messages[index],
-				test_message    = test_messages[index];
+			let control_message = control_messages[index];
 
 			index++;
+
+			let
+				subindex     = 0,
+				test_message = null;
+
+			while (subindex < max_index) {
+				let
+					current_message = test_messages[subindex],
+					test_leader     = parser.getLeaderForMessage(current_message),
+					control_leader  = parser.getLeaderForMessage(control_message);
+
+				if (test_leader === control_leader) {
+					test_message = current_message;
+					break;
+				}
+
+				subindex++;
+			}
+
+			if (test_message === null) {
+				test_message = '(null)';
+			}
+
+			control_stream.write(control_message + '\n\n');
+			test_stream.write(test_message + '\n\n');
 
 			// If both messages are RPL_WHOISIDLE replies, we can just skip
 			// the strict equivalence check, since it's unlikely the idle times
@@ -134,7 +171,7 @@ server.on('connection', function handleConnection(socket) {
 			}
 		}
 
-		var prefix = TextFormatter.green('SEND [' + nick + ']:');
+		var prefix = TextFormatter.green('SEND [' + nick + ']: ');
 
 		console.log(prefix + data_string);
 
