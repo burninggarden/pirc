@@ -59,6 +59,7 @@ module.exports = {
 	[ReplyNumerics.RPL_WHOISMODES]:     load('whois-modes'),            // 379
 
 	[ReplyNumerics.ERR_NOSUCHNICK]:     load('no-such-nick'),           // 401
+	[ReplyNumerics.ERR_NOSUCHCHANNEL]:  load('no-such-channel'),        // 403
 
 	[ReplyNumerics.ERR_NOMOTD]:         load('no-motd'),                // 422
 

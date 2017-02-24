@@ -59,6 +59,8 @@ module.exports = {
 
 	ERR_NOSUCHNICK:       '401',
 
+	ERR_NOSUCHCHANNEL:    '403',
+
 	ERR_NOMOTD:           '422',
 
 	ERR_NONICKNAMEGIVEN:  '431',
