@@ -75,6 +75,8 @@ module.exports = {
 
 	ERR_CHANNELISFULL:    '471',
 
+	ERR_UNKNOWNMODE:      '472',
+
 	// TODO: Cover cases where other IRCD's appropriate this numeric
 	// for other purposes:
 	ERR_NEEDREGGEDNICK:   '477',
