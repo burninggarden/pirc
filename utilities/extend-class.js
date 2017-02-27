@@ -26,7 +26,7 @@ function extendClass(target_class) {
 			keys = Object.getOwnPropertyNames(source);
 
 			keys.forEach(function each(key) {
-				if (isFunction(source[key] && !target_class[key])) {
+				if (isFunction(source[key]) && !target_class[key]) {
 					target_class[key] = source[key];
 				}
 			});

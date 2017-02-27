@@ -11,6 +11,11 @@ function getTargetFromString(target_string) {
 	}
 
 	if (Regexes.NICK.test(target_string)) {
+		console.log(target_string);
+		console.log(typeof target_string);
+		console.log('7777777777777777777777777');
+		console.log('7777777777777777777777777');
+		console.log('7777777777777777777777777');
 		return UserDetails.fromNick(target_string);
 	}
 
