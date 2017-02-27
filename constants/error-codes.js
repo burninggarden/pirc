@@ -32,7 +32,7 @@ module.exports = {
 
 	INVALID_MESSAGE_STRUCTURE:       'invalid_message_structure',
 
-	INVALID_MODE_CHANGE:             'invalid_mode_change',
+	INVALID_MODE_ACTION:             'invalid_mode_action',
 
 	INVALID_NICK:                    'invalid_nick',
 	INVALID_REPLY_NUMERIC:           'invalid_reply_numeric',
