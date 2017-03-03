@@ -32,6 +32,7 @@ module.exports = {
 
 	INVALID_MESSAGE_STRUCTURE:       'invalid_message_structure',
 
+	INVALID_MODE:                    'invalid_mode',
 	INVALID_MODE_ACTION:             'invalid_mode_action',
 
 	INVALID_NICK:                    'invalid_nick',

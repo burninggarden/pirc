@@ -7311,3 +7311,41 @@
 
 :irc.burninggarden.com 403 ghostlitn #kamahlssl :No such channel
 
+:irc.burninggarden.com 403 southernp #akoumboul :No such channel
+
+:irc.burninggarden.com 403 southernp #akoumboul :No such channel
+
+:southernp!~pirc@127.0.0.1 JOIN #akoumboul
+
+:irc.burninggarden.com 353 southernp = #akoumboul :@southernp
+
+:irc.burninggarden.com 366 southernp #akoumboul :End of /NAMES list.
+
+:southernp!~pirc@127.0.0.1 JOIN #armoredas
+
+:irc.burninggarden.com 353 southernp = #armoredas :@southernp
+
+:irc.burninggarden.com 366 southernp #armoredas :End of /NAMES list.
+
+:irc.burninggarden.com 403 calciform #acolytesr :No such channel
+
+:calciform!~pirc@127.0.0.1 JOIN #avensurve
+
+:irc.burninggarden.com 353 calciform = #avensurve :@calciform
+
+:irc.burninggarden.com 366 calciform #avensurve :End of /NAMES list.
+
+:calciform!~pirc@127.0.0.1 NICK stasissna
+
+:stasissna!~pirc@127.0.0.1 JOIN #torrentof
+
+:irc.burninggarden.com 353 stasissna = #torrentof :@stasissna
+
+:irc.burninggarden.com 366 stasissna #torrentof :End of /NAMES list.
+
+:irc.burninggarden.com 403 stasissna #acolytesr :No such channel
+
+:stasissna!~pirc@127.0.0.1 PART #torrentof
+
+:irc.burninggarden.com 401 stasissna screechin :No such nick/channel
+

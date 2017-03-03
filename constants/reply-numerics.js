@@ -83,6 +83,8 @@ module.exports = {
 	// for other purposes:
 	ERR_NEEDREGGEDNICK:   '477',
 
+	ERR_USERSDONTMATCH:   '502',
+
 	RPL_WHOISSECURE:      '671'
 
 };

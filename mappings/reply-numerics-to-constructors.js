@@ -79,6 +79,8 @@ module.exports = {
 
 	[ReplyNumerics.ERR_NEEDREGGEDNICK]:   load('need-regged-nick'),       // 477
 
+	[ReplyNumerics.ERR_USERSDONTMATCH]:   load('users-dont-match'),       // 502
+
 	[ReplyNumerics.RPL_WHOISSECURE]:      load('whois-secure')            // 671
 
 };
