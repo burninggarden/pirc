@@ -71,6 +71,8 @@ module.exports = {
 
 	ERR_NOTREGISTERED:    '451',
 
+	ERR_NEEDMOREPARAMS:   '461',
+
 	ERR_LINKCHANNEL:      '470',
 
 	ERR_CHANNELISFULL:    '471',

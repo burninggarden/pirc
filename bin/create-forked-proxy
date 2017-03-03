@@ -62,11 +62,11 @@ server.on('connection', function handleConnection(socket) {
 	function checkMessages() {
 		var index = 0;
 
-		if (control_messages.length < 10 || test_messages.length < 10) {
+		if (control_messages.length < 2 || test_messages.length < 2) {
 			return;
 		}
 
-		var max_index = 10;
+		var max_index = 2;
 
 		while (index < max_index) {
 			let control_message = control_messages[index];
@@ -82,6 +82,10 @@ server.on('connection', function handleConnection(socket) {
 					current_message = test_messages[subindex],
 					test_leader     = parser.getLeaderForMessage(current_message),
 					control_leader  = parser.getLeaderForMessage(control_message);
+
+				if (control_leader === '401' && test_leader === '403') {
+					control_leader = test_leader;
+				}
 
 				if (test_leader === control_leader) {
 					test_message = current_message;
@@ -119,6 +123,15 @@ server.on('connection', function handleConnection(socket) {
 				&& test_message.indexOf(' 353 ') !== -1
 			) {
 				continue;
+			}
+
+			if (
+				   control_message.indexOf(' 401 ') !== -1
+				&& control_message.indexOf('#') !== -1
+				&& test_message.indexOf(' 403 ') !== -1
+			) {
+				control_message = control_message.replace('401', '403');
+				control_message = control_message.replace('No such nick/channel', 'No such channel');
 			}
 
 			control_message = control_message.trim();

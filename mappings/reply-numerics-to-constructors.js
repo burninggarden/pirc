@@ -66,7 +66,11 @@ module.exports = {
 	[ReplyNumerics.ERR_ERRONEUSNICKNAME]: load('erroneous-nickname'),     // 432
 	[ReplyNumerics.ERR_NICKNAMEINUSE]:    load('nickname-in-use'),        // 433
 
+	[ReplyNumerics.ERR_NOTONCHANNEL]:     load('not-on-channel'),         // 442
+
 	[ReplyNumerics.ERR_NOTREGISTERED]:    load('not-registered'),         // 451
+
+	[ReplyNumerics.ERR_NEEDMOREPARAMS]:   load('need-more-params'),       // 461
 
 	[ReplyNumerics.ERR_LINKCHANNEL]:      load('link-channel'),           // 470
 	[ReplyNumerics.ERR_CHANNELISFULL]:    load('channel-is-full'),        // 471

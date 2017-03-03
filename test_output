@@ -7293,3 +7293,21 @@
 
 :irc.burninggarden.com 379 Ghirapurg Ghirapurg :is using modes +
 
+(null)
+
+:muraganda!~pirc@127.0.0.1 NICK caravanhu
+
+:celestial!~pirc@127.0.0.1 NICK kamiofthe
+
+:irc.burninggarden.com 401 windswept tahngarth :No such nick/channel
+
+:springjac!~pirc@127.0.0.1 JOIN #themaelst
+
+:cadaverim!~pirc@127.0.0.1 NICK crumbling
+
+:conjurers!~pirc@127.0.0.1 NICK academyre
+
+:irc.burninggarden.com 403 academyre #kamahlssl :No such channel
+
+:irc.burninggarden.com 403 ghostlitn #kamahlssl :No such channel
+

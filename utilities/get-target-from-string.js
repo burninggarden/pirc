@@ -1,21 +1,22 @@
 
 var
-	UserDetails    = req('/lib/user-details'),
-	ChannelDetails = req('/lib/channel-details'),
-	ServerDetails  = req('/lib/server-details'),
-	Regexes        = req('/constants/regexes');
+	UserDetails        = req('/lib/user-details'),
+	ChannelDetails     = req('/lib/channel-details'),
+	ServerDetails      = req('/lib/server-details'),
+	Regexes            = req('/constants/regexes'),
+	ErrorReasons       = req('/constants/error-reasons'),
+	InvalidTargetError = req('/lib/errors/invalid-target');
 
 function getTargetFromString(target_string) {
+	if (!target_string) {
+		throw new InvalidTargetError(target_string, ErrorReasons.OMITTED);
+	}
+
 	if (target_string === '*') {
 		return UserDetails.createPreregistrationStub();
 	}
 
 	if (Regexes.NICK.test(target_string)) {
-		console.log(target_string);
-		console.log(typeof target_string);
-		console.log('7777777777777777777777777');
-		console.log('7777777777777777777777777');
-		console.log('7777777777777777777777777');
 		return UserDetails.fromNick(target_string);
 	}
 

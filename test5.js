@@ -1,6 +1,6 @@
 
 global.req = require('req');
 
-var NoticeMessage = req('/lib/server/messages/notice');
+var Regexes = req('/constants/regexes');
 
-console.log(NoticeMessage.fromInboundMessage);
+console.log(Regexes.NICK.test(undefined));
