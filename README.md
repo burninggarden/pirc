@@ -75,8 +75,8 @@ The default settings are as follows:
 |name         |Pirc                                                   |
 |hostname     |The result of `require('os').hostname()` on your system|
 |port         |6667 (the default IRC port)                            |
-|channel_modes|biklmnpstv                                             |
-|user_modes   |iosw                                                   |
+|channel_modes|`biklmnpstv` (more info [here](./docs/channel-modes))  |
+|user_modes   |`iosw` (more info [here](./docs/user-modes))           |
 
 You will probably want to override these settings. To do so, you can supply an options object to the `Pirc.Server` constructor:
 `````js
@@ -95,6 +95,7 @@ server.listen(1234);
 `````
 
 A list of πrc's supported channel modes, and their meanings, can be found [here](./docs/channel-modes).
+
 A list of πrc's supported user modes, and their meanings, can be found [here](./docs/user-modes).
 
 
