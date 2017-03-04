@@ -172,40 +172,35 @@ var Pirc = require('pirc');
 
 var client = new Pirc.Client();
 
-function handleError(error) {
-	console.error(error);
-	process.exit(1);
-}
-
 client.connectToServer('irc.burninggarden.com', function(error) {
 	if (error) {
-		return void handleError(error);
+		throw error;
 	}
 
 	// Connect to some initial channels:
 	client.joinChannel('#sysops');
 	client.joinChannel('#zeldafans');
 	client.joinChannel('#seriousbusiness');
+});
 
-	client.on('message', function(message) {
-		// Reply to the message we received:
-		client.respondToMessage(message, 'What in the world are you talking about?');
+client.on('message', function(message) {
+	var nick = message.getNick();
 
-		var nick = message.getNick();
+	if (!nick) {
+		// Some messages don't have nicks; ie, server notice messages.
+		return;
+	}
 
-		if (!nick) {
-			// Some messages don't have nicks; ie, server notice messages.
-			return;
+	// Reply to the message we received:
+	client.respondToMessage(message, 'What in the world are you talking about?');
+
+	client.sendWhoisQueryForNick(nick, function(error, user) {
+		if (error) {
+			throw error;
 		}
 
-		client.sendWhoisQueryForNick(nick, function(error, user) {
-			if (error) {
-				return void handleError(error);
-			}
-
-			// Crawl throughout the network:
-			user.getChannelNames().forEach(client.joinChannel, client);
-		});
+		// Crawl our way throughout the network:
+		user.getChannelNames().forEach(client.joinChannel, client);
 	});
 });
 
