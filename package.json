@@ -1,7 +1,9 @@
 {
 	"name": "pirc",
 	"description": "A combination IRC daemon / client library written in Node.js",
-	"version": "0.0.1",
+	"version": "0.0.2",
+	"license": "ISC",
+	"repository":  "https://github.com/burninggarden/pirc.git",
 	"dependencies": {
 		"nodeunit": "0.9.1"
 	},
