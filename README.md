@@ -9,6 +9,7 @@
 - [Introduction](#introduction)
 - [Server config](#server-config)
 - [Client config](#client-config)
+- [Client scripting](#client-scripting)
 
 ## Installation
 
@@ -16,7 +17,7 @@
 
 ## Introduction
 
-πrc is both an IRC daemon, and an IRC client, all rolled into one module.
+**πrc** is both an IRC daemon, and an IRC client, all rolled into one module.
 It's written in JavaScript.
 
 Starting your own IRC server is easy:
@@ -138,8 +139,8 @@ var options = {
 	hostname: 'irc.burninggarden.com',
 	port:     6669,
 	nick:     'pachet',
-	realname: 'Pachet',
-	username: 'Pachet'
+	username: 'pachet',
+	realname: 'Pachet'
 };
 
 client.connectToServer(options, function(error) {
@@ -160,3 +161,52 @@ The default values for the options object when connecting to a server is as foll
 |port          |`6667`         |The remote port of the server to connect to                           |
 
 
+## Client scripting
+
+If you're writing an IRC client using **πrc**, you probably want some way to programmatically interact with the IRC networks you're connecting to.
+
+Here's an example of a simple bot written using `Pirc.Client`, just to serve as an illustration of what's possible. More comprehensive documentation can be found below.
+
+`````js
+var Pirc = require('pirc');
+
+var client = new Pirc.Client();
+
+function handleError(error) {
+	console.error(error);
+	process.exit(1);
+}
+
+client.connectToServer('irc.burninggarden.com', function(error) {
+	if (error) {
+		return void handleError(error);
+	}
+
+	// Connect to some initial channels:
+	client.joinChannel('#sysops');
+	client.joinChannel('#zeldafans');
+	client.joinChannel('#seriousbusiness');
+
+	client.on('message', function(message) {
+		// Reply to the message we received:
+		client.respondToMessage(message, 'What in the world are you talking about?');
+
+		var nick = message.getNick();
+
+		if (!nick) {
+			// Some messages don't have nicks; ie, server notice messages.
+			return;
+		}
+
+		client.sendWhoisQueryForNick(nick, function(error, user) {
+			if (error) {
+				return void handleError(error);
+			}
+
+			// Crawl throughout the network:
+			user.getChannelNames().forEach(client.joinChannel, client);
+		});
+	});
+});
+
+`````
