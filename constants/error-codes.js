@@ -59,7 +59,6 @@ module.exports = {
 	INVALID_USER_MODES:              'invalid_user_modes',
 	INVALID_USERNAME:                'invalid_username',
 
-
 	NO_SERVER_CONNECTION:            'no_server_connection',
 	NO_SERVER_MOTD:                  'no_server_motd',
 
