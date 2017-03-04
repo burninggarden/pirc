@@ -70,13 +70,15 @@ The above example creates a new server instance, using the default settings, and
 
 The default settings are as follows:
 
-|Setting name |Default value                                          |
-|-------------|--------------------------                             |
-|name         |Pirc                                                   |
-|hostname     |The result of `require('os').hostname()` on your system|
-|port         |6667 (the default IRC port)                            |
-|channel_modes|`biklmnpstv` (more info [here](./docs/channel-modes))  |
-|user_modes   |`iosw` (more info [here](./docs/user-modes))           |
+|Setting name                |Default value                                          |
+|---------------             |--------------------------                             |
+|`name`                      |`"Pirc"`                                                   |
+|`hostname`                  |`require('os').hostname()`|
+|`port`                      |`6667` (the default IRC port)                            |
+|`channel_modes`             |`"biklmnpstv"`  |
+|`user_modes`                |`"iosw"`           |
+|`max_nick_length`           |`32` |
+|`max_targets`               |`20` |
 
 You will probably want to override these settings. To do so, you can supply an options object to the `Pirc.Server` constructor:
 `````js
