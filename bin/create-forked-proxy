@@ -242,7 +242,18 @@ server.on('connection', function handleConnection(socket) {
 		while (index !== -1) {
 			let
 				message = data_string.slice(0, index),
-				prefix  = TextFormatter.cyan('RECV A [' + nick + ']: ');
+				leader  = parser.getLeaderForMessage(message);
+
+			if (leader === 'NICK' && message.indexOf(nick) !== -1) {
+				nick = message.split(' ').pop();
+
+				// Some IRCD's put the new nick in the trailing parameter:
+				if (nick[0] === ':') {
+					nick = nick.slice(1);
+				}
+			}
+
+			let prefix  = TextFormatter.cyan('RECV A [' + nick + ']: ');
 
 			console.log(prefix + message);
 
