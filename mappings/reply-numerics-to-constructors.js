@@ -81,6 +81,8 @@ module.exports = {
 
 	[ReplyNumerics.ERR_NEEDREGGEDNICK]:   load('need-regged-nick'),       // 477
 
+	[ReplyNumerics.ERR_NOPRIVILEGES]:     load('no-privileges'),          // 481
+
 	[ReplyNumerics.ERR_UMODEUNKNOWNFLAG]: load('umode-unknown-flag'),     // 501
 	[ReplyNumerics.ERR_USERSDONTMATCH]:   load('users-dont-match'),       // 502
 

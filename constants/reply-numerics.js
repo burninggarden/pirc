@@ -83,6 +83,8 @@ module.exports = {
 	// for other purposes:
 	ERR_NEEDREGGEDNICK:   '477',
 
+	ERR_NOPRIVILEGES:     '481',
+
 	ERR_UMODEUNKNOWNFLAG: '501',
 
 	ERR_USERSDONTMATCH:   '502',
