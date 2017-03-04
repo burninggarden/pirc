@@ -70,7 +70,6 @@ The above example creates a new server instance, using the default settings, and
 
 The default settings are as follows:
 
-`````
 |Setting name |Default value                                          |
 |-------------|--------------------------                             |
 |name         |Pirc                                                   |
@@ -78,9 +77,8 @@ The default settings are as follows:
 |port         |6667 (the default IRC port)                            |
 |channel_modes|biklmnpstv                                             |
 |user_modes   |iosw                                                   |
-`````
 
-You probably will want to override these. To do so, you can supply an options object to the `Pirc.Server` constructor:
+You will probably want to override these settings. To do so, you can supply an options object to the `Pirc.Server` constructor:
 `````js
 var server = new Pirc.Server({
 	name:          'BurningGarden',
@@ -91,7 +89,7 @@ var server = new Pirc.Server({
 });
 `````
 
-In addition to specifying the port in the options object, you can also pass it to `server.listen()` directly:
+In addition to specifying the port in the options object, you can also just pass it to `server.listen()` directly:
 `````js
 server.listen(1234);
 `````
