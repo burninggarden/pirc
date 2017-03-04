@@ -79,7 +79,7 @@ The default settings are as follows:
 |user_modes                  |`"iosw"`                        |The subset of [supported user modes](./docs/user-modes) that clients can set        |
 |max_channels                |`20`                            |The maximum number of channels a client can join                                    |
 |max_targets                 |`20`                            |The maximum number of targets a client can specify for a message                    |
-|max_bans                    |`60`                            |The maximum number of bans...... actually, I'm not sure how this is used            |
+|max_bans                    |`60`                            |The maximum number of ban masks allowed for a given channel                         |
 |max_parameters              |`32`                            |The maximum number of parameters a client can supply for a command                  |
 |max_nick_length             |`32`                            |The maximum allowed client nick length                                              |
 |max_topic_length            |`307`                           |The maximum allowed channel topic length                                            |
