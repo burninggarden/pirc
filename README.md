@@ -8,6 +8,7 @@
 - [Installation](#installation)
 - [Introduction](#introduction)
 - [Server config](#server-config)
+- [Client config](#client-config)
 
 ## Installation
 
@@ -39,7 +40,7 @@ var Pirc = require('pirc');
 
 var client = new Pirc.Client('pachet');
 
-client.connectToServer('irc.burninggarden.com', function(error, server) {
+client.connectToServer('irc.burninggarden.com', function(error) {
 	if (error) {
 		throw error;
 	}
@@ -92,6 +93,7 @@ var server = new Pirc.Server({
 	name:          'BurningGarden',
 	hostname:      'irc.burninggarden.com',
 	port:          1234,
+	motd:          'Welcome to Burning Garden's IRC server. Be good, and don't be bad!'
 	channel_modes: 'bmnpsq',
 	user_modes:    'ars'
 });
@@ -105,5 +107,56 @@ server.listen(1234);
 A list of πrc's supported channel modes, and their meanings, can be found [here](./docs/channel-modes).
 
 A list of πrc's supported user modes, and their meanings, can be found [here](./docs/user-modes).
+
+
+
+## Client Config
+
+The amount of information needed when instantiating a new client is minimal. In fact, you could just instantiate a client directly, and call `connectToServer()` without supplying any additional information:
+
+`````js
+var client = new Pirc.Client(); // The default nick, "pirc", will be used.
+
+client.connectToServer(function(error) { // Will attempt to connect to localhost:6667
+	// Do something
+});
+
+`````
+
+But I'm guessing you want more flexibility than that. Not a problem. You can override the default nick for your client by passing it directly to the `Pirc.Client` constructor:
+
+`````js
+var client = new Pirc.Client('pachet'); // Now the nick "pachet" will be used when connecting to servers
+`````
+
+You can also specify additional options when connecting to a specific server, in the form of an options object:
+
+`````js
+var client = new Pirc.Client();
+
+var options = {
+	hostname: 'irc.burninggarden.com',
+	port:     6669,
+	nick:     'pachet',
+	realname: 'Pachet',
+	username: 'Pachet'
+};
+
+client.connectToServer(options, function(error) {
+	// Do something
+});
+`````
+
+This makes it easy to specify different values for different server connections using the same client.
+
+The default values for the options object when connecting to a server is as follows:
+
+|Setting name  |Default value  |Meaning                                                               |
+|--------------|---------------|----------------------------------------------------------------------|
+|nick          |`"pirc"`       |Identifies your client on the network, unique to your user            |
+|username      |`"pirc"`       |Identifies your client on the network, not necessarily unique to you  |
+|realname      |`"Pirc"`       |Your favorite character on your favorite TV show                      |
+|hostname      |`"localhost"`  |The remote hostname of the server to connect to                       |
+|port          |`6667`         |The remote port of the server to connect to                           |
 
 
