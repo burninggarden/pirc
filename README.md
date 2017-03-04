@@ -26,6 +26,8 @@ var server = new Pirc.Server();
 
 server.listen();
 
+// Server is now listening on port 6667!
+
 `````
 
 So is spawning an IRC client:
@@ -39,12 +41,14 @@ client.connectToServer('irc.burninggarden.com', function(error, server) {
 		throw error;
 	}
 
-	client.joinChannel('#sysops', function(error, channel) {
+	// We're now successfully connected! Yay!
+
+	client.joinChannel('#sysops', function(error) {
 		if (error) {
 			throw error;
 		}
 
-		client.sendMessageToChannel(channel, 'I have returned!');
+		client.sendMessageToChannel('I have returned!', channel);
 	});
 });
 
