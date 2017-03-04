@@ -6,7 +6,7 @@ var
 	MessageGenerator = req('/lib/client/message-generator');
 
 
-const CLIENT_COUNT = 2;
+const CLIENT_COUNT = 5;
 
 
 function handleError(error) {
@@ -32,7 +32,7 @@ function spawnClient() {
 			} catch (error) {
 				console.log(error);
 			}
-		}, 1000);
+		}, Math.floor(Math.random() * 2000) + 500);
 	});
 }
 

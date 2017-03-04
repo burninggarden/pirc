@@ -77,13 +77,15 @@ server.on('connection', function handleConnection(socket) {
 
 			let
 				subindex     = 0,
-				test_message = null;
+				test_message = null,
+				control_leader;
 
 			while (subindex < max_index) {
 				let
 					current_message = test_messages[subindex],
-					test_leader     = parser.getLeaderForMessage(current_message),
-					control_leader  = parser.getLeaderForMessage(control_message);
+					test_leader     = parser.getLeaderForMessage(current_message);
+
+				control_leader = parser.getLeaderForMessage(control_message);
 
 				if (
 					   control_leader === '401'
