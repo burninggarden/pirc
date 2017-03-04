@@ -15,16 +15,20 @@ function handleError(error) {
 }
 
 function spawnClient() {
-	var client = new Pirc.Client();
+	var
+		client = new Pirc.Client(),
+		nick   = MessageGenerator.generateRandomNick();
 
 	client.connectToServer({
 		hostname: '127.0.0.1',
 		port:     6666,
-		nick:     MessageGenerator.generateRandomNick()
+		nick:     nick
 	}, function handler(error, server) {
 		if (error) {
 			return void handleError(error);
 		}
+
+		client.sendRawMessage('MODE ' + nick + ' +iw');
 
 		setInterval(function deferred() {
 			try {
