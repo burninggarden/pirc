@@ -43,12 +43,12 @@ client.connectToServer('irc.burninggarden.com', function(error, server) {
 
 	// We're now successfully connected! Yay!
 
-	client.joinChannel('#sysops', function(error) {
+	client.joinChannel('#sysops', function(error) { // JOIN #sysops
 		if (error) {
 			throw error;
 		}
 
-		client.sendMessageToChannel('I have returned!', channel);
+		client.sendMessageToChannel('I have returned!', channel); // PRIVMSG #sysops :I have returned!
 	});
 });
 
