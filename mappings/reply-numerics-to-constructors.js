@@ -43,6 +43,8 @@ module.exports = {
 
 	[ReplyNumerics.RPL_WHOISACCOUNT]:     load('whois-account'),          // 330
 
+	[ReplyNumerics.RPL_NOTOPIC]:          load('no-channel-topic'),       // 331
+
 	[ReplyNumerics.RPL_TOPIC]:            load('channel-topic'),          // 332
 	[ReplyNumerics.RPL_TOPICWHOTIME]:     load('channel-topic-details'),  // 333
 
