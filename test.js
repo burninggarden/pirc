@@ -6,7 +6,7 @@ var
 	MessageGenerator = req('/lib/client/message-generator');
 
 
-const CLIENT_COUNT = 1;
+const CLIENT_COUNT = 5;
 
 
 function handleError(error) {
@@ -28,7 +28,6 @@ function spawnClient() {
 			return void handleError(error);
 		}
 
-		/*
 		setInterval(function deferred() {
 			try {
 				client.sendRandomCommandMessage();
@@ -36,15 +35,6 @@ function spawnClient() {
 				console.log(error);
 			}
 		}, Math.floor(Math.random() * 2000) + 500);
-		*/
-
-		client.joinChannel('#madrigosa', function handler(error, channel) {
-			if (error) {
-				return void handleError(error);
-			}
-
-			client.sendRawMessage('MODE #madrigosa +e');
-		});
 	});
 }
 
