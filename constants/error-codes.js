@@ -34,6 +34,7 @@ module.exports = {
 
 	INVALID_MODE:                    'invalid_mode',
 	INVALID_MODE_ACTION:             'invalid_mode_action',
+	INVALID_MODE_PARAMETERS:         'invalid_mode_parameters',
 
 	INVALID_NICK:                    'invalid_nick',
 	INVALID_REPLY_NUMERIC:           'invalid_reply_numeric',
