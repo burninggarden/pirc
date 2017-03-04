@@ -70,19 +70,19 @@ The above example creates a new server instance, using the default settings, and
 
 The default settings are as follows:
 
-|Setting name                |Default value   |Meaning                                                                             |
-|----------------------------|----------------|------------------------------------------------------------------------------------|
-|name                        |`"Pirc"`        |Displayed to clients upon connecting                                                |
-|hostname                    |[`OS.hostname()`](foo) |Identifies the server to clients and other servers                                  |
-|port                        |`6667`          |The port the server should listen on                                                |
-|channel_modes               |`"biklmnpstv"`  |The subset of [supported channel modes](./docs/channel-modes) that clients can set  |
-|user_modes                  |`"iosw"`        |The subset of [supported user modes](./docs/user-modes) that clients can set        |
-|max_channels                |`20`            |The maximum number of channels a client can join                                    |
-|max_targets                 |`20`            |The maximum number of targets a client can specify for a message                    |
-|max_bans                    |`60`            |The maximum number of ban masks allowed for a given channel                         |
-|max_parameters              |`32`            |The maximum number of parameters allowed for a given command                        |
-|max_nick_length             |`32`            |The maximum allowed client nick length                                              |
-|max_topic_length            |`307`           |The maximum allowed channel topic length                                            |
+|Setting name                |Default value                                                    |Meaning                                                                             |
+|----------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------|
+|name                        |`"Pirc"`                                                         |Displayed to clients upon connecting                                                |
+|hostname                    |[`OS.hostname()`](https://nodejs.org/api/os.html#os_os_hostname) |Identifies the server to clients and other servers                                  |
+|port                        |`6667`                                                           |The port the server should listen on                                                |
+|channel_modes               |`"biklmnpstv"`                                                   |The subset of [supported channel modes](./docs/channel-modes) that clients can set  |
+|user_modes                  |`"iosw"`                                                         |The subset of [supported user modes](./docs/user-modes) that clients can set        |
+|max_channels                |`20`                                                             |The maximum number of channels a client can join                                    |
+|max_targets                 |`20`                                                             |The maximum number of targets a client can specify for a message                    |
+|max_bans                    |`60`                                                             |The maximum number of ban masks allowed for a given channel                         |
+|max_parameters              |`32`                                                             |The maximum number of parameters allowed for a given command                        |
+|max_nick_length             |`32`                                                             |The maximum allowed client nick length                                              |
+|max_topic_length            |`307`                                                            |The maximum allowed channel topic length                                            |
 
 
 You will probably want to override these settings. To do so, you can supply an options object to the `Pirc.Server` constructor:
