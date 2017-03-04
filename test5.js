@@ -1,13 +1,16 @@
 
 global.req = require('req');
 
-var ErroneousNicknameMessage = req('/lib/server/messages/erroneous-nickname');
+var
+	ISupportMessage = req('/lib/server/messages/i-support'),
+	ServerDetails   = req('/lib/server-details');
 
-var message = new ErroneousNicknameMessage();
+var message = new ISupportMessage();
 
-var raw_message = ':irc.burninggarden.com 432 thrullcha 䠐䜆ᇫ���䑺㜴䶓ᬻс䘎फ़ֱἰ䫯䐡₢ೃǮኟᗯᰳ㤣ឃ㋹䖀⃂㦍ଊᙳ㷬䲠㦺䵾ٹௗ⑸㔡上䣺ᓮ㕢஺䍡ᡀᐨ⥨䣬݆���῎䇠㝥❂ӓἇ䶏㴴㊺㳈ᘾġە⟘䭷જ૓ತ׳఩ڄ⢚ᄗᖌ԰ڇ䥄䛻 㹯ⷔෞ䔸؇♻὘㚓䤞᎕೵ㄜ㌦⼜䰵ᛇ⸁ᪧ೏ :Erroneous Nickname';
+message.setBody('This is the body of the isupport message');
 
-message.setRawMessage(raw_message);
-message.deserialize();
+var server_details = ServerDetails.fromIdentifier('irc.burninggarden.com');
 
-console.log(message.getUserDetails());
+message.setServerDetails(server_details);
+
+console.log(message.serialize());

@@ -18,5 +18,5 @@ function validate(mode) {
 }
 
 module.exports = {
-	validate: validate
+	validate
 };
