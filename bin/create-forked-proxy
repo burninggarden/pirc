@@ -144,6 +144,18 @@ server.on('connection', function handleConnection(socket) {
 				control_message = control_message.replace('No such nick/channel', 'No such channel');
 			}
 
+			if (
+				   control_message.indexOf(' 333 ') !== -1
+				&& test_message.indexOf(' 333 ') !== -1
+			) {
+				// For RPL_TOPICWHOTIME messages, standardize the timestamps,
+				// since the control IRCD (InspIRCd) seems consistently slower
+				// to process the original TOPIC command, resulting in a
+				// discrepancy between the two timestamp values...
+				control_message = control_message.split(' ').slice(0, -1).join(' ') + '12345';
+				test_message = test_message.split(' ').slice(0, -1).join(' ') + '12345';
+			}
+
 			control_message = control_message.trim();
 			control_message = control_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			control_message = control_message.replace(/\2/g, '');

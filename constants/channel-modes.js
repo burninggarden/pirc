@@ -14,7 +14,6 @@ module.exports = {
 	QUIET:               'q',
 	SERVER_REOP:         'r',
 	SECRET:              's',
-	TOPIC_OPERATOR_ONLY: 't',
-	VOICE:               'v'
+	TOPIC_OPERATOR_ONLY: 't'
 
 };

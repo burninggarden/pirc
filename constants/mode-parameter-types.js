@@ -1,6 +1,6 @@
 
 module.exports = {
-	TOGGLE:   'toggle',
+	NONE:     'none',
 	SINGULAR: 'singular',
 	PLURAL:   'plural'
 };
