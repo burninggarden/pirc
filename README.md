@@ -75,6 +75,7 @@ The default settings are as follows:
 |name                        |`"Pirc"`                                                         |Displayed to clients upon connecting                                                |
 |hostname                    |[`OS.hostname()`](https://nodejs.org/api/os.html#os_os_hostname) |Identifies the server to clients and other servers                                  |
 |port                        |`6667`                                                           |The port the server should listen on                                                |
+|motd                        |`null`                                                           |The MOTD to show to connecting clients
 |channel_modes               |`"biklmnpstv"`                                                   |The subset of [supported channel modes](./docs/channel-modes) that clients can set  |
 |user_modes                  |`"iosw"`                                                         |The subset of [supported user modes](./docs/user-modes) that clients can set        |
 |max_channels                |`20`                                                             |The maximum number of channels a client can join                                    |
