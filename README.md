@@ -10,6 +10,7 @@
 - [Server config](#server-config)
 - [Client config](#client-config)
 - [Client scripting](#client-scripting)
+- [Todo](#todo)
 
 ## Installation
 
@@ -205,3 +206,12 @@ client.on('message', function(message) {
 });
 
 `````
+
+## Todo
+
+There's still a fair amount of work I need to do. Namely:
+
+- SSL support
+- Services (ie, NickServe)
+- Actual server <-> server connections
+- Authentication
