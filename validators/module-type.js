@@ -3,16 +3,16 @@ var
 	has = req('/utilities/has');
 
 var
-	ServiceTypes = req('/constants/service-types'),
+	ModuleTypes  = req('/constants/module-types'),
 	ErrorReasons = req('/constants/error-reasons');
 
 var
-	InvalidServiceTypeError = req('/lib/errors/invalid-service-type');
+	InvalidModuleTypeError = req('/lib/errors/invalid-module-type');
 
 
 
 function validate(value) {
-	if (has(ServiceTypes, value)) {
+	if (has(ModuleTypes, value)) {
 		return;
 	}
 
@@ -24,7 +24,7 @@ function validate(value) {
 		reason = ErrorReasons.WRONG_TYPE;
 	}
 
-	throw new InvalidServiceTypeError(value, reason);
+	throw new InvalidModuleTypeError(value, reason);
 }
 
 module.exports = {
