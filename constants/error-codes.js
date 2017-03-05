@@ -68,6 +68,8 @@ module.exports = {
 	NOT_REGISTERED:                  'not_registered',
 	NOT_YET_IMPLEMENTED:             'not_yet_implemented',
 
+	PERMISSION_DENIED:               'permission_denied',
+
 	UNABLE_TO_JOIN_CHANNEL:          'unable_to_join_channel'
 
 };

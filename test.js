@@ -28,20 +28,16 @@ function spawnClient() {
 			return void handleError(error);
 		}
 
-		client.joinChannel('#madrigosa', function handler(error, channel) {
-			client.sendRawMessage('MODE #madrigosa +k foobar');
-			client.sendRawMessage('MODE #madrigosa -k');
-		});
+		// var delay = Math.floor(Math.random() * 2000) + 500;
+		var delay = 5000;
 
-		/*
 		setInterval(function deferred() {
 			try {
 				client.sendRandomCommandMessage();
 			} catch (error) {
 				console.log(error);
 			}
-		}, Math.floor(Math.random() * 2000) + 500);
-		*/
+		}, delay);
 	});
 }
 

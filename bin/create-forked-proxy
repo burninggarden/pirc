@@ -157,6 +157,7 @@ server.on('connection', function handleConnection(socket) {
 			}
 
 			control_message = control_message.trim();
+			control_message = control_message.replace(/\s+/g, ' ');
 			control_message = control_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			control_message = control_message.replace(/\2/g, '');
 			control_message = control_message.replace('JOIN :', 'JOIN ');
@@ -168,6 +169,7 @@ server.on('connection', function handleConnection(socket) {
 			}
 
 			test_message    = test_message.trim();
+			test_message    = test_message.replace(/\s+/g, ' ');
 			test_message    = test_message.replace(/827A[A-Z0-9]+/g, 'xxx');
 			test_message    = test_message.replace(/\2/g, '');
 			test_message    = test_message.replace(/~pirc/g, 'pirc');
@@ -178,6 +180,10 @@ server.on('connection', function handleConnection(socket) {
 			}
 
 			if (control_message !== test_message) {
+				console.log(control_messages);
+				console.log(test_messages);
+				console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+				console.log(' ');
 				console.log(TextFormatter.magenta('MISMATCH: '));
 				console.log('\t> ' + control_message + ' <');
 				console.log(' ');
