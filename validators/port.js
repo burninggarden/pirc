@@ -1,4 +1,3 @@
-var req = require('req');
 
 var
 	isNumber               = req('/utilities/is-number'),

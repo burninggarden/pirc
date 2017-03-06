@@ -1,4 +1,3 @@
-var req = require('req');
 
 var
 	isString                  = req('/utilities/is-string'),

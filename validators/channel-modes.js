@@ -1,4 +1,3 @@
-var req = require('req');
 
 var
 	isArray                  = req('/utilities/is-array'),

@@ -1,8 +1,9 @@
-require('req');
+
+require('./utilities/req');
 
 var
-	Client = require('./lib/client'),
-	Server = require('./lib/server');
+	Client = req('/lib/client'),
+	Server = req('/lib/server');
 
 module.exports = {
 	Client,

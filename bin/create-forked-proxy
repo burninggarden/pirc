@@ -10,7 +10,7 @@
  * similar) responses back from client requests as other popular IRCDs.
  */
 
-require('req');
+require('../utilities/req');
 
 var
 	// FS            = require('fs'),

@@ -1,4 +1,3 @@
-var req = require('req');
 
 var ReplyNumerics = req('/constants/reply-numerics');
 
