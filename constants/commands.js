@@ -12,5 +12,7 @@ module.exports = {
 	QUIT:    'QUIT',
 	TOPIC:   'TOPIC',
 	USER:    'USER',
-	WHOIS:   'WHOIS'
+	WHO:     'WHO',
+	WHOIS:   'WHOIS',
+	WHOWAS:  'WHOWAS'
 };
