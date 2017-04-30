@@ -21,7 +21,7 @@ function spawnClient() {
 
 	client.connectToServer({
 		hostname: '127.0.0.1',
-		port:     6666,
+		port:     6667,
 		nick:     nick
 	}, function handler(error, server) {
 		if (error) {
@@ -48,7 +48,7 @@ var server = new Pirc.Server({
 	channel_modes: 'biklmnopstv'
 });
 
-server.listen(6668);
+server.listen(6667);
 
 var index = 0;
 
