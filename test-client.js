@@ -6,7 +6,7 @@ var
 	MessageGenerator = req('/lib/client/message-generator');
 
 
-const CLIENT_COUNT = 0;
+const CLIENT_COUNT = 1;
 
 
 function handleError(error) {
@@ -29,7 +29,7 @@ function spawnClient() {
 		}
 
 		// var delay = Math.floor(Math.random() * 2000) + 500;
-		var delay = (Math.floor(Math.random() * 4) + 1 ) * 1000;
+		var delay = 250;
 
 		setInterval(function deferred() {
 			try {
@@ -41,14 +41,6 @@ function spawnClient() {
 	});
 }
 
-var server = new Pirc.Server({
-	name:          'BurningGarden',
-	hostname:      'irc.burninggarden.com',
-	motd:          'we will take from the land\nif it refuses to give!',
-	channel_modes: 'biklmnopstv'
-});
-
-server.listen(6668);
 
 var index = 0;
 
