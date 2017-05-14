@@ -6,7 +6,7 @@ var
 	MessageGenerator = req('/lib/client/message-generator');
 
 
-const CLIENT_COUNT = 0;
+const CLIENT_COUNT = 1;
 
 
 function handleError(error) {
