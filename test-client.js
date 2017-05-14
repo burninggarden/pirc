@@ -6,7 +6,7 @@ var
 	MessageGenerator = req('/lib/client/message-generator');
 
 
-const CLIENT_COUNT = 100;
+const CLIENT_COUNT = 2;
 
 
 function handleError(error) {
@@ -17,7 +17,8 @@ function handleError(error) {
 function spawnClient() {
 	var
 		client = new Pirc.Client(),
-		nick   = MessageGenerator.generateRandomNick();
+		// nick   = MessageGenerator.generateRandomNick();
+		nick = 'cloudbreaker';
 
 	client.connectToServer({
 		hostname: '127.0.0.1',
@@ -31,6 +32,7 @@ function spawnClient() {
 		// var delay = Math.floor(Math.random() * 2000) + 500;
 		var delay = 250;
 
+		/*
 		setInterval(function deferred() {
 			try {
 				client.sendRandomCommandMessage();
@@ -38,6 +40,7 @@ function spawnClient() {
 				console.log(error);
 			}
 		}, delay);
+		*/
 	});
 }
 
