@@ -46,7 +46,7 @@ function getTargetFromString(target_string) {
 		return user_details;
 	}
 
-	throw new Error('Could not parse target string: ' + target_string);
+	throw new InvalidTargetError(target_string, ErrorReasons.WRONG_FORMAT);
 }
 
 module.exports = getTargetFromString;

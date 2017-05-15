@@ -51,7 +51,7 @@ class IrcConnection:
         self.add_cmd('LIST', args=1)
         self.add_cmd('INVITE', args=2)
         self.add_cmd('PRIVMSG', args=2, last_arg=True)
-        self.add_cmd('NOTICE', args=2, last_arg=True)
+        # self.add_cmd('NOTICE', args=2, last_arg=True)
         self.add_cmd('STATS', args=1)
         self.add_cmd('WHO', args=1)
         self.add_cmd('WHOIS', args=1)
