@@ -1,6 +1,6 @@
 
 var
-	has = req('/utilities/has');
+	has = req('/lib/utilities/has');
 
 var
 	ModuleTypes  = req('/lib/constants/module-types'),

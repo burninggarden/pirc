@@ -1,7 +1,7 @@
 var
 	InvalidBodyError = req('/lib/errors/invalid-body'),
 	ErrorReasons     = req('/lib/constants/error-reasons'),
-	isString         = req('/utilities/is-string');
+	isString         = req('/lib/utilities/is-string');
 
 
 function validate(body) {

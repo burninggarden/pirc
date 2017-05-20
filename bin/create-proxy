@@ -17,7 +17,7 @@ var
 	FS                = require('fs'),
 	PortValidator     = req('/validators/port'),
 	HostnameValidator = req('/validators/hostname'),
-	TextFormatter     = req('/utilities/text-formatter');
+	TextFormatter     = req('/lib/utilities/text-formatter');
 
 
 var

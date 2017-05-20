@@ -1,6 +1,6 @@
 
 var
-	has                 = req('/utilities/has'),
+	has                 = req('/lib/utilities/has'),
 	Commands            = req('/lib/constants/commands'),
 	InvalidCommandError = req('/lib/errors/invalid-command'),
 	ErrorReasons        = req('/lib/constants/error-reasons');

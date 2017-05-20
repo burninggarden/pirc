@@ -1,6 +1,6 @@
 
 var
-	isArray                  = req('/utilities/is-array'),
+	isArray                  = req('/lib/utilities/is-array'),
 	InvalidChannelModesError = req('/lib/errors/invalid-channel-modes'),
 	ErrorReasons             = req('/lib/constants/error-reasons'),
 	ChannelModeValidator     = req('/validators/channel-mode');

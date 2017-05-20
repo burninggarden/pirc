@@ -1,6 +1,6 @@
 
 var
-	isArray               = req('/utilities/is-array'),
+	isArray               = req('/lib/utilities/is-array'),
 	InvalidUserModesError = req('/lib/errors/invalid-user-modes'),
 	ErrorReasons          = req('/lib/constants/error-reasons'),
 	UserModeValidator     = req('/validators/user-mode');

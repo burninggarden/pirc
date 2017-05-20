@@ -1,7 +1,7 @@
 
 
 var
-	has                      = req('/utilities/has'),
+	has                      = req('/lib/utilities/has'),
 	ReplyNumerics            = req('/lib/constants/reply-numerics'),
 	InvalidReplyNumericError = req('/lib/errors/invalid-reply-numeric'),
 	ErrorReasons             = req('/lib/constants/error-reasons');

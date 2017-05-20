@@ -1,5 +1,5 @@
 var
-	isInt = req('/utilities/is-int');
+	isInt = req('/lib/utilities/is-int');
 
 var
 	InvalidTimestampError = req('/lib/errors/invalid-timestamp');

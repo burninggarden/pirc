@@ -1,4 +1,4 @@
-var escapeCharacters = req('/utilities/escape-characters');
+var escapeCharacters = req('/lib/utilities/escape-characters');
 
 function testEscapeCharacters(test) {
 	test.expect(1);

@@ -1,6 +1,6 @@
 
 var
-	isString                  = req('/utilities/is-string'),
+	isString                  = req('/lib/utilities/is-string'),
 	ErrorReasons              = req('/lib/constants/error-reasons'),
 	InvalidServerAddressError = req('/lib/errors/invalid-server-address');
 

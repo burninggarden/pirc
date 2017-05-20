@@ -1,6 +1,6 @@
 
 var
-	isString             = req('/utilities/is-string'),
+	isString             = req('/lib/utilities/is-string'),
 	InvalidRealnameError = req('/lib/errors/invalid-realname'),
 	ErrorReasons         = req('/lib/constants/error-reasons');
 

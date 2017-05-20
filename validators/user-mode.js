@@ -1,6 +1,6 @@
 
 var
-	has                  = req('/utilities/has'),
+	has                  = req('/lib/utilities/has'),
 	UserModes            = req('/lib/constants/user-modes'),
 	ErrorReasons         = req('/lib/constants/error-reasons'),
 	InvalidUserModeError = req('/lib/errors/invalid-user-mode');

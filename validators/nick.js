@@ -1,5 +1,5 @@
 var
-	isString         = req('/utilities/is-string'),
+	isString         = req('/lib/utilities/is-string'),
 	InvalidNickError = req('/lib/errors/invalid-nick'),
 	ErrorReasons     = req('/lib/constants/error-reasons'),
 	Regexes          = req('/lib/constants/regexes');

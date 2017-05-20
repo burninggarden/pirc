@@ -1,6 +1,6 @@
 
 var
-	getTargetFromString = req('/utilities/get-target-from-string'),
+	getTargetFromString = req('/lib/utilities/get-target-from-string'),
 	ChannelDetails      = req('/lib/channel-details');
 
 

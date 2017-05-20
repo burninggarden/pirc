@@ -10,13 +10,13 @@
  * similar) responses back from client requests as other popular IRCDs.
  */
 
-require('../utilities/req');
+require('req');
 
 var
 	// FS            = require('fs'),
 	Net           = require('net'),
 	Delimiters    = req('/lib/constants/delimiters'),
-	TextFormatter = req('/utilities/text-formatter'),
+	TextFormatter = req('/lib/utilities/text-formatter'),
 	MessageParser = req('/lib/message-parser');
 
 

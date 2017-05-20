@@ -1,7 +1,7 @@
 var
 	InvalidServerNameError = req('/lib/errors/invalid-server-name'),
 	ErrorReasons           = req('/lib/constants/error-reasons'),
-	isString               = req('/utilities/is-string');
+	isString               = req('/lib/utilities/is-string');
 
 
 function validate(name) {
