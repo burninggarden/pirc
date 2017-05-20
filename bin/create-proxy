@@ -15,8 +15,8 @@ require('req');
 var
 	Net               = require('net'),
 	FS                = require('fs'),
-	PortValidator     = req('/validators/port'),
-	HostnameValidator = req('/validators/hostname'),
+	PortValidator     = req('/lib/validators/port'),
+	HostnameValidator = req('/lib/validators/hostname'),
 	TextFormatter     = req('/lib/utilities/text-formatter');
 
 
