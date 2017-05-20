@@ -1,8 +1,8 @@
 
 var
 	has                     = req('/utilities/has'),
-	ChannelModes            = req('/constants/channel-modes'),
-	ErrorReasons            = req('/constants/error-reasons'),
+	ChannelModes            = req('/lib/constants/channel-modes'),
+	ErrorReasons            = req('/lib/constants/error-reasons'),
 	InvalidChannelModeError = req('/lib/errors/invalid-channel-mode');
 
 

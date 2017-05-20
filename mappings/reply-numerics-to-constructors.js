@@ -1,5 +1,5 @@
 
-var ReplyNumerics = req('/constants/reply-numerics');
+var ReplyNumerics = req('/lib/constants/reply-numerics');
 
 
 function load(key) {

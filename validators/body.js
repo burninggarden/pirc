@@ -1,6 +1,6 @@
 var
 	InvalidBodyError = req('/lib/errors/invalid-body'),
-	ErrorReasons     = req('/constants/error-reasons'),
+	ErrorReasons     = req('/lib/constants/error-reasons'),
 	isString         = req('/utilities/is-string');
 
 

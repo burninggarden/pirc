@@ -2,7 +2,7 @@
 var
 	isArray               = req('/utilities/is-array'),
 	InvalidUserModesError = req('/lib/errors/invalid-user-modes'),
-	ErrorReasons          = req('/constants/error-reasons'),
+	ErrorReasons          = req('/lib/constants/error-reasons'),
 	UserModeValidator     = req('/validators/user-mode');
 
 

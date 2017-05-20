@@ -1,6 +1,6 @@
 
 var
-	Regexes = req('/constants/regexes');
+	Regexes = req('/lib/constants/regexes');
 
 
 function testNickRegexAgainstChannel(test) {

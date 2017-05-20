@@ -1,8 +1,8 @@
 var
 	isString         = req('/utilities/is-string'),
 	InvalidNickError = req('/lib/errors/invalid-nick'),
-	ErrorReasons     = req('/constants/error-reasons'),
-	Regexes          = req('/constants/regexes');
+	ErrorReasons     = req('/lib/constants/error-reasons'),
+	Regexes          = req('/lib/constants/regexes');
 
 const
 	MINIMUM_NICK_LENGTH = 1,

@@ -15,7 +15,7 @@ require('../utilities/req');
 var
 	// FS            = require('fs'),
 	Net           = require('net'),
-	Delimiters    = req('/constants/delimiters'),
+	Delimiters    = req('/lib/constants/delimiters'),
 	TextFormatter = req('/utilities/text-formatter'),
 	MessageParser = req('/lib/message-parser');
 

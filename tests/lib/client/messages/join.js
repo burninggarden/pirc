@@ -3,7 +3,7 @@ require('req');
 
 var
 	ClientJoinMessage = req('/lib/client/messages/join'),
-	Delimiters        = req('/constants/delimiters');
+	Delimiters        = req('/lib/constants/delimiters');
 
 
 function serialize(test) {

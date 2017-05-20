@@ -1,7 +1,7 @@
 
 var
 	isNumber               = req('/utilities/is-number'),
-	ErrorReasons           = req('/constants/error-reasons'),
+	ErrorReasons           = req('/lib/constants/error-reasons'),
 	InvalidServerPortError = req('/lib/errors/invalid-server-port');
 
 

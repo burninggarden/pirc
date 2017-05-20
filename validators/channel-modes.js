@@ -2,7 +2,7 @@
 var
 	isArray                  = req('/utilities/is-array'),
 	InvalidChannelModesError = req('/lib/errors/invalid-channel-modes'),
-	ErrorReasons             = req('/constants/error-reasons'),
+	ErrorReasons             = req('/lib/constants/error-reasons'),
 	ChannelModeValidator     = req('/validators/channel-mode');
 
 

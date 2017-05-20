@@ -3,8 +3,8 @@ var
 	UserDetails        = req('/lib/user-details'),
 	ChannelDetails     = req('/lib/channel-details'),
 	ServerDetails      = req('/lib/server-details'),
-	Regexes            = req('/constants/regexes'),
-	ErrorReasons       = req('/constants/error-reasons'),
+	Regexes            = req('/lib/constants/regexes'),
+	ErrorReasons       = req('/lib/constants/error-reasons'),
 	InvalidTargetError = req('/lib/errors/invalid-target');
 
 function getTargetFromString(target_string) {

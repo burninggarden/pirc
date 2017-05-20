@@ -1,9 +1,9 @@
 
 var
 	has                 = req('/utilities/has'),
-	Commands            = req('/constants/commands'),
+	Commands            = req('/lib/constants/commands'),
 	InvalidCommandError = req('/lib/errors/invalid-command'),
-	ErrorReasons        = req('/constants/error-reasons');
+	ErrorReasons        = req('/lib/constants/error-reasons');
 
 function validate(command) {
 	if (!command) {

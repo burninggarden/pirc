@@ -3,8 +3,8 @@ var
 	has = req('/utilities/has');
 
 var
-	ModuleTypes  = req('/constants/module-types'),
-	ErrorReasons = req('/constants/error-reasons');
+	ModuleTypes  = req('/lib/constants/module-types'),
+	ErrorReasons = req('/lib/constants/error-reasons');
 
 var
 	InvalidModuleTypeError = req('/lib/errors/invalid-module-type');

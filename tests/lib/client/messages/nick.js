@@ -3,7 +3,7 @@ require('req');
 
 var
 	ClientNickMessage = req('/lib/client/messages/nick'),
-	Delimiters        = req('/constants/delimiters');
+	Delimiters        = req('/lib/constants/delimiters');
 
 
 function serialize(test) {

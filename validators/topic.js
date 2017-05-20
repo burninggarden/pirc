@@ -1,7 +1,7 @@
 
 var
 	InvalidTopicError = req('/lib/errors/invalid-topic'),
-	ErrorReasons      = req('/constants/error-reasons');
+	ErrorReasons      = req('/lib/constants/error-reasons');
 
 
 function validate(topic) {

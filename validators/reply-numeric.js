@@ -2,9 +2,9 @@
 
 var
 	has                      = req('/utilities/has'),
-	ReplyNumerics            = req('/constants/reply-numerics'),
+	ReplyNumerics            = req('/lib/constants/reply-numerics'),
 	InvalidReplyNumericError = req('/lib/errors/invalid-reply-numeric'),
-	ErrorReasons             = req('/constants/error-reasons');
+	ErrorReasons             = req('/lib/constants/error-reasons');
 
 function validate(reply_numeric) {
 	if (!reply_numeric) {

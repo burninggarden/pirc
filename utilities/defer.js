@@ -3,7 +3,7 @@ var
 	isFunction = req('/utilities/is-function');
 
 var
-	ErrorReasons         = req('/constants/error-reasons'),
+	ErrorReasons         = req('/lib/constants/error-reasons'),
 	InvalidCallbackError = req('/lib/errors/invalid-callback');
 
 

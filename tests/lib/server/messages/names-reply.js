@@ -1,7 +1,7 @@
 var
 	NamesReplyMessage = req('/lib/server/messages/names-reply'),
 	UserDetails       = req('/lib/user-details'),
-	Delimiters        = req('/constants/delimiters');
+	Delimiters        = req('/lib/constants/delimiters');
 
 function serialize(test) {
 	test.expect(1);

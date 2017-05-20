@@ -2,7 +2,7 @@
 var
 	isString             = req('/utilities/is-string'),
 	InvalidUsernameError = req('/lib/errors/invalid-username'),
-	ErrorReasons         = req('/constants/error-reasons');
+	ErrorReasons         = req('/lib/constants/error-reasons');
 
 function validate(username) {
 	if (!username) {

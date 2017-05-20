@@ -2,7 +2,7 @@
 var
 	isString             = req('/utilities/is-string'),
 	InvalidRealnameError = req('/lib/errors/invalid-realname'),
-	ErrorReasons         = req('/constants/error-reasons');
+	ErrorReasons         = req('/lib/constants/error-reasons');
 
 function validate(realname) {
 	if (!realname) {

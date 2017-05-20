@@ -1,7 +1,7 @@
 
 var
 	InvalidChannelNameError = req('/lib/errors/invalid-channel-name'),
-	ErrorReasons            = req('/constants/error-reasons');
+	ErrorReasons            = req('/lib/constants/error-reasons');
 
 
 // From https://gist.github.com/haxd/653245:
