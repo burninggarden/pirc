@@ -30,6 +30,8 @@ module.exports = {
 	// parameter is supplied.
 	INVALID_I_SUPPORT_PARAMETER:     'invalid_i_support_parameter',
 
+	INVALID_JOIN_PARAMETERS:         'invalid_join_parameters',
+
 	INVALID_MESSAGE_STRUCTURE:       'invalid_message_structure',
 
 	INVALID_MODE:                    'invalid_mode',
@@ -37,6 +39,8 @@ module.exports = {
 	INVALID_MODE_PARAMETERS:         'invalid_mode_parameters',
 
 	INVALID_NICK:                    'invalid_nick',
+	INVALID_NICK_PARAMETERS:         'invalid_nick_parameters',
+
 	INVALID_REPLY_NUMERIC:           'invalid_reply_numeric',
 	INVALID_PARAMETER:               'invalid_parameter',
 	INVALID_REALNAME:                'invalid_realname',
@@ -59,6 +63,8 @@ module.exports = {
 	INVALID_USER_MODE:               'invalid_user_mode',
 	INVALID_USER_MODES:              'invalid_user_modes',
 	INVALID_USERNAME:                'invalid_username',
+
+	INVALID_USER_PARAMETERS:         'invalid_user_parameters',
 
 	NO_SERVER_CONNECTION:            'no_server_connection',
 	NO_SERVER_MOTD:                  'no_server_motd',
