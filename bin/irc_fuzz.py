@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # IRC Server fuzzing, made easy!
+#
+# From https://gist.github.com/DanielOaks/63ae611039cdf591dfa4
 
 import time
 import socket
