@@ -1,5 +1,5 @@
 
-require('./lib/utilities/req');
+require('req');
 
 var
 	Client = req('/lib/client'),
