@@ -43,19 +43,19 @@ var Pirc = require('pirc');
 var client = new Pirc.Client('pachet');
 
 client.connectToServer('irc.burninggarden.com', function(error) {
-	if (error) {
-		throw error;
-	}
+    if (error) {
+        throw error;
+    }
 
-	// We're now successfully connected! Yay!
+    // We're now successfully connected! Yay!
 
-	client.joinChannel('#sysops', function(error) { // JOIN #sysops
-		if (error) {
-			throw error;
-		}
+    client.joinChannel('#sysops', function(error) { // JOIN #sysops
+        if (error) {
+            throw error;
+        }
 
-		client.sendMessageToChannel('I have returned!', channel); // PRIVMSG #sysops :I have returned!
-	});
+        client.sendMessageToChannel('I have returned!', channel); // PRIVMSG #sysops :I have returned!
+    });
 });
 
 `````
@@ -92,12 +92,12 @@ The default settings are as follows:
 You will probably want to override these settings. To do so, you can supply an options object to the `Pirc.Server` constructor:
 `````js
 var server = new Pirc.Server({
-	name:          'BurningGarden',
-	hostname:      'irc.burninggarden.com',
-	port:          1234,
-	motd:          'Welcome to Burning Garden's IRC server. Be good, and don't be bad!'
-	channel_modes: 'bmnpsq',
-	user_modes:    'ars'
+    name:          'BurningGarden',
+    hostname:      'irc.burninggarden.com',
+    port:          1234,
+    motd:          'Welcome to Burning Garden's IRC server. Be good, and don't be bad!'
+    channel_modes: 'bmnpsq',
+    user_modes:    'ars'
 });
 `````
 
@@ -120,7 +120,7 @@ The amount of information needed when instantiating a new client is minimal. In 
 var client = new Pirc.Client(); // The default nick, "pirc", will be used.
 
 client.connectToServer(function(error) { // Will attempt to connect to localhost:6667
-	// Do something
+    // Do something
 });
 
 `````
@@ -137,15 +137,15 @@ You can also specify additional options when connecting to a specific server, in
 var client = new Pirc.Client();
 
 var options = {
-	hostname: 'irc.burninggarden.com',
-	port:     6669,
-	nick:     'pachet',
-	username: 'pachet',
-	realname: 'Pachet'
+    hostname: 'irc.burninggarden.com',
+    port:     6669,
+    nick:     'pachet',
+    username: 'pachet',
+    realname: 'Pachet'
 };
 
 client.connectToServer(options, function(error) {
-	// Do something
+    // Do something
 });
 `````
 
@@ -174,35 +174,35 @@ var Pirc = require('pirc');
 var client = new Pirc.Client();
 
 client.connectToServer('irc.burninggarden.com', function(error) {
-	if (error) {
-		throw error;
-	}
+    if (error) {
+        throw error;
+    }
 
-	// Connect to some initial channels:
-	client.joinChannel('#sysops');
-	client.joinChannel('#zeldafans');
-	client.joinChannel('#seriousbusiness');
+    // Connect to some initial channels:
+    client.joinChannel('#sysops');
+    client.joinChannel('#zeldafans');
+    client.joinChannel('#seriousbusiness');
 });
 
 client.on('message', function(message) {
-	var nick = message.getNick();
+    var nick = message.getNick();
 
-	if (!nick) {
-		// Some messages don't have nicks; ie, server notice messages.
-		return;
-	}
+    if (!nick) {
+        // Some messages don't have nicks; ie, server notice messages.
+        return;
+    }
 
-	// Reply to the message we received:
-	client.respondToMessage(message, 'What in the world are you talking about?');
+    // Reply to the message we received:
+    client.respondToMessage(message, 'What in the world are you talking about?');
 
-	client.sendWhoisQueryForNick(nick, function(error, user) {
-		if (error) {
-			throw error;
-		}
+    client.sendWhoisQueryForNick(nick, function(error, user) {
+        if (error) {
+            throw error;
+        }
 
-		// Crawl our way throughout the network:
-		user.getChannelNames().forEach(client.joinChannel, client);
-	});
+        // Crawl our way throughout the network:
+        user.getChannelNames().forEach(client.joinChannel, client);
+    });
 });
 
 `````
