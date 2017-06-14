@@ -1,5 +1,4 @@
 
-
 Network Working Group                                      J. Oikarinen
 Request for Comments: 1459                                      D. Reed
                                                                May 1993
