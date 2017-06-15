@@ -1,0 +1,420 @@
+RPL_WELCOME       = "Welcome to the Internet Relay Network " userid
+
+RPL_YOURHOST      = "Your host is " servername ", running version " version
+
+RPL_CREATED       = "This server was created " date
+
+RPL_MYINFO        = servername SPACE version SPACE user-mode-list SPACE
+		            channel-mode-list
+
+RPL_BOUNCE        = "Try server " servername ", port " port
+
+RPL_TRACELINK = "Link <version & debug level> <destination>
+               <next server> V<protocol version>
+               <link uptime in seconds> <backstream sendq>
+               <upstream sendq>"
+
+RPL_TRACECONNECTING = "Try. <class> <server>"
+201
+
+RPL_TRACEHANDSHAKE = "H.S. <class> <server>"
+202
+
+RPL_TRACEUNKNOWN = "???? <class> [<client IP address in dot form>]"
+203
+
+RPL_TRACEOPERATOR = "Oper <class> <nick>"
+204
+
+RPL_TRACEUSER = "User <class> <nick>"
+205
+
+RPL_TRACESERVER = "Serv <class> <int>S <int>C <server>
+               <nick!user|*!*>@<host|server> V<protocol version>"
+206
+
+RPL_TRACESERVICE = "Service <class> <name> <type> <active type>"
+207
+
+RPL_TRACENEWTYPE = "<newtype> 0 <client name>"
+208
+
+RPL_TRACECLASS = "Class <class> <count>"
+209
+
+RPL_TRACERECONNECT = unused.
+210
+
+RPL_STATSLINKINFO = "<linkname> <sendq> <sent messages>
+               <sent Kbytes> <received messages>
+               <received Kbytes> <time open>"
+211
+
+RPL_STATSCOMMANDS = "<command> <count> <byte count> <remote count>"
+212
+
+RPL_ENDOFSTATS = "<stats letter> :End of STATS report"
+219
+
+RPL_UMODEIS = "<user mode string>"
+221
+
+RPL_SERVLIST = "<name> <server> <mask> <type> <hopcount> <info>"
+234
+
+RPL_SERVLISTEND = "<mask> <type> :End of service listing"
+235
+
+RPL_STATSUPTIME = ":Server Up %d days %d:%02d:%02d"
+242
+
+RPL_STATSOLINE = "O <hostmask> * <name>"
+243
+
+RPL_LUSERCLIENT = ":There are <integer> users and <integer>
+               services on <integer> servers"
+251
+
+RPL_LUSEROP = "<integer> :operator(s) online"
+252
+
+RPL_LUSERUNKNOWN = "<integer> :unknown connection(s)"
+253
+
+RPL_LUSERCHANNELS = "<integer> :channels formed"
+254
+
+RPL_LUSERME = ":I have <integer> clients and <integer>
+                servers"
+255
+
+RPL_ADMINME = "<server> :Administrative info"
+256
+
+RPL_ADMINLOC1 = ":<admin info>"
+257
+
+RPL_ADMINLOC2 = ":<admin info>"
+258
+
+RPL_ADMINEMAIL = ":<admin info>"
+259
+
+RPL_TRACELOG = "File <logfile> <debug level>"
+261
+
+RPL_TRACEEND = "<server name> <version & debug level> :End of TRACE"
+262
+
+RPL_TRYAGAIN = "<command> :Please wait a while and try again."
+263
+
+RPL_AWAY          = nick ":" away-message
+                    ; 301
+
+RPL_USERHOST      = ":" [ userhost-reply ] *( SPACE userhost-reply )
+                    ; 302
+
+
+RPL_ISON          = ":" [ nick ] *( " " nick )
+                    ; 303
+
+RPL_UNAWAY        = ":You are no longer marked as being away"
+                    ; 305
+
+RPL_NOWAWAY       = ":You have been marked as being away"
+                    ; 306
+
+RPL_WHOISUSER     = nick SPACE user SPACE host SPACE * ":" realname
+                    ; 311
+
+RPL_WHOISSERVER   = nick SPACE server SPACE ":" <server-info>
+                    ; 312
+
+RPL_WHOISOPERATOR = nick SPACE ":is an IRC operator"
+                    ; 313
+
+RPL_WHOWASUSER = "<nick> <user> <host> * :<real name>"
+314
+
+RPL_ENDOFWHO = "<name> :End of WHO list"
+315
+
+RPL_WHOISIDLE     = nick SPACE integer SPACE ":seconds idle"
+                    ; 317
+
+RPL_ENDOFWHOIS = "<nick> :End of WHOIS list"
+; 318
+
+RPL_WHOISCHANNELS = "<nick> :*( ( "@" / "+" ) <channel> " " )"
+319
+
+RPL_LISTSTART = Obsolete. Not used.
+321
+
+RPL_LIST = "<channel> <# visible> :<topic>"
+322
+
+RPL_LISTEND = ":End of LIST"
+323
+
+RPL_CHANNELMODEIS = "<channel> <mode> <mode params>"
+
+RPL_UNIQOPIS = "<channel> <nickname>"
+325
+
+RPL_NOTOPIC = "<channel> :No topic is set"
+331
+
+RPL_TOPIC = "<channel> :<topic>"
+332
+
+RPL_INVITING = "<channel> <nick>"
+341
+
+RPL_SUMMONING = "<user> :Summoning user to IRC"
+342
+
+RPL_INVITELIST = "<channel> <invitemask>"
+346
+
+RPL_ENDOFINVITELIST = "<channel> :End of channel invite list"
+347
+
+RPL_EXCEPTLIST = "<channel> <exceptionmask>"
+348
+
+RPL_ENDOFEXCEPTLIST = "<channel> :End of channel exception list"
+349
+
+RPL_VERSION = "<version>.<debuglevel> <server> :<comments>"
+351
+
+RPL_WHOREPLY = "<channel> <user> <host> <server> <nick>
+              ( "H" / "G" > ["*"] [ ( "@" / "+" ) ]
+              :<hopcount> <real name>"
+352
+
+RPL_NAMREPLY = "( "=" / "*" / "@" ) <channel>
+               :[ "@" / "+" ] <nick> *( " " [ "@" / "+" ] <nick> )
+353
+
+RPL_LINKS = "<mask> <server> :<hopcount> <server info>"
+364
+
+RPL_ENDOFLINKS = "<mask> :End of LINKS list"
+365
+
+RPL_ENDOFNAMES = "<channel> :End of NAMES list"
+366
+
+RPL_BANLIST = "<channel> <banmask>"
+367
+
+RPL_ENDOFBANLIST = "<channel> :End of channel ban list"
+368
+
+RPL_ENDOFWHOWAS = "<nick> :End of WHOWAS"
+369
+
+RPL_INFO = ":<string>"
+371
+
+RPL_MOTD = ":- <text>"
+372
+
+RPL_ENDOFINFO = ":End of INFO list"
+374
+
+RPL_MOTDSTART = ":- <server> Message of the day - "
+375
+
+RPL_ENDOFMOTD = ":End of MOTD command"
+376
+
+RPL_YOUREOPER = ":You are now an IRC operator"
+381
+
+RPL_REHASHING = "<config file> :Rehashing"
+382
+
+RPL_YOURESERVICE = "You are service <servicename>"
+383
+
+RPL_TIME = "<server> :<string showing server's local time>"
+391
+
+RPL_USERSSTART = ":UserID   Terminal  Host"
+392
+
+RPL_USERS = ":<username> <ttyline> <hostname>"
+393
+
+RPL_ENDOFUSERS = ":End of users"
+394
+
+RPL_NOUSERS = ":Nobody logged in"
+395
+
+ERR_NOSUCHNICK = "<nickname> :No such nick/channel"
+401
+
+ERR_NOSUCHSERVER = "<server name> :No such server"
+402
+
+ERR_NOSUCHCHANNEL = "<channel name> :No such channel"
+403
+
+ERR_CANNOTSENDTOCHAN = "<channel name> :Cannot send to channel"
+404
+
+ERR_TOOMANYCHANNELS = "<channel name> :You have joined too many channels"
+405
+
+ERR_WASNOSUCHNICK = "<nickname> :There was no such nickname"
+406
+
+ERR_TOOMANYTARGETS = "<target> :<error code> recipients. <abort message>"
+407
+
+ERR_NOSUCHSERVICE = "<service name> :No such service"
+408
+
+ERR_NOORIGIN = ":No origin specified"
+409
+
+ERR_NORECIPIENT = ":No recipient given (<command>)"
+411
+
+ERR_NOTEXTTOSEND = ":No text to send"
+412
+
+ERR_NOTOPLEVEL = "<mask> :No toplevel domain specified"
+413
+
+ERR_WILDTOPLEVEL = "<mask> :Wildcard in toplevel domain"
+414
+
+ERR_BADMASK = "<mask> :Bad Server/host mask"
+415
+
+ERR_UNKNOWNCOMMAND = "<command> :Unknown command"
+421
+
+ERR_NOMOTD = ":MOTD File is missing"
+422
+
+ERR_NOADMININFO = "<server> :No administrative info available"
+423
+
+ERR_FILEERROR = ":File error doing <file op> on <file>"
+424
+
+ERR_NONICKNAMEGIVEN = ":No nickname given"
+431
+
+ERR_ERRONEUSNICKNAME = "<nick> :Erroneous nickname"
+432
+
+ERR_NICKNAMEINUSE = "<nick> :Nickname is already in use"
+433
+
+ERR_NICKCOLLISION = "<nick> :Nickname collision KILL from <user>@<host>"
+436
+
+ERR_UNAVAILRESOURCE = "<nick/channel> :Nick/channel is temporarily unavailable"
+437
+
+ERR_USERNOTINCHANNEL = "<nick> <channel> :They aren't on that channel"
+441
+
+ERR_NOTONCHANNEL = "<channel> :You're not on that channel"
+442
+
+ERR_USERONCHANNEL = "<user> <channel> :is already on channel"
+443
+
+ERR_NOLOGIN = "<user> :User not logged in"
+444
+
+ERR_SUMMONDISABLED = ":SUMMON has been disabled"
+445
+
+ERR_USERSDISABLED = ":USERS has been disabled"
+446
+
+ERR_NOTREGISTERED = ":You have not registered"
+451
+
+ERR_NEEDMOREPARAMS = "<command> :Not enough parameters"
+461
+
+ERR_ALREADYREGISTRED = ":Unauthorized command (already registered)"
+462
+
+ERR_NOPERMFORHOST = ":Your host isn't among the privileged"
+463
+
+ERR_PASSWDMISMATCH = ":Password incorrect"
+464
+
+ERR_YOUREBANNEDCREEP = ":You are banned from this server"
+465
+
+ERR_YOUWILLBEBANNED = ???
+466
+
+ERR_KEYSET = "<channel> :Channel key already set"
+467
+
+ERR_CHANNELISFULL = "<channel> :Cannot join channel (+l)"
+471
+
+ERR_UNKNOWNMODE = "<char> :is unknown mode char to me for <channel>"
+472
+
+ERR_INVITEONLYCHAN = "<channel> :Cannot join channel (+i)"
+473
+
+ERR_BANNEDFROMCHAN = "<channel> :Cannot join channel (+b)"
+474
+
+ERR_BADCHANNELKEY = "<channel> :Cannot join channel (+k)"
+475
+
+ERR_BADCHANMASK = "<channel> :Bad Channel Mask"
+476
+
+ERR_NOCHANMODES = "<channel> :Channel doesn't support modes"
+477
+
+ERR_BANLISTFULL = "<channel> <char> :Channel list is full"
+478
+
+ERR_NOPRIVILEGES = ":Permission Denied- You're not an IRC operator"
+481
+
+ERR_CHANOPRIVSNEEDED = "<channel> :You're not channel operator"
+482
+
+ERR_CANTKILLSERVER = ":You can't kill a server!"
+483
+
+ERR_RESTRICTED = ":Your connection is restricted!"
+484
+
+ERR_UNIQOPPRIVSNEEDED = ":You're not the original channel operator"
+485
+
+ERR_NOOPERHOST = ":No O-lines for your host"
+491
+
+ERR_UMODEUNKNOWNFLAG = ":Unknown MODE flag"
+501
+
+ERR_USERSDONTMATCH = ":Cannot change mode for other users"
+502
+
+
+
+
