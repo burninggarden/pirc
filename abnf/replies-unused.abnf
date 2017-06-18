@@ -1,0 +1,36 @@
+RPL-TRACECONNECTING = "Try. " <class> <server>"
+
+RPL-TRACEHANDSHAKE = "H.S. <class> <server>"
+
+RPL-TRACEUNKNOWN = "???? <class> [<client IP address in dot form>]"
+
+RPL-TRACEOPERATOR = "Oper <class> <nick>"
+
+RPL-TRACEUSER = "User <class> <nick>"
+
+RPL-TRACESERVER = "Serv <class> <int>S <int>C <server>
+               <nick!user|*!*>@<host|server> V<protocol version>"
+
+RPL-TRACESERVICE = "Service <class> <name> <type> <active type>"
+
+RPL-TRACENEWTYPE = "<newtype> 0 <client name>"
+
+RPL-TRACECLASS = "Class <class> <count>"
+
+RPL-STATSLINKINFO = "<linkname> <sendq> <sent messages>
+               <sent Kbytes> <received messages>
+               <received Kbytes> <time open>"
+
+RPL-STATSCOMMANDS = "<command> <count> <byte count> <remote count>"
+
+RPL-ENDOFSTATS = "<stats letter> :End of STATS report"
+
+RPL-UMODEIS = "<user mode string>"
+
+RPL-SERVLIST = "<name> <server> <mask> <type> <hopcount> <info>"
+
+RPL-SERVLISTEND = "<mask> <type> :End of service listing"
+
+RPL-STATSUPTIME = ":Server Up %d days %d:%02d:%02d"
+
+RPL-STATSOLINE = "O <hostmask> * <name>"
