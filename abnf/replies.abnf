@@ -3,7 +3,7 @@ RPL-YOURHOST          = "Your host is " <server-name> ", running version " <serv
 RPL-CREATED           = "This server was created " <date>
 RPL-MYINFO            = <server-name> " " <server-version> " " 1*<user-mode> " " 1*<channel-mode>
 RPL-BOUNCE            = "Try server " <server-name> ", port " <port>
-RPL-I-SUPPORT         = <settings-string> " :are supported by this server"
+RPL-ISUPPORT          = <settings-string> " :are supported by this server"
 RPL-TRACELINK         = "???"
 				      ; "Link <version & debug level> <destination>
                       ; <next server> V<protocol version>
