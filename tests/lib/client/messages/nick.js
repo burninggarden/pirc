@@ -11,7 +11,7 @@ function serialize(test) {
 
 	var message = new ClientNickMessage();
 
-	message.setDesiredNick('pachet');
+	message.setNick('pachet');
 
 	var serialized_message = message.serialize();
 

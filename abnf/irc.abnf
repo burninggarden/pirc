@@ -24,11 +24,12 @@ crlf                =  %x0D %x0A
 
 target              =  nickname / server
 
-msgtarget           =  msgto *( "," msgto )
-
-msgto               =  channel / ( user [ "%" host ] "@" servername )
-msgto               =/ ( user "%" host ) / targetmask
-msgto               =/ nickname / ( nickname "!" user "@" host )
+message-target      =  <channel-name>
+message-target      =/ <nick>
+message-target      =/ <nick> "!" <user> "@" <host>
+message-target      =/ user [ "%" host ] "@" servername
+message-target      =/ user "%" host
+message-target      =/ targetmask
 
 channel             =  ( "#" / "+" / ( "!" channelid ) / "&" ) chanstring
                        [ ":" chanstring ]
@@ -81,6 +82,7 @@ special             =  %x5B-60 / %x7B-7D
 userhost-reply      = <nickname> [ <operator-status> ] "=" <away-status> <hostname>
 
 operator-status     = "*"
+operator-flag       = "o"
 
 away-status         = ( "+" / "-" )
 
@@ -113,3 +115,9 @@ nick-channel        = [ <nick-channel-status> ] <channel-name>
                       ; to denote the user's channel status, but they appear
                       ; in front of the channel name instead of the user's
                       ; nick. This rule is used by RPL_WHOISCHANNELS.
+
+mode-change         = ( " " <mode-action> *<mode-char> *( " " <mode-param> )
+mode-action         = ( "-" / "+" )
+
+mode-bitmask        = 1*DIGIT
+
