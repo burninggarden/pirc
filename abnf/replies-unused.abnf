@@ -1,3 +1,52 @@
+RPL-ADMINME           = <server-name> " :Administrative info"
+RPL-ADMINLOC1         = ":" <admin-info>
+RPL-ADMINLOC2         = ":" <admin-info>
+RPL-ADMINEMAIL        = ":" <admin-info>
+RPL-TRACELOG          = "File " <logfile> "." <debug-level>
+RPL-TRACEEND          = <server-name> " " <server-version> "." <debug-level> " :End of TRACE"
+RPL-TRYAGAIN          = <command> " :Please wait a while and try again."
+
+
+RPL-ISON              = ":" [ <nick> ] *( " " <nick> )
+RPL-UNAWAY            = ":You are no longer marked as being away"
+RPL-NOWAWAY           = ":You have been marked as being away"
+
+RPL-WHOISOPERATOR     = <nick> " :is an IRC operator"
+
+RPL-ENDOFWHO          = <name> " :End of WHO list"
+RPL-LIST              = <channel-name> " " <integer> " :" <topic>
+RPL-LISTEND           = ":End of LIST"
+RPL-CHANNELMODEIS     = <channel-name> " " <mode> " " <mode-params>
+RPL-UNIQOPIS          = <channel-name> " " <nick>
+RPL-INVITING          = <channel-name> " " <nick>
+RPL-SUMMONING         = <user> " :Summoning user to IRC"
+RPL-INVITELIST        = <channel-name> " " <invitemask>
+RPL-ENDOFINVITELIST   = <channel-name> " :End of channel invite list"
+RPL-EXCEPTLIST        = <channel-name> " " <exceptionmask>
+RPL-ENDOFEXCEPTLIST   = <channel-name> " :End of channel exception list"
+
+RPL-VERSION           = <server-version> "." <debug-level> " " <server-name> " :"<comments>
+
+RPL-WHOREPLY          = <channel-name> " " <user> " " <host> " " <server-name> " " <nick> " " ( "H" / "G" / ["*"] ) [ ( "@" / "+" ) ] " :" <hopcount> " " <realname>
+
+RPL-LINKS             = <mask> " " <server-name> " :" <hopcount> " " <server-info>
+RPL-ENDOFLINKS        = <mask> " :End of LINKS list"
+RPL-BANLIST           = <channel-name> " " <banmask>
+RPL-ENDOFBANLIST      = <channel-name> " :End of channel ban list"
+RPL-ENDOFWHOWAS       = <nick> " :End of WHOWAS"
+RPL-INFO              = ":" <string>
+
+RPL-ENDOFINFO         = ":End of INFO list"
+RPL-YOUREOPER         = ":You are now an IRC operator"
+RPL-REHASHING         = <config-file> " :Rehashing"
+RPL-YOURESERVICE      = "You are service " <service-name>
+RPL-TIME              = <server-name> " :" <server-time>
+RPL-USERSSTART        = ":UserID   Terminal  Host"
+RPL-USERS             = ":" <username> " " <ttyline> " " <hostname>
+RPL-ENDOFUSERS        = ":End of users"
+RPL-NOUSERS           = ":Nobody logged in"
+
+
 RPL-TRACECONNECTING = "Try. " <class> <server>"
 
 RPL-TRACEHANDSHAKE = "H.S. <class> <server>"
@@ -34,3 +83,45 @@ RPL-SERVLISTEND = "<mask> <type> :End of service listing"
 RPL-STATSUPTIME = ":Server Up %d days %d:%02d:%02d"
 
 RPL-STATSOLINE = "O <hostmask> * <name>"
+
+
+
+ERR-CANNOTSENDTOCHAN  = <channel-name> " :Cannot send to channel"
+ERR-TOOMANYCHANNELS   = <channel-name> " :You have joined too many channels"
+ERR-WASNOSUCHNICK     = <nick> " :There was no such nickname"
+ERR-TOOMANYTARGETS    = <target> " :" <error-code> " recipients. " <abort-message>
+ERR-NOSUCHSERVICE     = <service-name> " :No such service"
+ERR-NOORIGIN          = ":No origin specified"
+ERR-NORECIPIENT       = ":No recipient given (" <command> ")"
+ERR-NOTEXTTOSEND      = ":No text to send"
+ERR-NOTOPLEVEL        = <mask> " :No toplevel domain specified"
+ERR-WILDTOPLEVEL      = <mask> " :Wildcard in toplevel domain"
+ERR-BADMASK           = <mask> " :Bad Server/host mask"
+
+ERR-NOADMININFO       = <server-name> " :No administrative info available"
+ERR-FILEERROR         = ":File error doing " <file-op> " on " <file>
+
+ERR-NICKCOLLISION     = <nick> " :Nickname collision KILL from " <user> "@" <host>
+ERR-UNAVAILRESOURCE   = ( <nick> / <channel-name> ) " :Nick/channel is temporarily unavailable"
+ERR-USERNOTINCHANNEL  = <nick> " " <channel-name> " :They aren't on that channel"
+
+ERR-USERONCHANNEL     = <user> " " <channel-name> " :is already on channel"
+ERR-NOLOGIN           = <user> " :User not logged in"
+ERR-SUMMONDISABLED    = ":SUMMON has been disabled"
+ERR-USERSDISABLED     = ":USERS has been disabled"
+
+ERR-ALREADYREGISTRED  = ":Unauthorized command (already registered)"
+ERR-NOPERMFORHOST     = ":Your host isn't among the privileged"
+ERR-PASSWDMISMATCH    = ":Password incorrect"
+ERR-YOUREBANNEDCREEP  = ":You are banned from this server"
+ERR-YOUWILLBEBANNED   = "???"
+ERR-KEYSET            = <channel-name> " :Channel key already set"
+ERR-BADCHANNELKEY     = <channel-name> " :Cannot join channel (+k)"
+ERR-BADCHANMASK       = <channel-name> " :Bad Channel Mask"
+ERR-BANLISTFULL       = <channel-name> " " <char> " :Channel list is full"
+ERR-NOPRIVILEGES      =
+ERR-CHANOPRIVSNEEDED  = <channel-name> " :You're not channel operator"
+ERR-CANTKILLSERVER    = ":You can't kill a server!"
+ERR-RESTRICTED        = ":Your connection is restricted!"
+ERR-UNIQOPPRIVSNEEDED = ":You're not the original channel operator"
+ERR-NOOPERHOST        = ":No O-lines for your host"
