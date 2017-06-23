@@ -1,8 +1,8 @@
 message             =  [ ":" prefix SP ] command [ params ] CR LF
 
-prefix              =  servername / userid
+prefix              =  server-name / user-id
 
-userid              =  ( nickname [ [ "!" user ] "@" host ] )
+user-id              =  ( nickname [ [ "!" username ] "@" hostname ] )
 
 command             =  1*ALPHA / 3DIGIT
 
@@ -16,29 +16,28 @@ middle              =  nospcrlfcl *( ":" / nospcrlfcl )
 
 trailing            =  *( ":" / " " / nospcrlfcl )
 
-target              =  nickname / server
+target              =  nickname / server-name
 
 message-target      =  <channel-name>
 message-target      =/ <nick>
-message-target      =/ <nick> "!" <user> "@" <host>
-message-target      =/ user [ "%" host ] "@" servername
-message-target      =/ user "%" host
+message-target      =/ <nick> "!" <username> "@" <hostname>
+message-target      =/ username [ "%" hostname ] "@" server-name
+message-target      =/ username "%" hostname
 message-target      =/ targetmask
 
 channel             =  ( "#" / "+" / ( "!" channelid ) / "&" ) chanstring
                        [ ":" chanstring ]
 
-servername          =  hostname
-
-host                =  hostname / hostaddr
+server-name         =  hostname
 
 hostname            =  shortname *( "." shortname )
+hostname            =/ ip4addr
+hostname            =/ ip6addr
 
 shortname           =  ( ALPHA / DIGIT ) *( ALPHA / DIGIT / "-" )
                        *( ALPHA / DIGIT )
                        ; as specified in RFC 1123 [HNAME]
 
-hostaddr            =  ip4addr / ip6addr
 
 ip4addr             =  1*3DIGIT "." 1*3DIGIT "." 1*3DIGIT "." 1*3DIGIT
 
@@ -56,7 +55,7 @@ chanstring          =/ %x2D-39 / %x3B-FF
 
 channelid           =  5( %x41-5A / DIGIT )   ; 5( A-Z / 0-9 )
 
-user                =  1*( %x01-09 / %x0B-0C / %x0E-1F / %x21-3F / %x41-FF )
+username            =  1*( %x01-09 / %x0B-0C / %x0E-1F / %x21-3F / %x41-FF )
                        ; any octet except NUL, CR, LF, " " and "@"
 
 key                 =  1*23( %x01-05 / %x07-08 / %x0C / %x0E-1F / %x21-7F )
