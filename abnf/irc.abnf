@@ -19,13 +19,13 @@ trailing            =  *( ":" / " " / nospcrlfcl )
 target              =  nickname / server-name
 
 message-target      =  <channel-name>
-message-target      =/ <nick>
-message-target      =/ <nick> "!" <username> "@" <hostname>
+message-target      =/ <nickname>
+message-target      =/ <nickname> "!" <username> "@" <hostname>
 message-target      =/ username [ "%" hostname ] "@" server-name
 message-target      =/ username "%" hostname
 message-target      =/ targetmask
 
-channel             =  ( "#" / "+" / ( "!" channelid ) / "&" ) chanstring
+channel-name             =  ( "#" / "+" / ( "!" channel-id ) / "&" ) chanstring
                        [ ":" chanstring ]
 
 server-name         =  hostname
@@ -53,7 +53,7 @@ chanstring          =  %x01-07 / %x08-09 / %x0B-0C / %x0E-1F / %x21-2B
 chanstring          =/ %x2D-39 / %x3B-FF
                        ; any octet except NUL, BELL, CR, LF, " ", "," and ":"
 
-channelid           =  5( %x41-5A / DIGIT )   ; 5( A-Z / 0-9 )
+channel-id           =  5( %x41-5A / DIGIT )   ; 5( A-Z / 0-9 )
 
 username            =  1*( %x01-09 / %x0B-0C / %x0E-1F / %x21-3F / %x41-FF )
                        ; any octet except NUL, CR, LF, " " and "@"
@@ -78,6 +78,10 @@ away-message        = trailing
 realname            = trailing
 
 server-info         = trailing
+
+message-body        = trailing
+
+server-version      = trailing
 
 channel-privacy     = ( "=" / "*" / "@" )
                       ; From RFC-2812:
