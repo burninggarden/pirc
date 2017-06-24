@@ -6,6 +6,6 @@ var parser = Heket.createParser(`
 	parameters = <message-target> *( "," <message-target> ) " :" <message-body>
 `, IrcRules);
 
-var match = parser.parse('bloodbaro :*** Looking up your hostname...');
+var match = parser.parse('* :*** Looking up your hostname...');
 
-console.log(match.get('message_body'));
+console.log(match.get('message_target'));

@@ -24,6 +24,9 @@ message-target      =/ <nickname> "!" <username> "@" <hostname>
 message-target      =/ username [ "%" hostname ] "@" server-name
 message-target      =/ username "%" hostname
 message-target      =/ targetmask
+message-target      =/ unregistered-stub
+
+unregistered-stub   = "*"
 
 channel-name             =  ( "#" / "+" / ( "!" channel-id ) / "&" ) chanstring
                        [ ":" chanstring ]
