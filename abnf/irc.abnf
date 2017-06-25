@@ -120,3 +120,5 @@ hop-count           = <integer>
 seconds-idle        = <integer>
 
 integer             = 1*DIGIT
+
+date                = <trailing>
