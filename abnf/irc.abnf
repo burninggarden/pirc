@@ -155,3 +155,8 @@ channel-mode        =/ "e" ; set/remove an exception mask to override a ban
                            ; mask;
 channel-mode        =/ "I" ; set/remove an invitation mask to automatically
                            ; override the invite-only flag;
+
+
+i-support-setting   = <i-support-parameter> [ "=" <i-support-value> ]
+i-support-parameter = 1*ALPHA
+i-support-value     = 1*<key>
