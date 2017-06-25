@@ -121,6 +121,7 @@ hop-count           = <integer>
 user-count          = <integer>
 service-count       = <integer>
 server-count        = <integer>
+operator-count      = <integer>
 
 seconds-idle        = <integer>
 
