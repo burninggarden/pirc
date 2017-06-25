@@ -118,6 +118,9 @@ mode-bitmask        = <integer>
 mode-char           = ALPHA
 
 hop-count           = <integer>
+user-count          = <integer>
+service-count       = <integer>
+server-count        = <integer>
 
 seconds-idle        = <integer>
 
