@@ -125,35 +125,33 @@ integer             = 1*DIGIT
 
 date                = <trailing>
 
-user-mode           = ( "a" / "i" / "o" / "O" / "r" / "s" / "w" )
-
 user-mode           =  "a" ; user is flagged as away;
-                    =/ "i" ; marks a users as invisible;
-                    =/ "w" ; user receives wallops;
-                    =/ "r" ; restricted user connection;
-                    =/ "o" ; operator flag;
-                    =/ "O" ; local operator flag;
-                    =/ "s" ; marks a user for receipt of server notices.
+user-mode           =/ "i" ; marks a users as invisible;
+user-mode           =/ "w" ; user receives wallops;
+user-mode           =/ "r" ; restricted user connection;
+user-mode           =/ "o" ; operator flag;
+user-mode           =/ "O" ; local operator flag;
+user-mode           =/ "s" ; marks a user for receipt of server notices.
 
 
 channel-mode        =  "O" ; give "channel creator" status;
-                    =/ "o" ; give/take channel operator privilege;
-                    =/ "v" ; give/take the voice privilege;
-                    =/ "a" ; toggle the anonymous channel flag;
-                    =/ "i" ; toggle the invite-only channel flag;
-                    =/ "m" ; toggle the moderated channel;
-                    =/ "n" ; toggle the no messages to channel from clients
+channel-mode        =/ "o" ; give/take channel operator privilege;
+channel-mode        =/ "v" ; give/take the voice privilege;
+channel-mode        =/ "a" ; toggle the anonymous channel flag;
+channel-mode        =/ "i" ; toggle the invite-only channel flag;
+channel-mode        =/ "m" ; toggle the moderated channel;
+channel-mode        =/ "n" ; toggle the no messages to channel from clients
                            ; on the outside;
-                    =/ "q" ; toggle the quiet channel flag;
-                    =/ "p" ; toggle the private channel flag;
-                    =/ "s" ; toggle the secret channel flag;
-                    =/ "r" ; toggle the server reop channel flag;
-                    =/ "t" ; toggle the topic settable by channel operator-only
+channel-mode        =/ "q" ; toggle the quiet channel flag;
+channel-mode        =/ "p" ; toggle the private channel flag;
+channel-mode        =/ "s" ; toggle the secret channel flag;
+channel-mode        =/ "r" ; toggle the server reop channel flag;
+channel-mode        =/ "t" ; toggle the topic settable by channel operator-only
                            ; flag;
-                    =/ "k" ; set/remove the channel key (password);
-                    =/ "l" ; set/remove the user limit to channel;
-                    =/ "b" ; set/remove ban mask to keep users out;
-                    =/ "e" ; set/remove an exception mask to override a ban
+channel-mode        =/ "k" ; set/remove the channel key (password);
+channel-mode        =/ "l" ; set/remove the user limit to channel;
+channel-mode        =/ "b" ; set/remove ban mask to keep users out;
+channel-mode        =/ "e" ; set/remove an exception mask to override a ban
                            ; mask;
-                    =/ "I" ; set/remove an invitation mask to automatically
+channel-mode        =/ "I" ; set/remove an invitation mask to automatically
                            ; override the invite-only flag;
