@@ -122,6 +122,7 @@ user-count          = <integer>
 service-count       = <integer>
 server-count        = <integer>
 operator-count      = <integer>
+channel-count       = <integer>
 
 seconds-idle        = <integer>
 
