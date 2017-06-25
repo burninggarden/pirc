@@ -9,7 +9,7 @@ command             =  1*ALPHA / 3DIGIT
 params              =  *14( SP middle ) [ SP ":" trailing ]
 params              =/  14( SP middle ) [ SP [ ":" ] trailing ]
 
-nospcrlfcl          =  %x01-09 / %x0B-0C / %x0E-1F / %x21-39 / %x3B-FF
+nospcrlfcl          =  %x01-09 / %x0B-0C / %x0E-1F / %x21-39 / %x3B-FFF
                        ; any octet except NUL, CR, LF, " " and ":"
 
 middle              =  nospcrlfcl *( ":" / nospcrlfcl )
@@ -85,6 +85,8 @@ server-info         = trailing
 message-body        = trailing
 
 server-version      = trailing
+
+motd-text           = trailing
 
 channel-privacy     = ( "=" / "*" / "@" )
                       ; From RFC-2812:
