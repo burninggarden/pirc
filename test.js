@@ -32,11 +32,7 @@ function spawnClient() {
 		var delay = (Math.floor(Math.random() * 4) + 1 ) * 1000;
 
 		setInterval(function deferred() {
-			try {
-				client.sendRandomCommandMessage();
-			} catch (error) {
-				console.log(error);
-			}
+			client.sendRandomCommandMessage();
 		}, delay);
 	});
 }

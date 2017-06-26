@@ -28,8 +28,8 @@ message-target      =/ unregistered-stub
 
 unregistered-stub   = "*"
 
-channel-name        =  ( "#" / "+" / ( "!" channel-id ) / "&" ) chanstring
-                       [ ":" chanstring ]
+channel-name        =  ( "#" / "+" / ( "!" channel-id ) / "&" ) channel-string
+                       [ ":" channel-string ]
 
 server-name         =  hostname
 
@@ -52,11 +52,14 @@ nickname            =  ( ALPHA / special ) *8( ALPHA / DIGIT / special / "-" )
 targetmask          =  ( "$" / "#" ) mask
                        ; see details on allowed masks in section 3.3.1
 
-chanstring          =  %x01-07 / %x08-09 / %x0B-0C / %x0E-1F / %x21-2B
-chanstring          =/ %x2D-39 / %x3B-FF
+
+channel-octet       =  %x01-07 / %x08-09 / %x0B-0C / %x0E-1F / %x21-2B
+channel-octet       =/ %x2D-39 / %x3B-FF
                        ; any octet except NUL, BELL, CR, LF, " ", "," and ":"
 
-channel-id           =  5( %x41-5A / DIGIT )   ; 5( A-Z / 0-9 )
+channel-string      = 1*<channel-octet>
+
+channel-id          =  5( %x41-5A / DIGIT )   ; 5( A-Z / 0-9 )
 
 username            =  1*( %x01-09 / %x0B-0C / %x0E-1F / %x21-3F / %x41-FF )
                        ; any octet except NUL, CR, LF, " " and "@"
