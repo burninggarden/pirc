@@ -3,9 +3,11 @@ var Heket = require('heket');
 var IrcRules = require('./lib/rule-lists/irc');
 
 var parser = Heket.createParser(`
-	parameters = <message-target> *( "," <message-target> ) " :" <message-body>
+	parameters = <target> " " <hostname> " " <server-version> " " 1*<user-mode> " " 1*<channel-mode>
 `, IrcRules);
 
-var match = parser.parse('* :*** Looking up your hostname...');
+var input = 'harshsust irc.burninggarden.com pirc-0.0.5 iosw biklmnpst';
 
-console.log(match.get('message_target'));
+var match = parser.parse(input);
+
+console.log(match.getRawResult());

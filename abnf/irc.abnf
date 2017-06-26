@@ -84,7 +84,7 @@ server-info         = trailing
 
 message-body        = trailing
 
-server-version      = trailing
+server-version      = *nospcrlfcl
 
 motd-text           = trailing
 
