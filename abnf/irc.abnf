@@ -61,6 +61,8 @@ channel-string      = 1*<channel-octet>
 
 channel-id          =  5( %x41-5A / DIGIT )   ; 5( A-Z / 0-9 )
 
+channel-key         =  <key>
+
 username            =  1*( %x01-09 / %x0B-0C / %x0E-1F / %x21-3F / %x41-FF )
                        ; any octet except NUL, CR, LF, " " and "@"
 
@@ -107,7 +109,7 @@ nick-channel-status = ( "@" / "+" )
                       ; "+" symbol denotes that the user was granted voice
                       ; permissions in a moderated channel.
 
-channel-nick        = [ <nick-channel-status> ] <nick>
+channel-nick        = [ <nick-channel-status> ] <nickname>
 
 nick-channel        = [ <nick-channel-status> ] <channel-name>
                       ; The opposite of the above; this uses the same prefixes
