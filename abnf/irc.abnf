@@ -1,6 +1,6 @@
 message             =  [ ":" prefix SP ] command [ params ] CR LF
 
-prefix              =  server-name / user-id
+prefix              =  hostname / user-id
 
 user-id              =  ( nickname [ [ "!" username ] "@" hostname ] )
 
@@ -16,12 +16,12 @@ middle              =  nospcrlfcl *( ":" / nospcrlfcl )
 
 trailing            =  *( ":" / " " / nospcrlfcl )
 
-target              =  nickname / server-name
+target              =  nickname / hostname
 
 message-target      =  <channel-name>
 message-target      =/ <nickname>
 message-target      =/ <nickname> "!" <username> "@" <hostname>
-message-target      =/ username [ "%" hostname ] "@" server-name
+message-target      =/ username [ "%" hostname ] "@" hostname
 message-target      =/ username "%" hostname
 message-target      =/ targetmask
 message-target      =/ unregistered-stub
@@ -30,8 +30,6 @@ unregistered-stub   = "*"
 
 channel-name        =  ( "#" / "+" / ( "!" channel-id ) / "&" ) channel-string
                        [ ":" channel-string ]
-
-server-name         =  hostname
 
 hostname            =  shortname *( "." shortname )
 hostname            =/ ip4addr
