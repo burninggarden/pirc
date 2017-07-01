@@ -91,6 +91,8 @@ server-version      = *nospcrlfcl
 
 motd-text           = trailing
 
+channel-topic       = trailing
+
 channel-privacy     = ( "=" / "*" / "@" )
                       ; From RFC-2812:
                       ; "@" is used for secret channels, "*" for private
