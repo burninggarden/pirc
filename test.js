@@ -29,11 +29,11 @@ function spawnClient() {
 		}
 
 		// var delay = Math.floor(Math.random() * 2000) + 500;
-		var delay = (Math.floor(Math.random() * 4) + 1 ) * 1000;
+		// var delay = (Math.floor(Math.random() * 4) + 1 ) * 1000;
 
 		setInterval(function deferred() {
 			client.sendRandomCommandMessage();
-		}, delay);
+		}, 300);
 	});
 }
 
