@@ -140,8 +140,8 @@ operator-count      = <integer>
 channel-count       = <integer>
 client-count        = <integer>
 connection-count    = <integer>
-
 seconds-idle        = <integer>
+timestamp           = <integer>
 
 integer             = 1*DIGIT
 
