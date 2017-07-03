@@ -89,6 +89,8 @@ away-message        = trailing
 
 realname            = trailing
 
+desired-nickname    = trailing
+
 server-info         = trailing
 
 message-body        = trailing
