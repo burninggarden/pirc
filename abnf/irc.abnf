@@ -16,7 +16,7 @@ middle              =  nospcrlfcl *( ":" / nospcrlfcl )
 
 trailing            =  *( ":" / " " / nospcrlfcl )
 
-target              =  nickname / hostname
+target              =  nickname / hostname / unregistered-stub
 
 message-target      =  <channel-name>
 message-target      =/ <nickname>

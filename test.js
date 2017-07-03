@@ -6,7 +6,7 @@ var
 	MessageGenerator = req('/lib/client/message-generator');
 
 
-const CLIENT_COUNT = 2;
+const CLIENT_COUNT = 1;
 
 
 function handleError(error) {
@@ -28,12 +28,11 @@ function spawnClient() {
 			return void handleError(error);
 		}
 
-		// var delay = Math.floor(Math.random() * 2000) + 500;
-		// var delay = (Math.floor(Math.random() * 4) + 1 ) * 1000;
+		var delay = Math.floor(Math.random() * 2000) + 500;
 
 		setInterval(function deferred() {
 			client.sendRandomCommandMessage();
-		}, 300);
+		}, 1000);
 	});
 }
 
