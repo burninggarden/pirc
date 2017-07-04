@@ -90,6 +90,7 @@ away-message        = trailing
 realname            = trailing
 
 desired-nickname    = trailing
+attempted-command   = trailing
 
 server-info         = trailing
 
