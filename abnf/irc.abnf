@@ -45,7 +45,7 @@ ip4addr             =  1*3DIGIT "." 1*3DIGIT "." 1*3DIGIT "." 1*3DIGIT
 ip6addr             =  1*HEXDIG 7( ":" 1*HEXDIG )
 ip6addr             =/ "0:0:0:0:0:" ( "0" / "FFFF" ) ":" ip4addr
 
-nickname            =  ( ALPHA / special ) *8( ALPHA / DIGIT / special / "-" )
+nickname            =  ( ALPHA / special ) *15( ALPHA / DIGIT / special / "-" )
 
 target-mask         =  <host-mask> / <server-mask>
 host-mask           = "#" <mask>
