@@ -1,12 +1,12 @@
 var Heket = require('heket');
 
-var IrcRules = require('./lib/rule-lists/irc');
-
 var parser = Heket.createParser(`
-	parameters = ( <channel-name> / <nickname> ) ( *<mode-change> / <mode-query> )
-`, IrcRules);
+	message = "A" [ "B" ] "C"
+`);
 
-var input = '#foobar +si';
+var input = 'A';
+
+console.log(parser.rule.node);
 
 var match = parser.parse(input);
 
