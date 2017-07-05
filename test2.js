@@ -1,13 +1,10 @@
-var Heket = require('heket');
 
-var parser = Heket.createParser(`
-	message = "A" [ "B" ] "C"
-`);
+require('req');
 
-var input = 'A';
+var ModeMessage = require('./lib/messages/commands/mode');
 
-console.log(parser.rule.node);
+var message = new ModeMessage();
 
-var match = parser.parse(input);
+message.setTargetType('channel');
 
-console.log(match.getRawResult());
+message.addModeChangeFromString(' +nk aislingle');
