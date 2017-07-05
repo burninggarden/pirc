@@ -91,15 +91,15 @@ realname               = trailing
 
 password               = 1*key
 
-attempted-nickname     = trailing
-attempted-command      = trailing
-attempted-channel-name = trailing
+attempted-nickname     = 1*nospcrlfcl
+attempted-command      = 1*nospcrlfcl
+attempted-channel-name = 1*nospcrlfcl
 
 server-info            = trailing
 
 message-body           = trailing
 
-server-version         = *nospcrlfcl
+server-version         = 1*nospcrlfcl
 
 motd-text              = trailing
 
