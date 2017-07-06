@@ -26,9 +26,42 @@ var
 	Replies = req('/lib/constants/replies');
 
 function testUserRegistrationWithPassword(test) {
-	test.expect(1);
+	test.expect(4);
 
 	var client = test.createServerAndClient({
+		authenticateUser(parameters, callback) {
+			test.equals(parameters.nickname, 'cloudbreaker');
+			test.equals(parameters.username, 'cloudbreaker');
+			test.equals(parameters.password, 'pikachu');
+
+			callback(null, true);
+		}
+	}, {
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker',
+		password: 'pikachu'
+	});
+
+	client.awaitReply(Replies.RPL_WELCOME, function handler(reply) {
+		var user_id = reply.getUserId();
+
+		test.equals(user_id, 'cloudbreaker!~cloudbreaker@127.0.0.1');
+		test.done();
+	});
+}
+
+function testUserRegistrationWithoutPassword(test) {
+	test.expect(4);
+
+	var client = test.createServerAndClient({
+		authenticateUser(parameters, callback) {
+			test.equals(parameters.nickname, 'cloudbreaker');
+			test.equals(parameters.username, 'cloudbreaker');
+			test.equals(parameters.password, null);
+
+			callback(null, false);
+		}
+	}, {
 		nickname: 'cloudbreaker',
 		username: 'cloudbreaker'
 	});
@@ -41,13 +74,12 @@ function testUserRegistrationWithPassword(test) {
 	});
 }
 
-function testUserRegistrationWithoutPassword(test) {
-}
-
 function testServiceRegistrationWithPassword(test) {
+	test.done();
 }
 
 function testServiceRegistrationWithoutPassword(test) {
+	test.done();
 }
 
 module.exports = {
