@@ -30,14 +30,13 @@ function testUserRegistrationWithPassword(test) {
 
 	var client = test.createServerAndClient({
 		nickname: 'cloudbreaker',
-		username: 'cloudbreaker',
-		hostname: 'burninggarden.com'
+		username: 'cloudbreaker'
 	});
 
 	client.awaitReply(Replies.RPL_WELCOME, function handler(reply) {
 		var user_id = reply.getUserId();
 
-		test.equals(user_id, 'cloudbreaker!cloudbreaker@burninggarden.com');
+		test.equals(user_id, 'cloudbreaker!~cloudbreaker@127.0.0.1');
 		test.done();
 	});
 }
