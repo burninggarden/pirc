@@ -18,12 +18,12 @@ function spawnClient() {
 	var
 		client = new Pirc.Client(),
 		// nick   = MessageGenerator.generateRandomNick();
-		nick = 'cloudbreaker';
+		nickname = 'cloudbreaker';
 
 	client.connectToServer({
 		hostname: '127.0.0.1',
 		port:     6668,
-		nick:     nick
+		nickname: nickname
 	}, function handler(error, server) {
 		if (error) {
 			return void handleError(error);
