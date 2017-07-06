@@ -19,8 +19,26 @@
            PASS secretpasswordhere
 */
 
+var
+	Replies  = req('/lib/constants/replies'),
+	Commands = req('/lib/constants/commands');
+
 function testNeedMoreParams(test) {
-	test.done();
+	var client = test.createServerAndClient({
+		nickname:              'cloudbreaker',
+		username:              'cloudbreaker',
+		autoregister:          false,
+		log_outbound_messages: true
+	});
+
+	client.once('connected', function handler() {
+		client.sendRawMessage('PASS');
+
+		client.awaitReply(Replies.ERR_NEEDMOREPARAMS, function handler(reply) {
+			test.equals(reply.getCommand(), Commands.PASS);
+			test.done();
+		});
+	});
 }
 
 function testAlreadyRegistered(test) {
