@@ -69,7 +69,21 @@ function nicknameInUse(test) {
 }
 
 function erroneousNickname(test) {
-	test.done();
+	test.expect(1);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler(connection) {
+		client.sendRawMessage('NICK πππ');
+
+		client.awaitReply(Replies.ERR_ERRONEUSNICKNAME, function handler(reply) {
+			test.equals(reply.getNickname(), 'πππ');
+			test.done();
+		});
+	});
 }
 
 function nickCollision(test) {
