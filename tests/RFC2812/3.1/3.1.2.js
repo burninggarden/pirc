@@ -65,7 +65,29 @@ function noNicknameGiven(test) {
 }
 
 function nicknameInUse(test) {
-	test.done();
+	test.expect(1);
+
+	var server = test.createServer();
+
+	var first_client = test.createClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker',
+		port:     server.getPort()
+	});
+
+	first_client.once('registered', function handler(connection) {
+		var second_client = test.createClient({
+			nickname:              'cloudbreaker',
+			username:              'clone',
+			port:                  server.getPort(),
+			log_incoming_messages: true
+		});
+
+		second_client.awaitReply(Replies.ERR_NICKNAMEINUSE, function handler(reply) {
+			test.equals(reply.getNickname(), 'cloudbreaker');
+			test.done();
+		});
+	});
 }
 
 function erroneousNickname(test) {
