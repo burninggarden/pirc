@@ -36,7 +36,7 @@ var
 	Replies  = req('/lib/constants/replies'),
 	Commands = req('/lib/constants/commands');
 
-function needMoreParams(test) {
+function ERR_NEEDMOREPARAMS(test) {
 	var client = test.createServerAndClient({
 		nickname:     'cloudbreaker',
 		username:     'cloudbreaker',
@@ -54,11 +54,11 @@ function needMoreParams(test) {
 	});
 }
 
-function alreadyRegistered(test) {
+function ERR_ALREADYREGISTRED(test) {
 	test.done();
 }
 
 module.exports = {
-	needMoreParams,
-	alreadyRegistered
+	ERR_NEEDMOREPARAMS,
+	ERR_ALREADYREGISTRED
 };

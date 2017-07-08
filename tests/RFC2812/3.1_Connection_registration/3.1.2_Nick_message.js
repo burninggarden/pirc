@@ -31,7 +31,7 @@ var
 	Replies = req('/lib/constants/replies');
 
 
-function nickChange(test) {
+function NICK(test) {
 	var client = test.createServerAndClient({
 		nickname: 'cloudbreaker',
 		username: 'cloudbreaker'
@@ -46,7 +46,7 @@ function nickChange(test) {
 	});
 }
 
-function noNicknameGiven(test) {
+function ERR_NONICKNAMEGIVEN(test) {
 	test.expect(1);
 
 	var client = test.createServerAndClient({
@@ -64,7 +64,7 @@ function noNicknameGiven(test) {
 	});
 }
 
-function nicknameInUse(test) {
+function ERR_NICKNAMEINUSE(test) {
 	test.expect(1);
 
 	var server = test.createServer();
@@ -90,7 +90,7 @@ function nicknameInUse(test) {
 	});
 }
 
-function erroneousNickname(test) {
+function ERR_ERRONEUSNICKNAME(test) {
 	test.expect(1);
 
 	var client = test.createServerAndClient({
@@ -108,24 +108,24 @@ function erroneousNickname(test) {
 	});
 }
 
-function nickCollision(test) {
+function ERR_NICKCOLLISION(test) {
 	test.done();
 }
 
-function restricted(test) {
+function ERR_RESTRICTED(test) {
 	test.done();
 }
 
-function unavailableResource(test) {
+function ERR_UNAVAILRESOURCE(test) {
 	test.done();
 }
 
 module.exports = {
-	nickChange,
-	noNicknameGiven,
-	nicknameInUse,
-	erroneousNickname,
-	nickCollision,
-	restricted,
-	unavailableResource
+	NICK,
+	ERR_NONICKNAMEGIVEN,
+	ERR_NICKNAMEINUSE,
+	ERR_ERRONEUSNICKNAME,
+	ERR_NICKCOLLISION,
+	ERR_RESTRICTED,
+	ERR_UNAVAILRESOURCE
 };
