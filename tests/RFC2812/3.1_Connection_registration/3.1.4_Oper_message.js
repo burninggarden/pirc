@@ -22,7 +22,9 @@
 */
 
 var
-	Replies = req('/lib/constants/replies');
+	Replies   = req('/lib/constants/replies'),
+	UserModes = req('/lib/constants/user-modes');
+
 
 function ERR_NEEDMOREPARAMS(test) {
 	test.bypass();
@@ -33,14 +35,18 @@ function ERR_NOOPERHOST(test) {
 }
 
 function RPL_YOUREOPER(test) {
-	test.expect(4);
+	test.expect(7);
 
 	var client = test.createServerAndClient({
 		authenticateOperator(parameters, callback) {
 			test.equals(parameters.username, 'charizard');
 			test.equals(parameters.password, 'blastoise');
 
-			callback(null);
+			callback(null, [
+				UserModes.OPERATOR,
+				UserModes.LOCAL_OPERATOR,
+				UserModes.WALLOPS
+			]);
 		}
 	}, {
 		nickname: 'cloudbreaker',
@@ -54,7 +60,16 @@ function RPL_YOUREOPER(test) {
 
 		client.registerAsOperator(username, password, function handler(error) {
 			test.equals(error, null);
-			test.done();
+
+			var user_details = client.getUserDetails();
+
+			user_details.addModeCallback(function handler(error, mode) {
+				test.ok(user_details.hasMode(UserModes.OPERATOR));
+				test.ok(user_details.hasMode(UserModes.LOCAL_OPERATOR));
+				test.ok(user_details.hasMode(UserModes.WALLOPS));
+
+				test.done();
+			});
 		});
 
 		client.awaitReply(Replies.RPL_YOUREOPER, function handler(reply) {
