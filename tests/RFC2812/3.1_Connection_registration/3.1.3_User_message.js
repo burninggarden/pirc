@@ -55,7 +55,18 @@ function ERR_NEEDMOREPARAMS(test) {
 }
 
 function ERR_ALREADYREGISTRED(test) {
-	test.done();
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker',
+	});
+
+	client.once('registered', function handler() {
+		client.sendRawMessage('USER balrog 0 * :balrog');
+
+		client.awaitReply(Replies.ERR_ALREADYREGISTRED, function handler(reply) {
+			test.done();
+		});
+	});
 }
 
 module.exports = {
