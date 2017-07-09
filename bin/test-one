@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+require('req');
+
+var
+	TestRunner = req('/lib/test-runner'),
+	Server     = req('/lib/server');
+
+var section = process.argv[2];
+
+function createServer(options) {
+	return new Server(options);
+}
+
+(new TestRunner(createServer)).run(section);
