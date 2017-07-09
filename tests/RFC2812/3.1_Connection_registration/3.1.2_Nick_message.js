@@ -41,7 +41,8 @@
 
 
 var
-	Replies = req('/lib/constants/replies');
+	Replies   = req('/lib/constants/replies'),
+	UserModes = req('/lib/constants/user-modes');
 
 
 function NICK(test) {
@@ -51,9 +52,9 @@ function NICK(test) {
 	});
 
 	client.once('registered', function handler(connection) {
-		client.setNickname('domino', function handler(error) {
+		client.changeNickname('domino', function handler(error) {
 			test.equals(error, null);
-			test.equals(connection.getUserDetails().getNickname(), 'domino');
+			test.equals(connection.getNickname(), 'domino');
 			test.done();
 		});
 	});
@@ -126,7 +127,30 @@ function ERR_NICKCOLLISION(test) {
 }
 
 function ERR_RESTRICTED(test) {
-	test.bypass();
+	test.expect(5);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler(connection) {
+		client.addUserMode(UserModes.RESTRICTED, function handler(error) {
+			test.equals(error, null);
+			test.ok(connection.isRestricted());
+
+			client.changeNickname('bowser', function handler(error) {
+				test.ok(error !== null);
+				test.equals(connection.getNickname(), 'cloudbreaker');
+
+				test.done();
+			});
+		});
+
+		client.awaitReply(Replies.ERR_RESTRICTED, function handler(reply) {
+			test.ok(reply.getReply() === Replies.ERR_RESTRICTED);
+		});
+	});
 }
 
 function ERR_UNAVAILRESOURCE(test) {

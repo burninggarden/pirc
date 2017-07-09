@@ -75,16 +75,16 @@ function testUserRegistrationWithoutPassword(test) {
 }
 
 function testServiceRegistrationWithPassword(test) {
-	test.done();
+	test.bypass();
 }
 
 function testServiceRegistrationWithoutPassword(test) {
-	test.done();
+	test.bypass();
 }
 
 module.exports = {
-	testUserRegistrationWithPassword,
-	testUserRegistrationWithoutPassword,
-	testServiceRegistrationWithPassword,
-	testServiceRegistrationWithoutPassword
+	'User registration with password':       testUserRegistrationWithPassword,
+	'User registration without password':    testUserRegistrationWithoutPassword,
+	'Service registration with password':    testServiceRegistrationWithPassword,
+	'Service registration without password': testServiceRegistrationWithoutPassword
 };
