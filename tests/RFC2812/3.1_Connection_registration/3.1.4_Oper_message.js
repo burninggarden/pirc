@@ -23,11 +23,25 @@
 
 var
 	Replies   = req('/lib/constants/replies'),
+	Commands  = req('/lib/constants/commands'),
 	UserModes = req('/lib/constants/user-modes');
 
 
 function ERR_NEEDMOREPARAMS(test) {
-	test.bypass();
+	test.expect(1);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		client.sendRawMessage('OPER foo');
+		client.awaitReply(Replies.ERR_NEEDMOREPARAMS, function handler(reply) {
+			test.equals(reply.getAttemptedCommand(), Commands.OPER);
+			test.done();
+		});
+	});
 }
 
 function ERR_NOOPERHOST(test) {
@@ -79,7 +93,38 @@ function RPL_YOUREOPER(test) {
 }
 
 function ERR_PASSWDMISMATCH(test) {
-	test.bypass();
+	test.expect(4);
+
+	var client = test.createServerAndClient({
+		authenticateOperator(parameters, callback) {
+			test.equals(parameters.username, 'charizard');
+			test.equals(parameters.password, 'blastoise');
+
+			var error = new Error('Invalid password');
+
+			error.reply = Replies.ERR_PASSWDMISMATCH;
+
+			callback(error);
+		}
+	}, {
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		var
+			username = 'charizard',
+			password = 'blastoise';
+
+		client.registerAsOperator(username, password, function handler(error) {
+			test.ok(error !== null);
+			test.done();
+		});
+
+		client.awaitReply(Replies.ERR_PASSWDMISMATCH, function handler(reply) {
+			test.equals(reply.getReply(), Replies.ERR_PASSWDMISMATCH);
+		});
+	});
 }
 
 module.exports = {
