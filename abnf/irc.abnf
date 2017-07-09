@@ -136,11 +136,12 @@ nick-channel           = [ <nick-channel-status> ] <channel-name>
 mode-change            = ( " " <mode-action> *<mode-char> *( " " <mode-param> )
 mode-action            = ( "-" / "+" )
 mode-param             = 1*<no-mode-action>
-mode-query             = "IMPLEMENT ME"
 
 mode-bitmask           = <integer>
 
 mode-char              = ALPHA
+
+mode-query             = mode-char
 
 hop-count              = <integer>
 user-count             = <integer>
