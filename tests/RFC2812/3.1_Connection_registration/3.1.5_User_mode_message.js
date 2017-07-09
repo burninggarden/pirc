@@ -141,27 +141,157 @@ function RPL_UMODEIS(test) {
 }
 
 function addAwayFlag(test) {
-	test.bypass();
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler(connection) {
+		client.sendRawMessage('MODE cloudbreaker +a');
+
+		client.awaitReply(Replies.ERR_UMODEUNKNOWNFLAG, function handler(reply) {
+			test.equals(reply.getReply(), Replies.ERR_UMODEUNKNOWNFLAG);
+			test.done();
+		});
+	});
 }
 
 function removeAwayFlag(test) {
-	test.bypass();
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler(connection) {
+		client.sendRawMessage('MODE cloudbreaker -a');
+
+		client.awaitReply(Replies.ERR_UMODEUNKNOWNFLAG, function handler(reply) {
+			test.equals(reply.getReply(), Replies.ERR_UMODEUNKNOWNFLAG);
+			test.done();
+		});
+	});
 }
 
 function addOperatorFlag(test) {
-	test.bypass();
+	test.expect(1);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		client.getMotd(function handler() {
+			client.sendRawMessage('MODE cloudbreaker +o');
+
+			var timer = setTimeout(function deferred() {
+				test.ok(true, 'No messages received');
+				test.done();
+			}, 2000);
+
+			client.on('raw_message', function handler(message) {
+				clearTimeout(timer);
+				test.ok(false, 'Unexpected message: ' + message.getRawMessage());
+				test.done();
+			});
+		});
+	});
 }
 
 function removeOperatorFlag(test) {
-	test.bypass();
+	test.expect(9);
+
+	var client = test.createServerAndClient({
+		authenticateOperator(parameters, callback) {
+			test.equals(parameters.username, 'charizard');
+			test.equals(parameters.password, 'blastoise');
+
+			callback(null, [
+				UserModes.OPERATOR,
+				UserModes.LOCAL_OPERATOR
+			]);
+		}
+	}, {
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		var
+			username = 'charizard',
+			password = 'blastoise';
+
+		client.registerAsOperator(username, password, function handler(error) {
+			test.equals(error, null);
+
+			var user_details = client.getUserDetails();
+
+			user_details.addModeCallback(function handler(error) {
+				test.equals(error, null);
+
+				test.ok(user_details.hasMode(UserModes.OPERATOR));
+				test.ok(user_details.hasMode(UserModes.LOCAL_OPERATOR));
+
+				client.removeUserMode('o', function handler(error) {
+					test.equals(error, null);
+
+					test.ok(!user_details.hasMode(UserModes.OPERATOR));
+					test.done();
+				});
+			});
+		});
+
+		client.awaitReply(Replies.RPL_YOUREOPER, function handler(reply) {
+			test.equals(reply.getReply(), Replies.RPL_YOUREOPER);
+		});
+	});
 }
 
 function addRestrictedFlag(test) {
-	test.bypass();
+	test.expect(2);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		client.addUserMode('r', function handler(error) {
+			test.equals(error, null);
+			test.ok(client.getUserDetails().isRestricted());
+			test.done();
+		});
+	});
 }
 
 function removeRestrictedFlag(test) {
-	test.bypass();
+	test.expect(2);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		client.getMotd(function handler() {
+			client.addUserMode('r', function handler(error) {
+				test.equals(error, null);
+
+				client.sendRawMessage('MODE cloudbreaker -r');
+
+				var timer = setTimeout(function deferred() {
+					test.ok(true, 'No messages received');
+					test.done();
+				}, 2000);
+
+				client.on('raw_message', function handler(message) {
+					clearTimeout(timer);
+					test.ok(false, 'Unexpected message: ' + message.getRawMessage());
+					test.done();
+				});
+			});
+		});
+	});
 }
 
 

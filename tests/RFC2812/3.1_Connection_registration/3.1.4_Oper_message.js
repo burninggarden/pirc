@@ -49,7 +49,7 @@ function ERR_NOOPERHOST(test) {
 }
 
 function RPL_YOUREOPER(test) {
-	test.expect(7);
+	test.expect(6);
 
 	var client = test.createServerAndClient({
 		authenticateOperator(parameters, callback) {
@@ -58,8 +58,7 @@ function RPL_YOUREOPER(test) {
 
 			callback(null, [
 				UserModes.OPERATOR,
-				UserModes.LOCAL_OPERATOR,
-				UserModes.WALLOPS
+				UserModes.LOCAL_OPERATOR
 			]);
 		}
 	}, {
@@ -80,7 +79,6 @@ function RPL_YOUREOPER(test) {
 			user_details.addModeCallback(function handler(error, mode) {
 				test.ok(user_details.hasMode(UserModes.OPERATOR));
 				test.ok(user_details.hasMode(UserModes.LOCAL_OPERATOR));
-				test.ok(user_details.hasMode(UserModes.WALLOPS));
 
 				test.done();
 			});
