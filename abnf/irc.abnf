@@ -91,6 +91,9 @@ away-status            = ( "+" / "-" )
 
 away-message           = trailing
 
+quit-message           = trailing
+error-message          = trailing
+
 realname               = trailing
 
 password               = 1*key
