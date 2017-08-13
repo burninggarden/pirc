@@ -3,6 +3,13 @@
 
 ### A combination IRC daemon / client library for Node.js
 
+<br>
+
+## *WARNING:*
+### *πrc is still under development, and not ready for general use yet!*
+
+<br>
+
 ## Table of Contents
 
 - [Installation](#installation)
