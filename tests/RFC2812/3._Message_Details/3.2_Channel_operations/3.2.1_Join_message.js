@@ -60,16 +60,105 @@
                                    on channel #Twilight_zone
 */
 
+
+var
+	Promix = require('promix');
+
+
 function joinSingle(test) {
-	test.bypass();
+	test.expect(2);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler(connection) {
+		client.joinChannel('#ganondorf', function handler(error, channel) {
+			if (error) {
+				test.ok(false, error.toString());
+				return void test.done();
+			}
+
+			test.equals(channel.getName(), '#ganondorf');
+			test.deepEquals(channel.getNicknames(), ['cloudbreaker']);
+			test.done();
+		});
+	});
 }
 
 function joinMultiple(test) {
-	test.bypass();
+	test.expect(4);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler(connection) {
+		var channel_names = [
+			'#charizard',
+			'#blastoise'
+		];
+
+		client.joinChannels(channel_names, function handler(error, channels) {
+			if (error) {
+				test.ok(false, error.toString());
+				return void test.done();
+			}
+
+			test.equals(channels[0].getName(), '#charizard');
+			test.deepEquals(channels[0].getNicknames(), [
+				'cloudbreaker'
+			]);
+
+			test.equals(channels[1].getName(), '#blastoise');
+			test.deepEquals(channels[0].getNicknames(), [
+				'cloudbreaker'
+			]);
+
+			test.done();
+		});
+	});
 }
 
 function joinWithKey(test) {
-	test.bypass();
+	test.expect(1);
+
+	var
+		server = test.createServer(),
+		chain  = Promix.chain();
+
+	var first_client = test.createClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker',
+		port:     server.getPort()
+	});
+
+	var second_client = test.createClient({
+		nickname: 'domino',
+		username: 'domino',
+		port:     server.getPort()
+	});
+
+	chain.andOnce(first_client, 'registered');
+	chain.andOnce(second_client, 'registered');
+	chain.then(first_client.joinChannel, '#ganondorf');
+	chain.bind(first_client).as('first_channel');
+	chain.then(first_client.setChannelKey, '#ganondorf', 'gerudo');
+	chain.bind(first_client);
+	chain.then(second_client.joinChannelWithKey, '#ganondorf', 'gerudo');
+	chain.bind(second_client).as('second_channel');
+
+	chain.then(function success() {
+		test.ok(true, 'Channel joined successfully with key');
+		test.done();
+	});
+
+	chain.otherwise(function failure(error) {
+		test.ok(false, error.toString());
+		test.done();
+	});
 }
 
 function joinMixedKeyAndNoKey(test) {

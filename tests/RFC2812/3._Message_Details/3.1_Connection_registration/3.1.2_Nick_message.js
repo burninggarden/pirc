@@ -91,10 +91,9 @@ function ERR_NICKNAMEINUSE(test) {
 
 	first_client.once('registered', function handler(connection) {
 		var second_client = test.createClient({
-			nickname:              'cloudbreaker',
-			username:              'clone',
-			port:                  server.getPort(),
-			log_incoming_messages: true
+			nickname: 'cloudbreaker',
+			username: 'clone',
+			port:     server.getPort()
 		});
 
 		second_client.awaitReply(Replies.ERR_NICKNAMEINUSE, function handler(reply) {
