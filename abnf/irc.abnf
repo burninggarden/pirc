@@ -2,7 +2,8 @@ message                =  [ ":" prefix SP ] command [ params ] CR LF
 
 prefix                 =  hostname / user-id
 
-user-id                =  ( nickname [ [ "!" username ] "@" hostname ] )
+user-id                =  ( nickname [ [ "!" [ ident ] username ] "@" hostname ] )
+ident                  = "~"
 
 command                =  1*ALPHA / 3DIGIT
 
