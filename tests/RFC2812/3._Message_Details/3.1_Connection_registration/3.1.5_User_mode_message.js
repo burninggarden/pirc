@@ -226,7 +226,7 @@ function removeOperatorFlag(test) {
 
 			var user_details = client.getUserDetails();
 
-			user_details.addModeCallback(function handler(error) {
+			user_details.addModeChangeCallback(function handler(error) {
 				test.equals(error, null);
 
 				test.ok(user_details.hasMode(UserModes.OPERATOR));

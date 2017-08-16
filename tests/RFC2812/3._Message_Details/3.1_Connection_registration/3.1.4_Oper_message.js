@@ -76,7 +76,7 @@ function RPL_YOUREOPER(test) {
 
 			var user_details = client.getUserDetails();
 
-			user_details.addModeCallback(function handler(error, mode) {
+			user_details.addModeChangeCallback(function handler(error, mode) {
 				test.ok(user_details.hasMode(UserModes.OPERATOR));
 				test.ok(user_details.hasMode(UserModes.LOCAL_OPERATOR));
 
