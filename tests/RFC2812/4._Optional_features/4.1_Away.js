@@ -30,3 +30,66 @@
                                    "Gone to lunch.  Back in 5".
 
 */
+
+var
+	Replies = req('/lib/constants/replies');
+
+
+function RPL_NOWAWAY(test) {
+	test.expect(4);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler(connection) {
+		client.setAwayMessage('En taro adun', function handler(error) {
+			test.equals(error, null);
+			test.equals(client.isAway(), true);
+			test.equals(client.getAwayMessage(), 'En taro adun');
+		});
+
+		client.awaitReply(Replies.RPL_NOWAWAY, function handler(reply) {
+			test.ok(reply.getReply() === Replies.RPL_NOWAWAY);
+			test.done();
+		});
+	});
+}
+
+function RPL_UNAWAY(test) {
+	test.expect(6);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler(connection) {
+		client.setAwayMessage('En taro adun', function handler(error) {
+			test.equals(error, null);
+			test.equals(client.isAway(), true);
+
+			client.awaitReply(Replies.RPL_UNAWAY, function handler(reply) {
+				test.ok(reply.getReply() === Replies.RPL_UNAWAY);
+				test.done();
+			});
+
+			client.removeAwayMessage(function handler(error) {
+				test.equals(error, null);
+				test.equals(client.isAway(), false);
+				test.equals(client.getAwayMessage(), null);
+			});
+		});
+	});
+}
+
+function acrossServers(test) {
+	test.bypass();
+}
+
+module.exports = {
+	RPL_NOWAWAY,
+	RPL_UNAWAY,
+	acrossServers
+};
