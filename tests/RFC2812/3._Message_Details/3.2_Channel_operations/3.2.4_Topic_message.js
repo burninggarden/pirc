@@ -42,15 +42,59 @@ RFC 2812          Internet Relay Chat: Client Protocol        April 2000
                                    #test.
 */
 
-function checkTopic(test) {
-	test.bypass();
-}
+var
+	Promix = require('promix');
 
-function checkTopic(test) {
-	test.bypass();
-}
 
 function setTopic(test) {
+	var client_a = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	var client_b = test.createClient({
+		nickname: 'domino',
+		username: 'domino'
+	});
+
+	var chain = Promix.chain();
+
+	chain.andOnce(client_a, 'registered');
+	chain.andOnce(client_b, 'registered');
+	chain.then(client_a.joinChannel, '#ganondorf').as('channel_a');
+	chain.then(client_b.joinChannel, '#ganondorf').as('channel_b');
+
+	chain.then(client_a.getTopicForChannel, chain.channel_a)
+		.as('original_topic_a');
+
+	chain.then(client_b.getTopicForChannel, chain.channel_b)
+		.as('original_topic_b');
+
+	chain.then(
+		client_a.setTopicForChannel,
+		chain.channel_a,
+		'King of the Gerudo'
+	);
+
+	chain.then(client_a.getTopicForChannel, chain.channel_a)
+		.as('new_topic_a');
+
+	chain.then(client_b.getTopicForChannel, chain.channel_b)
+		.as('new_topic_b');
+
+	chain.then(function finisher(results) {
+		test.equals(results.original_topic_a, '');
+		test.equals(results.original_topic_b, '');
+		test.equals(results.new_topic_a, 'King of the Gerudo');
+		test.equals(results.new_topic_b, 'King of the Gerudo');
+
+		test.done();
+	});
+
+	chain.otherwise(test.handleError);
+}
+
+function checkTopic(test) {
 	test.bypass();
 }
 
