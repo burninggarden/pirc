@@ -41,10 +41,8 @@ function restart(test) {
 			]);
 		}
 	}, {
-		nickname:              'cloudbreaker',
-		username:              'cloudbreaker',
-		log_inbound_messages:  true,
-		log_outbound_messages: true
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
 	});
 
 	client.once('registered', function handler() {
