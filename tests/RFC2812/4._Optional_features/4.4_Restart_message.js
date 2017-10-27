@@ -22,3 +22,73 @@
    RESTART                         ; no parameters required.
 
 */
+
+var
+	Replies   = req('/lib/constants/replies'),
+	UserModes = req('/lib/constants/user-modes');
+
+function restart(test) {
+	test.expect(5);
+
+	var client = test.createServerAndClient({
+		authenticateOperator(parameters, callback) {
+			test.equals(parameters.username, 'charizard');
+			test.equals(parameters.password, 'blastoise');
+
+			callback(null, [
+				UserModes.OPERATOR,
+				UserModes.LOCAL_OPERATOR
+			]);
+		}
+	}, {
+		nickname:              'cloudbreaker',
+		username:              'cloudbreaker',
+		log_inbound_messages:  true,
+		log_outbound_messages: true
+	});
+
+	client.once('registered', function handler() {
+		var
+			username = 'charizard',
+			password = 'blastoise';
+
+		client.registerAsOperator(username, password, function handler(error) {
+			test.equals(error, null);
+
+			client.sendRestartMessage(function handler(error) {
+				test.equals(error, null);
+				test.done();
+			});
+
+			client.awaitNotice(function handler(notice) {
+				test.equals(notice.getMessageBody(), 'Server restarting.');
+			});
+		});
+	});
+}
+
+function ERR_NOPRIVILEGES(test) {
+	test.expect(2);
+
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+
+		client.sendRestartMessage(function handler(error) {
+			test.ok(error !== null);
+		});
+
+		client.awaitReply(Replies.ERR_NOPRIVILEGES, function handler(reply) {
+			test.equals(reply.getReply(), Replies.ERR_NOPRIVILEGES);
+			test.done();
+		});
+	});
+}
+
+module.exports = {
+	restart,
+	ERR_NOPRIVILEGES
+};
