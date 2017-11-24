@@ -41,8 +41,8 @@
 
 
 var
-	Replies   = req('/lib/constants/replies'),
-	UserModes = req('/lib/constants/user-modes');
+	Enum_Replies   = req('/lib/enum/replies'),
+	Enum_UserModes = req('/lib/enum/user-modes');
 
 
 function NICK(test) {
@@ -71,10 +71,12 @@ function ERR_NONICKNAMEGIVEN(test) {
 	client.once('registered', function handler(connection) {
 		client.sendRawMessage('NICK');
 
-		client.awaitReply(Replies.ERR_NONICKNAMEGIVEN, function handler(reply) {
-			test.equals(reply.getReply(), Replies.ERR_NONICKNAMEGIVEN);
+		function handler(reply) {
+			test.equals(reply.getReply(), Enum_Replies.ERR_NONICKNAMEGIVEN);
 			test.done();
-		});
+		}
+
+		client.awaitReply(Enum_Replies.ERR_NONICKNAMEGIVEN, handler);
 	});
 }
 
@@ -96,10 +98,12 @@ function ERR_NICKNAMEINUSE(test) {
 			port:     server.getPort()
 		});
 
-		second_client.awaitReply(Replies.ERR_NICKNAMEINUSE, function handler(reply) {
+		function handler(reply) {
 			test.equals(reply.getNickname(), 'cloudbreaker');
 			test.done();
-		});
+		}
+
+		second_client.awaitReply(Enum_Replies.ERR_NICKNAMEINUSE, handler);
 	});
 }
 
@@ -114,10 +118,12 @@ function ERR_ERRONEUSNICKNAME(test) {
 	client.once('registered', function handler(connection) {
 		client.sendRawMessage('NICK πππ');
 
-		client.awaitReply(Replies.ERR_ERRONEUSNICKNAME, function handler(reply) {
+		function handler(reply) {
 			test.equals(reply.getNickname(), 'πππ');
 			test.done();
-		});
+		}
+
+		client.awaitReply(Enum_Replies.ERR_ERRONEUSNICKNAME, handler);
 	});
 }
 
@@ -134,7 +140,7 @@ function ERR_RESTRICTED(test) {
 	});
 
 	client.once('registered', function handler(connection) {
-		client.addUserMode(UserModes.RESTRICTED, function handler(error) {
+		client.addUserMode(Enum_UserModes.RESTRICTED, function handler(error) {
 			test.equals(error, null);
 			test.ok(connection.isRestricted());
 
@@ -146,8 +152,8 @@ function ERR_RESTRICTED(test) {
 			});
 		});
 
-		client.awaitReply(Replies.ERR_RESTRICTED, function handler(reply) {
-			test.ok(reply.getReply() === Replies.ERR_RESTRICTED);
+		client.awaitReply(Enum_Replies.ERR_RESTRICTED, function handler(reply) {
+			test.ok(reply.getReply() === Enum_Replies.ERR_RESTRICTED);
 		});
 	});
 }

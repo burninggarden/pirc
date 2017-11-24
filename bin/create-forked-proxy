@@ -14,10 +14,10 @@ require('req');
 
 var
 	// FS            = require('fs'),
-	Net           = require('net'),
-	Delimiters    = req('/lib/constants/delimiters'),
-	TextFormatter = req('/lib/utilities/text-formatter'),
-	MessageParser = req('/lib/message-parser');
+	Net             = require('net'),
+	Enum_Delimiters = req('/lib/enum/delimiters'),
+	TextFormatter   = req('/lib/utilities/text-formatter'),
+	MessageParser   = req('/lib/message-parser');
 
 
 var
@@ -257,7 +257,7 @@ server.on('connection', function handleConnection(socket) {
 			data_string = control_message_remainder + data_string;
 		}
 
-		var index = data_string.indexOf(Delimiters.CRLF);
+		var index = data_string.indexOf(Enum_Delimiters.CRLF);
 
 		while (index !== -1) {
 			let
@@ -286,8 +286,8 @@ server.on('connection', function handleConnection(socket) {
 				has_seen_control_motd_end = true;
 			}
 
-			data_string = data_string.slice(index + Delimiters.CRLF.length);
-			index = data_string.indexOf(Delimiters.CRLF);
+			data_string = data_string.slice(index + Enum_Delimiters.CRLF.length);
+			index = data_string.indexOf(Enum_Delimiters.CRLF);
 		}
 
 		if (data_string.length > 0) {
@@ -306,7 +306,7 @@ server.on('connection', function handleConnection(socket) {
 			data_string = test_message_remainder + data_string;
 		}
 
-		var index = data_string.indexOf(Delimiters.CRLF);
+		var index = data_string.indexOf(Enum_Delimiters.CRLF);
 
 		while (index !== -1) {
 			let
@@ -324,8 +324,8 @@ server.on('connection', function handleConnection(socket) {
 				has_seen_test_motd_end = true;
 			}
 
-			data_string = data_string.slice(index + Delimiters.CRLF.length);
-			index = data_string.indexOf(Delimiters.CRLF);
+			data_string = data_string.slice(index + Enum_Delimiters.CRLF.length);
+			index = data_string.indexOf(Enum_Delimiters.CRLF);
 		}
 
 		if (data_string.length > 0) {

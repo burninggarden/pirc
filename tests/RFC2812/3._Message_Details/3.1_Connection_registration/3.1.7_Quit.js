@@ -21,7 +21,7 @@
 
 
 var
-	Commands = req('/lib/constants/commands');
+	Enum_Commands = req('/lib/enum/commands');
 
 
 function QUIT(test) {
@@ -38,10 +38,10 @@ function QUIT(test) {
 			test.done();
 		});
 
-		client.awaitCommand(Commands.QUIT, function handler(message) {
+		client.awaitCommand(Enum_Commands.QUIT, function handler(message) {
 			test.equals(message.getText(), 'some message');
 
-			client.awaitCommand(Commands.ERROR, function handler(message) {
+			client.awaitCommand(Enum_Commands.ERROR, function handler(message) {
 				test.ok(true, 'We are here');
 			});
 		});

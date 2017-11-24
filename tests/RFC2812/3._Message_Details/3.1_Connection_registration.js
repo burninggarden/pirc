@@ -23,7 +23,7 @@
 */
 
 var
-	Replies = req('/lib/constants/replies');
+	Enum_Replies = req('/lib/enum/replies');
 
 function testUserRegistrationWithPassword(test) {
 	test.expect(4);
@@ -42,7 +42,7 @@ function testUserRegistrationWithPassword(test) {
 		password: 'pikachu'
 	});
 
-	client.awaitReply(Replies.RPL_WELCOME, function handler(reply) {
+	client.awaitReply(Enum_Replies.RPL_WELCOME, function handler(reply) {
 		var user_id = reply.getUserId();
 
 		test.equals(user_id, 'cloudbreaker!~cloudbreaker@127.0.0.1');
@@ -66,7 +66,7 @@ function testUserRegistrationWithoutPassword(test) {
 		username: 'cloudbreaker'
 	});
 
-	client.awaitReply(Replies.RPL_WELCOME, function handler(reply) {
+	client.awaitReply(Enum_Replies.RPL_WELCOME, function handler(reply) {
 		var user_id = reply.getUserId();
 
 		test.equals(user_id, 'cloudbreaker!~cloudbreaker@127.0.0.1');

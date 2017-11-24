@@ -22,9 +22,9 @@
 */
 
 var
-	Replies   = req('/lib/constants/replies'),
-	Commands  = req('/lib/constants/commands'),
-	UserModes = req('/lib/constants/user-modes');
+	Enum_Replies   = req('/lib/enum/replies'),
+	Enum_Commands  = req('/lib/enum/commands'),
+	Enum_UserModes = req('/lib/enum/user-modes');
 
 
 function ERR_NEEDMOREPARAMS(test) {
@@ -37,10 +37,13 @@ function ERR_NEEDMOREPARAMS(test) {
 
 	client.once('registered', function handler() {
 		client.sendRawMessage('OPER foo');
-		client.awaitReply(Replies.ERR_NEEDMOREPARAMS, function handler(reply) {
-			test.equals(reply.getAttemptedCommand(), Commands.OPER);
+
+		function handler(reply) {
+			test.equals(reply.getAttemptedCommand(), Enum_Commands.OPER);
 			test.done();
-		});
+		}
+
+		client.awaitReply(Enum_Replies.ERR_NEEDMOREPARAMS, handler);
 	});
 }
 
@@ -57,8 +60,8 @@ function RPL_YOUREOPER(test) {
 			test.equals(parameters.password, 'blastoise');
 
 			callback(null, [
-				UserModes.OPERATOR,
-				UserModes.LOCAL_OPERATOR
+				Enum_UserModes.OPERATOR,
+				Enum_UserModes.LOCAL_OPERATOR
 			]);
 		}
 	}, {
@@ -77,15 +80,15 @@ function RPL_YOUREOPER(test) {
 			var user_details = client.getUserDetails();
 
 			user_details.addModeChangeCallback(function handler(error, mode) {
-				test.ok(user_details.hasMode(UserModes.OPERATOR));
-				test.ok(user_details.hasMode(UserModes.LOCAL_OPERATOR));
+				test.ok(user_details.hasMode(Enum_UserModes.OPERATOR));
+				test.ok(user_details.hasMode(Enum_UserModes.LOCAL_OPERATOR));
 
 				test.done();
 			});
 		});
 
-		client.awaitReply(Replies.RPL_YOUREOPER, function handler(reply) {
-			test.equals(reply.getReply(), Replies.RPL_YOUREOPER);
+		client.awaitReply(Enum_Replies.RPL_YOUREOPER, function handler(reply) {
+			test.equals(reply.getReply(), Enum_Replies.RPL_YOUREOPER);
 		});
 	});
 }
@@ -100,7 +103,7 @@ function ERR_PASSWDMISMATCH(test) {
 
 			var error = new Error('Invalid password');
 
-			error.reply = Replies.ERR_PASSWDMISMATCH;
+			error.reply = Enum_Replies.ERR_PASSWDMISMATCH;
 
 			callback(error);
 		}
@@ -119,9 +122,11 @@ function ERR_PASSWDMISMATCH(test) {
 			test.done();
 		});
 
-		client.awaitReply(Replies.ERR_PASSWDMISMATCH, function handler(reply) {
-			test.equals(reply.getReply(), Replies.ERR_PASSWDMISMATCH);
-		});
+		function handler(reply) {
+			test.equals(reply.getReply(), Enum_Replies.ERR_PASSWDMISMATCH);
+		}
+
+		client.awaitReply(Enum_Replies.ERR_PASSWDMISMATCH, handler);
 	});
 }
 

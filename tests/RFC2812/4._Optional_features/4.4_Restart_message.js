@@ -24,8 +24,8 @@
 */
 
 var
-	Replies   = req('/lib/constants/replies'),
-	UserModes = req('/lib/constants/user-modes');
+	Enum_Replies   = req('/lib/enum/replies'),
+	Enum_UserModes = req('/lib/enum/user-modes');
 
 function restart(test) {
 	test.expect(5);
@@ -36,8 +36,8 @@ function restart(test) {
 			test.equals(parameters.password, 'blastoise');
 
 			callback(null, [
-				UserModes.OPERATOR,
-				UserModes.LOCAL_OPERATOR
+				Enum_UserModes.OPERATOR,
+				Enum_UserModes.LOCAL_OPERATOR
 			]);
 		}
 	}, {
@@ -79,8 +79,8 @@ function ERR_NOPRIVILEGES(test) {
 			test.ok(error !== null);
 		});
 
-		client.awaitReply(Replies.ERR_NOPRIVILEGES, function handler(reply) {
-			test.equals(reply.getReply(), Replies.ERR_NOPRIVILEGES);
+		client.awaitReply(Enum_Replies.ERR_NOPRIVILEGES, function handler(reply) {
+			test.equals(reply.getReply(), Enum_Replies.ERR_NOPRIVILEGES);
 			test.done();
 		});
 	});

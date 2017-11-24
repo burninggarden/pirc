@@ -20,8 +20,8 @@
 */
 
 var
-	Replies  = req('/lib/constants/replies'),
-	Commands = req('/lib/constants/commands');
+	Enum_Replies  = req('/lib/enum/replies'),
+	Enum_Commands = req('/lib/enum/commands');
 
 function ERR_NEEDMOREPARAMS(test) {
 	test.expect(1);
@@ -37,10 +37,12 @@ function ERR_NEEDMOREPARAMS(test) {
 		client.sendRawMessage('NICK balrog');
 		client.sendRawMessage('USER balrog 0 * :balrog');
 
-		client.awaitReply(Replies.ERR_NEEDMOREPARAMS, function handler(reply) {
-			test.equals(reply.getAttemptedCommand(), Commands.PASS);
+		function handler(reply) {
+			test.equals(reply.getAttemptedCommand(), Enum_Commands.PASS);
 			test.done();
-		});
+		}
+
+		client.awaitReply(Enum_Replies.ERR_NEEDMOREPARAMS, handler);
 	});
 }
 
@@ -55,10 +57,12 @@ function ERR_ALREADYREGISTRED(test) {
 	client.once('registered', function handler() {
 		client.sendRawMessage('PASS whatever');
 
-		client.awaitReply(Replies.ERR_ALREADYREGISTRED, function handler(reply) {
+		function handler(reply) {
 			test.ok(true, 'Received ERR_ALREADYREGISTRED reply');
 			test.done();
-		});
+		}
+
+		client.awaitReply(Enum_Replies.ERR_ALREADYREGISTRED, handler);
 	});
 }
 
