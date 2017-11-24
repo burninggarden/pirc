@@ -1,9 +1,10 @@
-message                =  [ ":" prefix SP ] command [ params ] CR LF
+message                =  [ "@" tags SP ] [ ":" prefix SP ] command [ params ] CR LF
 
+tags                   =  tag *( ";" tag )
 prefix                 =  hostname / user-id
 
 user-id                =  ( nickname [ [ "!" [ ident ] username ] "@" hostname ] )
-ident                  = "~"
+ident                  =  "~"
 
 command                =  1*ALPHA / 3DIGIT
 
@@ -27,7 +28,7 @@ message-target         =/ username "%" hostname
 message-target         =/ target-mask
 message-target         =/ unregistered-stub
 
-unregistered-stub      = "*"
+unregistered-stub      =  "*"
 
 channel-name           =  ( "#" / "+" / ( "!" channel-id ) / "&" ) channel-string
                           [ ":" channel-string ]
@@ -35,6 +36,8 @@ channel-name           =  ( "#" / "+" / ( "!" channel-id ) / "&" ) channel-strin
 hostname               =  shortname *( "." shortname )
 hostname               =/ ip4addr
 hostname               =/ ip6addr
+
+vendor                 =  hostname
 
 shortname              =  ( ALPHA / DIGIT ) *( ALPHA / DIGIT / "-" )
                           *( ALPHA / DIGIT )
@@ -49,24 +52,24 @@ ip6addr                =/ "0:0:0:0:0:" ( "0" / "FFFF" ) ":" ip4addr
 nickname               =  ( ALPHA / special ) *15( ALPHA / DIGIT / special / "-" )
 
 target-mask            =  <host-mask> / <server-mask>
-host-mask              = "#" <mask>
-server-mask            = "$" <mask>
-mask                   = 1*<key> "." 1*<no-wildcard>
+host-mask              =  "#" <mask>
+server-mask            =  "$" <mask>
+mask                   =  1*<key> "." 1*<no-wildcard>
 
-no-wildcard            = %x01-05 / %x07-08 / %x0C / %x0E-1F / %x21-29 / %x2B-3E / %x40-7F
-                         ; any 7-bit US_ASCII character,
-                         ; except NUL, CR, LF, FF, h/v TABs, "*", "?", and " "
+no-wildcard            =  %x01-05 / %x07-08 / %x0C / %x0E-1F / %x21-29 / %x2B-3E / %x40-7F
+                          ; any 7-bit US_ASCII character,
+                          ; except NUL, CR, LF, FF, h/v TABs, "*", "?", and " "
 
-no-mode-action          = %x01-05 / %x07-08 / %x0C / %x0E-1F / %x21-2A / %x2C / %x2E-7F
-                         ; any 7-bit US_ASCII character,
-                         ; except NUL, CR, LF, FF, h/v TABs, "-", "+", and " "
+no-mode-action         =  %x01-05 / %x07-08 / %x0C / %x0E-1F / %x21-2A / %x2C / %x2E-7F
+                          ; any 7-bit US_ASCII character,
+                          ; except NUL, CR, LF, FF, h/v TABs, "-", "+", and " "
 
 
 channel-octet          =  %x01-07 / %x08-09 / %x0B-0C / %x0E-1F / %x21-2B
 channel-octet          =/ %x2D-39 / %x3B-FF
                           ; any octet except NUL, BELL, CR, LF, " ", "," and ":"
 
-channel-string         = 1*<channel-octet>
+channel-string         =  1*<channel-octet>
 
 channel-id             =  5( %x41-5A / DIGIT )   ; 5( A-Z / 0-9 )
 
@@ -83,84 +86,84 @@ special                =  %x5B-60 / %x7B-7D
                           ; "[", "]", "\", "`", "_", "^", "{", "|", "}"
 
 
-userhost-reply         = <nickname> [ <operator-status> ] "=" <away-status> <hostname>
+userhost-reply         =  <nickname> [ <operator-status> ] "=" <away-status> <hostname>
 
-operator-status        = "*"
-operator-flag          = "o"
+operator-status        =  "*"
+operator-flag          =  "o"
 
-away-status            = ( "+" / "-" )
+away-status            =  ( "+" / "-" )
 
-away-message           = trailing
+away-message           =  trailing
 
-quit-message           = trailing
-error-message          = trailing
+quit-message           =  trailing
+error-message          =  trailing
 
-realname               = trailing
+realname               =  trailing
 
-password               = 1*key
+password               =  1*key
 
-attempted-nickname     = 1*nospcrlfcl
-attempted-command      = 1*nospcrlfcl
-attempted-channel-name = 1*nospcrlfcl
+attempted-nickname     =  1*nospcrlfcl
+attempted-command      =  1*nospcrlfcl
+attempted-channel-name =  1*nospcrlfcl
 
-server-info            = trailing
+server-info            =  trailing
 
-message-body           = trailing
+message-body           =  trailing
 
-server-version         = 1*nospcrlfcl
+server-version         =  1*nospcrlfcl
 
-motd-text              = trailing
+motd-text              =  trailing
 
-channel-topic          = trailing
+channel-topic          =  trailing
 
-channel-privacy        = ( "=" / "*" / "@" )
-                         ; From RFC-2812:
-                         ; "@" is used for secret channels, "*" for private
-                         ; channels, and "=" for others (public channels).
+channel-privacy        =  ( "=" / "*" / "@" )
+                          ; From RFC-2812:
+                          ; "@" is used for secret channels, "*" for private
+                          ; channels, and "=" for others (public channels).
 
-nick-channel-status    = ( "@" / "+" )
-                         ; From RFC-2811:
-                         ; Channel operators are identified by the "@" symbol next
-                         ; to their nickname whenever it is associated with a
-                         ; channel (i.e., replies to the NAMES, WHO and WHOIS
-                         ; commands).
-                         ;
-                         ; And I can't find a reference to this anywhere, but the
-                         ; "+" symbol denotes that the user was granted voice
-                         ; permissions in a moderated channel.
+nick-channel-status    =  ( "@" / "+" )
+                          ; From RFC-2811:
+                          ; Channel operators are identified by the "@" symbol next
+                          ; to their nickname whenever it is associated with a
+                          ; channel (i.e., replies to the NAMES, WHO and WHOIS
+                          ; commands).
+                          ;
+                          ; And I can't find a reference to this anywhere, but the
+                          ; "+" symbol denotes that the user was granted voice
+                          ; permissions in a moderated channel.
 
-channel-nick           = [ <nick-channel-status> ] <nickname>
+channel-nick           =  [ <nick-channel-status> ] <nickname>
 
-nick-channel           = [ <nick-channel-status> ] <channel-name>
-                         ; The opposite of the above; this uses the same prefixes
-                         ; to denote the user's channel status, but they appear
-                         ; in front of the channel name instead of the user's
-                         ; nick. This rule is used by RPL_WHOISCHANNELS.
+nick-channel           =  [ <nick-channel-status> ] <channel-name>
+                          ; The opposite of the above; this uses the same prefixes
+                          ; to denote the user's channel status, but they appear
+                          ; in front of the channel name instead of the user's
+                          ; nick. This rule is used by RPL_WHOISCHANNELS.
 
-mode-change            = ( " " <mode-action> *<mode-char> *( " " <mode-param> )
-mode-action            = ( "-" / "+" )
-mode-param             = 1*<no-mode-action>
+mode-change            =  ( " " <mode-action> *<mode-char> *( " " <mode-param> )
+mode-action            =  ( "-" / "+" )
+mode-param             =  1*<no-mode-action>
 
-mode-bitmask           = <integer>
+mode-bitmask           =  <integer>
 
-mode-char              = ALPHA
+mode-char              =  ALPHA
 
-mode-query             = mode-char
+mode-query             =  mode-char
 
-hop-count              = <integer>
-user-count             = <integer>
-service-count          = <integer>
-server-count           = <integer>
-operator-count         = <integer>
-channel-count          = <integer>
-client-count           = <integer>
-connection-count       = <integer>
-seconds-idle           = <integer>
-timestamp              = <integer>
+hop-count              =  <integer>
+user-count             =  <integer>
+service-count          =  <integer>
+server-count           =  <integer>
+operator-count         =  <integer>
+channel-count          =  <integer>
+client-count           =  <integer>
+connection-count       =  <integer>
+seconds-idle           =  <integer>
+timestamp              =  <integer>
 
-integer                = 1*DIGIT
+integer                =  1*DIGIT
 
-date                   = <trailing>
+date                   =  <trailing>
 
 user-mode              =  "a" ; user is flagged as away;
 user-mode              =/ "i" ; marks a users as invisible;
@@ -194,6 +197,8 @@ channel-mode           =/ "I" ; set/remove an invitation mask to automatically
                               ; override the invite-only flag;
 
 
-i-support-setting      = <i-support-parameter> [ "=" <i-support-value> ]
-i-support-parameter    = 1*ALPHA
-i-support-value        = 1*<key>
+tag                    =  <tag-key> [ "=" <tag-value> ]
+tag-key                =  [ vendor "/" ] 1*( ALPHA / DIGIT / "-" )
+tag-value              =  *tag-value-character
+tag-value-character    =  %x01-06 / %x08-09 / %x0B-0C / %x0E-1F / %x21-3A / %x3C-FF
+                          ; any octet except NUL, BELL, CR, LF, " ", and ";"
