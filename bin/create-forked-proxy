@@ -16,7 +16,7 @@ var
 	// FS            = require('fs'),
 	Net             = require('net'),
 	Enum_Delimiters = req('/lib/enum/delimiters'),
-	TextFormatter   = req('/lib/utilities/text-formatter'),
+	TextFormatter   = req('/lib/utility/text-formatter'),
 	MessageParser   = req('/lib/message-parser');
 
 
