@@ -31,9 +31,6 @@
 
 */
 
-var
-	Enum_Replies = req('/lib/enum/replies');
-
 
 function RPL_NOWAWAY(test) {
 	test.expect(4);
@@ -50,8 +47,8 @@ function RPL_NOWAWAY(test) {
 			test.equals(client.getAwayMessage(), 'En taro adun');
 		});
 
-		client.awaitReply(Enum_Replies.RPL_NOWAWAY, function handler(reply) {
-			test.ok(reply.getReply() === Enum_Replies.RPL_NOWAWAY);
+		client.awaitReply('RPL_NOWAWAY', function handler(reply) {
+			test.ok(reply.getReply() === 'RPL_NOWAWAY');
 			test.done();
 		});
 	});
@@ -70,8 +67,8 @@ function RPL_UNAWAY(test) {
 			test.equals(error, null);
 			test.equals(client.isAway(), true);
 
-			client.awaitReply(Replies.RPL_UNAWAY, function handler(reply) {
-				test.ok(reply.getReply() === Replies.RPL_UNAWAY);
+			client.awaitReply('RPL_UNAWAY', function handler(reply) {
+				test.ok(reply.getReply() === 'RPL_UNAWAY');
 				test.done();
 			});
 

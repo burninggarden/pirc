@@ -23,9 +23,6 @@
 
 */
 
-var
-	Enum_Replies   = req('/lib/enum/replies'),
-	Enum_UserModes = req('/lib/enum/user-modes');
 
 function restart(test) {
 	test.expect(5);
@@ -35,10 +32,7 @@ function restart(test) {
 			test.equals(parameters.username, 'charizard');
 			test.equals(parameters.password, 'blastoise');
 
-			callback(null, [
-				Enum_UserModes.OPERATOR,
-				Enum_UserModes.LOCAL_OPERATOR
-			]);
+			callback(null, ['o', 'O']);
 		}
 	}, {
 		nickname: 'cloudbreaker',
@@ -79,8 +73,8 @@ function ERR_NOPRIVILEGES(test) {
 			test.ok(error !== null);
 		});
 
-		client.awaitReply(Enum_Replies.ERR_NOPRIVILEGES, function handler(reply) {
-			test.equals(reply.getReply(), Enum_Replies.ERR_NOPRIVILEGES);
+		client.awaitReply('ERR_NOPRIVILEGES', function handler(reply) {
+			test.equals(reply.getReply(), 'ERR_NOPRIVILEGES');
 			test.done();
 		});
 	});
