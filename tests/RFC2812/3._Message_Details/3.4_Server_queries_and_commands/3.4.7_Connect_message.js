@@ -27,3 +27,63 @@
                                    server to tolsun.oulu.fi on port 6667
 
 */
+
+function ERR_NOSUCHSERVER(test) {
+	var client = test.createServerAndClient({
+		authenticateOperator(parameters, callback) {
+			test.equals(parameters.username, 'charizard');
+			test.equals(parameters.password, 'blastoise');
+
+			callback(null, ['o', 'O']);
+		}
+	}, {
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		var
+			username = 'charizard',
+			password = 'blastoise';
+
+		client.registerAsOperator(username, password, function handler(error) {
+			test.equals(error, null);
+
+			var
+				hostname = 'gadgetzan.tanaris.net',
+				port     = 6667;
+
+			client.sendConnectMessage(hostname, port);
+
+			client.awaitReply('ERR_NOSUCHSERVER', function handler(reply) {
+				test.equals(reply.getReply(), 'ERR_NOSUCHSERVER');
+				test.equals(reply.getHostname(), hostname);
+				test.done();
+			});
+		});
+	});
+}
+
+function ERR_NOPRIVILEGES(test) {
+	test.bypass();
+}
+
+function ERR_NEEDMOREPARAMS(test) {
+	test.bypass();
+}
+
+function localConnect(test) {
+	test.bypass();
+}
+
+function remoteConnect(test) {
+	test.bypass();
+}
+
+module.exports = {
+	ERR_NOSUCHSERVER,
+	ERR_NOPRIVILEGES,
+	ERR_NEEDMOREPARAMS,
+	localConnect,
+	remoteConnect
+};

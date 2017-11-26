@@ -37,6 +37,8 @@ hostname               =  shortname *( "." shortname )
 hostname               =/ ip4addr
 hostname               =/ ip6addr
 
+port                   =  1*DIGIT
+
 vendor                 =  hostname
 
 shortname              =  ( ALPHA / DIGIT ) *( ALPHA / DIGIT / "-" )
