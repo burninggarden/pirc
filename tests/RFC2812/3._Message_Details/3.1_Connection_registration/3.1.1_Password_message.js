@@ -19,10 +19,6 @@
            PASS secretpasswordhere
 */
 
-var
-	Enum_Replies  = req('/lib/enum/replies'),
-	Enum_Commands = req('/lib/enum/commands');
-
 function ERR_NEEDMOREPARAMS(test) {
 	test.expect(1);
 
@@ -38,11 +34,11 @@ function ERR_NEEDMOREPARAMS(test) {
 		client.sendRawMessage('USER balrog 0 * :balrog');
 
 		function handler(reply) {
-			test.equals(reply.getAttemptedCommand(), Enum_Commands.PASS);
+			test.equals(reply.getAttemptedCommand(), 'PASS');
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_NEEDMOREPARAMS, handler);
+		client.awaitReply('ERR_NEEDMOREPARAMS', handler);
 	});
 }
 
@@ -62,7 +58,7 @@ function ERR_ALREADYREGISTRED(test) {
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_ALREADYREGISTRED, handler);
+		client.awaitReply('ERR_ALREADYREGISTRED', handler);
 	});
 }
 

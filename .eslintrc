@@ -18,7 +18,6 @@
 		"superInFunctions":                 true
 	},
 	"globals": {
-		"req"
 	},
 	"rules": {
 		// The basics:

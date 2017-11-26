@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-require('req');
-
 var
-	TestRunner = req('/lib/test-runner'),
-	Server     = req('/lib/server');
+	TestRunner = require('../lib/test-runner'),
+	Server     = require('../lib/server');
 
 var section = process.argv[2];
 

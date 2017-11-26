@@ -62,11 +62,6 @@
                                    status).
 */
 
-var
-	Enum_Replies   = req('/lib/enum/replies'),
-	Enum_Commands  = req('/lib/enum/commands'),
-	Enum_UserModes = req('/lib/enum/user-modes');
-
 
 function ERR_NEEDMOREPARAMS(test) {
 	test.expect(1);
@@ -79,11 +74,11 @@ function ERR_NEEDMOREPARAMS(test) {
 		client.sendRawMessage('MODE');
 
 		function handler(reply) {
-			test.equals(reply.getAttemptedCommand(), Enum_Commands.MODE);
+			test.equals(reply.getAttemptedCommand(), 'MODE');
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_NEEDMOREPARAMS, handler);
+		client.awaitReply('ERR_NEEDMOREPARAMS', handler);
 	});
 }
 
@@ -97,11 +92,11 @@ function ERR_UMODEUNKNOWNFLAG(test) {
 		client.sendRawMessage('MODE cloudbreaker +y');
 
 		function handler(reply) {
-			test.equals(reply.getReply(), Enum_Replies.ERR_UMODEUNKNOWNFLAG);
+			test.equals(reply.getReply(), 'ERR_UMODEUNKNOWNFLAG');
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_UMODEUNKNOWNFLAG, handler);
+		client.awaitReply('ERR_UMODEUNKNOWNFLAG', handler);
 	});
 }
 
@@ -115,11 +110,11 @@ function ERR_USERSDONTMATCH(test) {
 		client.sendRawMessage('MODE domino +r');
 
 		function handler(reply) {
-			test.equals(reply.getReply(), Enum_Replies.ERR_USERSDONTMATCH);
+			test.equals(reply.getReply(), 'ERR_USERSDONTMATCH');
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_USERSDONTMATCH, handler);
+		client.awaitReply('ERR_USERSDONTMATCH', handler);
 	});
 }
 
@@ -132,11 +127,11 @@ function RPL_UMODEIS(test) {
 	});
 
 	client.once('registered', function handler(connection) {
-		client.addUserMode(Enum_UserModes.RESTRICTED, function handler(error) {
+		client.addUserMode('r', function handler(error) {
 			test.equals(error, null);
 			client.sendRawMessage('MODE cloudbreaker');
 
-			client.awaitReply(Enum_Replies.RPL_UMODEIS, function handler(reply) {
+			client.awaitReply('RPL_UMODEIS', function handler(reply) {
 				test.deepEqual(reply.getUserModes(), [
 					'r'
 				]);
@@ -156,11 +151,11 @@ function addAwayFlag(test) {
 		client.sendRawMessage('MODE cloudbreaker +a');
 
 		function handler(reply) {
-			test.equals(reply.getReply(), Enum_Replies.ERR_UMODEUNKNOWNFLAG);
+			test.equals(reply.getReply(), 'ERR_UMODEUNKNOWNFLAG');
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_UMODEUNKNOWNFLAG, handler);
+		client.awaitReply('ERR_UMODEUNKNOWNFLAG', handler);
 	});
 }
 
@@ -174,11 +169,11 @@ function removeAwayFlag(test) {
 		client.sendRawMessage('MODE cloudbreaker -a');
 
 		function handler(reply) {
-			test.equals(reply.getReply(), Enum_Replies.ERR_UMODEUNKNOWNFLAG);
+			test.equals(reply.getReply(), 'ERR_UMODEUNKNOWNFLAG');
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_UMODEUNKNOWNFLAG, handler);
+		client.awaitReply('ERR_UMODEUNKNOWNFLAG', handler);
 	});
 }
 
@@ -221,10 +216,7 @@ function removeOperatorFlag(test) {
 			test.equals(parameters.username, 'charizard');
 			test.equals(parameters.password, 'blastoise');
 
-			callback(null, [
-				Enum_UserModes.OPERATOR,
-				Enum_UserModes.LOCAL_OPERATOR
-			]);
+			callback(null, ['o', 'O']);
 		}
 	}, {
 		nickname: 'cloudbreaker',
@@ -244,20 +236,20 @@ function removeOperatorFlag(test) {
 			user_details.addModeChangeCallback(function handler(error) {
 				test.equals(error, null);
 
-				test.ok(user_details.hasMode(Enum_UserModes.OPERATOR));
-				test.ok(user_details.hasMode(Enum_UserModes.LOCAL_OPERATOR));
+				test.ok(user_details.hasMode('o'));
+				test.ok(user_details.hasMode('O'));
 
 				client.removeUserMode('o', function handler(error) {
 					test.equals(error, null);
 
-					test.ok(!user_details.hasMode(Enum_UserModes.OPERATOR));
+					test.ok(!user_details.hasMode('o'));
 					test.done();
 				});
 			});
 		});
 
-		client.awaitReply(Enum_Replies.RPL_YOUREOPER, function handler(reply) {
-			test.equals(reply.getReply(), Enum_Replies.RPL_YOUREOPER);
+		client.awaitReply('RPL_YOUREOPER', function handler(reply) {
+			test.equals(reply.getReply(), 'RPL_YOUREOPER');
 		});
 	});
 }

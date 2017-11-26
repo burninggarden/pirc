@@ -40,10 +40,6 @@
 */
 
 
-var
-	Enum_Replies   = req('/lib/enum/replies'),
-	Enum_UserModes = req('/lib/enum/user-modes');
-
 
 function NICK(test) {
 	var client = test.createServerAndClient({
@@ -72,11 +68,11 @@ function ERR_NONICKNAMEGIVEN(test) {
 		client.sendRawMessage('NICK');
 
 		function handler(reply) {
-			test.equals(reply.getReply(), Enum_Replies.ERR_NONICKNAMEGIVEN);
+			test.equals(reply.getReply(), 'ERR_NONICKNAMEGIVEN');
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_NONICKNAMEGIVEN, handler);
+		client.awaitReply('ERR_NONICKNAMEGIVEN', handler);
 	});
 }
 
@@ -103,7 +99,7 @@ function ERR_NICKNAMEINUSE(test) {
 			test.done();
 		}
 
-		second_client.awaitReply(Enum_Replies.ERR_NICKNAMEINUSE, handler);
+		second_client.awaitReply('ERR_NICKNAMEINUSE', handler);
 	});
 }
 
@@ -123,7 +119,7 @@ function ERR_ERRONEUSNICKNAME(test) {
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_ERRONEUSNICKNAME, handler);
+		client.awaitReply('ERR_ERRONEUSNICKNAME', handler);
 	});
 }
 
@@ -140,7 +136,7 @@ function ERR_RESTRICTED(test) {
 	});
 
 	client.once('registered', function handler(connection) {
-		client.addUserMode(Enum_UserModes.RESTRICTED, function handler(error) {
+		client.addUserMode('r', function handler(error) {
 			test.equals(error, null);
 			test.ok(connection.isRestricted());
 
@@ -152,8 +148,8 @@ function ERR_RESTRICTED(test) {
 			});
 		});
 
-		client.awaitReply(Enum_Replies.ERR_RESTRICTED, function handler(reply) {
-			test.ok(reply.getReply() === Enum_Replies.ERR_RESTRICTED);
+		client.awaitReply('ERR_RESTRICTED', function handler(reply) {
+			test.ok(reply.getReply() === 'ERR_RESTRICTED');
 		});
 	});
 }

@@ -32,9 +32,6 @@
                                    invisible.
 */
 
-var
-	Enum_Replies  = req('/lib/enum/replies'),
-	Enum_Commands = req('/lib/enum/commands');
 
 function ERR_NEEDMOREPARAMS(test) {
 	var client = test.createServerAndClient({
@@ -48,11 +45,11 @@ function ERR_NEEDMOREPARAMS(test) {
 		client.sendRawMessage('USER balrog');
 
 		function handler(reply) {
-			test.equals(reply.getAttemptedCommand(), Enum_Commands.USER);
+			test.equals(reply.getAttemptedCommand(), 'USER');
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_NEEDMOREPARAMS, handler);
+		client.awaitReply('ERR_NEEDMOREPARAMS', handler);
 	});
 }
 
@@ -69,7 +66,7 @@ function ERR_ALREADYREGISTRED(test) {
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_ALREADYREGISTRED, handler);
+		client.awaitReply('ERR_ALREADYREGISTRED', handler);
 	});
 }
 

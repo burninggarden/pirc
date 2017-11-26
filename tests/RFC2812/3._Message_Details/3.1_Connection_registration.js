@@ -22,8 +22,7 @@
    it was registered.
 */
 
-var
-	Enum_Replies = req('/lib/enum/replies');
+var Pirc = require('pirc');
 
 function testUserRegistrationWithPassword(test) {
 	test.expect(4);
@@ -42,7 +41,7 @@ function testUserRegistrationWithPassword(test) {
 		password: 'pikachu'
 	});
 
-	client.awaitReply(Enum_Replies.RPL_WELCOME, function handler(reply) {
+	client.awaitReply(Pirc.RPL_WELCOME, function handler(reply) {
 		var user_id = reply.getUserId();
 
 		test.equals(user_id, 'cloudbreaker!~cloudbreaker@127.0.0.1');
@@ -66,7 +65,7 @@ function testUserRegistrationWithoutPassword(test) {
 		username: 'cloudbreaker'
 	});
 
-	client.awaitReply(Enum_Replies.RPL_WELCOME, function handler(reply) {
+	client.awaitReply(Pirc.RPL_WELCOME, function handler(reply) {
 		var user_id = reply.getUserId();
 
 		test.equals(user_id, 'cloudbreaker!~cloudbreaker@127.0.0.1');

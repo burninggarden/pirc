@@ -2,8 +2,10 @@
 var
 	Pirc = require('./index');
 
+/*
 var
-	MessageGenerator = req('/lib/client/message-generator');
+	MessageGenerator = require('./lib/client/message-generator');
+*/
 
 
 const CLIENT_COUNT = 2;

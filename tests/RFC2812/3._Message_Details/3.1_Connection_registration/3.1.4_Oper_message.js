@@ -21,11 +21,6 @@
                                    as the password.
 */
 
-var
-	Enum_Replies   = req('/lib/enum/replies'),
-	Enum_Commands  = req('/lib/enum/commands'),
-	Enum_UserModes = req('/lib/enum/user-modes');
-
 
 function ERR_NEEDMOREPARAMS(test) {
 	test.expect(1);
@@ -39,11 +34,11 @@ function ERR_NEEDMOREPARAMS(test) {
 		client.sendRawMessage('OPER foo');
 
 		function handler(reply) {
-			test.equals(reply.getAttemptedCommand(), Enum_Commands.OPER);
+			test.equals(reply.getAttemptedCommand(), 'OPER');
 			test.done();
 		}
 
-		client.awaitReply(Enum_Replies.ERR_NEEDMOREPARAMS, handler);
+		client.awaitReply('ERR_NEEDMOREPARAMS', handler);
 	});
 }
 
@@ -59,10 +54,7 @@ function RPL_YOUREOPER(test) {
 			test.equals(parameters.username, 'charizard');
 			test.equals(parameters.password, 'blastoise');
 
-			callback(null, [
-				Enum_UserModes.OPERATOR,
-				Enum_UserModes.LOCAL_OPERATOR
-			]);
+			callback(null, ['o', 'O']);
 		}
 	}, {
 		nickname: 'cloudbreaker',
@@ -80,15 +72,15 @@ function RPL_YOUREOPER(test) {
 			var user_details = client.getUserDetails();
 
 			user_details.addModeChangeCallback(function handler(error, mode) {
-				test.ok(user_details.hasMode(Enum_UserModes.OPERATOR));
-				test.ok(user_details.hasMode(Enum_UserModes.LOCAL_OPERATOR));
+				test.ok(user_details.hasMode('o'));
+				test.ok(user_details.hasMode('O'));
 
 				test.done();
 			});
 		});
 
-		client.awaitReply(Enum_Replies.RPL_YOUREOPER, function handler(reply) {
-			test.equals(reply.getReply(), Enum_Replies.RPL_YOUREOPER);
+		client.awaitReply('RPL_YOUREOPER', function handler(reply) {
+			test.equals(reply.getReply(), 'RPL_YOUREOPER');
 		});
 	});
 }
@@ -103,7 +95,7 @@ function ERR_PASSWDMISMATCH(test) {
 
 			var error = new Error('Invalid password');
 
-			error.reply = Enum_Replies.ERR_PASSWDMISMATCH;
+			error.reply = 'ERR_PASSWDMISMATCH';
 
 			callback(error);
 		}
@@ -123,10 +115,10 @@ function ERR_PASSWDMISMATCH(test) {
 		});
 
 		function handler(reply) {
-			test.equals(reply.getReply(), Enum_Replies.ERR_PASSWDMISMATCH);
+			test.equals(reply.getReply(), 'ERR_PASSWDMISMATCH');
 		}
 
-		client.awaitReply(Enum_Replies.ERR_PASSWDMISMATCH, handler);
+		client.awaitReply('ERR_PASSWDMISMATCH', handler);
 	});
 }
 
