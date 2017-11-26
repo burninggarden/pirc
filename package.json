@@ -5,7 +5,7 @@
 	"license": "ISC",
 	"repository":  "https://github.com/burninggarden/pirc.git",
 	"dependencies": {
-		"heket":  "1.1.7",
+		"heket":  "1.2.0",
 		"promix": "1.0.27"
 	},
 	"devDependencies": {
