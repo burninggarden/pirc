@@ -53,7 +53,9 @@ function ERR_NOSUCHSERVER(test) {
 				hostname = 'gadgetzan.tanaris.net',
 				port     = 6667;
 
-			client.sendConnectMessage(hostname, port);
+			client.sendConnectMessage(hostname, port, function handler(error) {
+				test.ok(error !== null);
+			});
 
 			client.awaitReply('ERR_NOSUCHSERVER', function handler(reply) {
 				test.equals(reply.getReply(), 'ERR_NOSUCHSERVER');
@@ -65,10 +67,42 @@ function ERR_NOSUCHSERVER(test) {
 }
 
 function ERR_NOPRIVILEGES(test) {
-	test.bypass();
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		var
+			hostname = 'gadgetzan.tanaris.net',
+			port     = 6667;
+
+		client.sendConnectMessage(hostname, port, function handler(error) {
+			test.ok(error !== null);
+		});
+
+		client.awaitReply('ERR_NOPRIVILEGES', function handler(reply) {
+			test.equals(reply.getReply(), 'ERR_NOPRIVILEGES');
+			test.done();
+		});
+	});
 }
 
 function ERR_NEEDMOREPARAMS(test) {
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		client.sendRawMessage('CONNECT foo');
+
+		client.awaitReply('ERR_NEEDMOREPARAMS', function handler(reply) {
+			test.equals(reply.getReply(), 'ERR_NEEDMOREPARAMS');
+			test.equals(reply.getAttemptedCommand(), 'CONNECT');
+			test.done();
+		});
+	});
 	test.bypass();
 }
 
