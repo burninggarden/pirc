@@ -69,8 +69,9 @@ function joinSingle(test) {
 	test.expect(2);
 
 	var client = test.createServerAndClient({
-		nickname: 'cloudbreaker',
-		username: 'cloudbreaker'
+		nickname:              'cloudbreaker',
+		username:              'cloudbreaker',
+		log_incoming_messages: true
 	});
 
 	client.once('registered', function handler(connection) {
@@ -79,6 +80,8 @@ function joinSingle(test) {
 				test.ok(false, error.toString());
 				return void test.done();
 			}
+
+			console.log('CHECK');
 
 			test.equals(channel.getName(), '#ganondorf');
 			test.deepEquals(channel.getNicknames(), ['cloudbreaker']);
