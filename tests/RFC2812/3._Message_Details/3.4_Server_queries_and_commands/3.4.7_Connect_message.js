@@ -50,16 +50,17 @@ function ERR_NOSUCHSERVER(test) {
 			test.equals(error, null);
 
 			var
-				hostname = 'gadgetzan.tanaris.net',
+				key      = Math.random().toString(16).slice(3),
+				hostname = `gadgetzan.t${key}.net`,
 				port     = 6667;
-
-			client.sendConnectMessage(hostname, port, function handler(error) {
-				test.ok(error !== null);
-			});
 
 			client.awaitReply('ERR_NOSUCHSERVER', function handler(reply) {
 				test.equals(reply.getReply(), 'ERR_NOSUCHSERVER');
 				test.equals(reply.getHostname(), hostname);
+			});
+
+			client.sendConnectMessage(hostname, port, function handler(error) {
+				test.ok(error !== null);
 				test.done();
 			});
 		});
@@ -106,7 +107,39 @@ function ERR_NEEDMOREPARAMS(test) {
 }
 
 function localConnect(test) {
-	test.bypass();
+	var client = test.createServerAndClient({
+		authenticateOperator(parameters, callback) {
+			test.equals(parameters.username, 'charizard');
+			test.equals(parameters.password, 'blastoise');
+
+			callback(null, ['o', 'O']);
+		}
+	}, {
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler() {
+		var
+			username = 'charizard',
+			password = 'blastoise';
+
+		client.registerAsOperator(username, password, function handler(error) {
+			test.equals(error, null);
+
+			var server = test.createServer({
+				log_incoming_messages: true
+			});
+
+			var
+				hostname = '127.0.0.1',
+				port     = server.getPort();
+
+			client.sendConnectMessage(hostname, port, function handler(error) {
+				test.ok(error !== null);
+			});
+		});
+	});
 }
 
 function remoteConnect(test) {
