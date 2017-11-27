@@ -103,7 +103,6 @@ function ERR_NEEDMOREPARAMS(test) {
 			test.done();
 		});
 	});
-	test.bypass();
 }
 
 function localConnect(test) {
