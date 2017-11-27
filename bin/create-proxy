@@ -35,11 +35,11 @@ if (!remote_host) {
 }
 
 if (!send_log_location) {
-	send_log_location = 'logs/outbound';
+	send_log_location = 'logs/outgoing';
 }
 
 if (!receive_log_location) {
-	receive_log_location = 'logs/inbound';
+	receive_log_location = 'logs/incoming';
 }
 
 var
