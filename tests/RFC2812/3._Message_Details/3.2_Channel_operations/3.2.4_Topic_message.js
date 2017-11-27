@@ -12,15 +12,6 @@
    topic for that channel will be removed.
 
 
-
-
-
-
-Kalt                         Informational                     [Page 19]
---------------------------------------------------------------------------------
-RFC 2812          Internet Relay Chat: Client Protocol        April 2000
-
-
    Numeric Replies:
 
            ERR_NEEDMOREPARAMS              ERR_NOTONCHANNEL
@@ -47,39 +38,50 @@ var
 
 
 function setTopic(test) {
-	var client_a = test.createServerAndClient({
+	var server = test.createServer();
+
+	var client_a = test.createClient({
 		nickname: 'cloudbreaker',
-		username: 'cloudbreaker'
+		username: 'cloudbreaker',
+		port:     server.getPort()
 	});
 
 	var client_b = test.createClient({
 		nickname: 'domino',
-		username: 'domino'
+		username: 'domino',
+		port:     server.getPort()
 	});
 
 	var chain = Promix.chain();
 
 	chain.andOnce(client_a, 'registered');
 	chain.andOnce(client_b, 'registered');
-	chain.then(client_a.joinChannel, '#ganondorf').as('channel_a');
-	chain.then(client_b.joinChannel, '#ganondorf').as('channel_b');
+	chain.then(client_a.joinChannel, '#ganondorf');
+	chain.bind(client_a).as('channel_a');
+	chain.then(client_b.joinChannel, '#ganondorf');
+	chain.bind(client_b).as('channel_b');
 
 	chain.then(client_a.getTopicForChannel, chain.channel_a)
+		.bind(client_a)
 		.as('original_topic_a');
 
 	chain.then(client_b.getTopicForChannel, chain.channel_b)
+		.bind(client_b)
 		.as('original_topic_b');
 
 	chain.then(
 		client_a.setTopicForChannel,
-		chain.channel_a,
-		'King of the Gerudo'
+		'King of the Gerudo',
+		chain.channel_a
 	);
+	chain.bind(client_a);
 
 	chain.then(client_a.getTopicForChannel, chain.channel_a)
+		.bind(client_a)
 		.as('new_topic_a');
 
 	chain.then(client_b.getTopicForChannel, chain.channel_b)
+		.bind(client_b)
 		.as('new_topic_b');
 
 	chain.then(function finisher(results) {
@@ -123,8 +125,8 @@ function ERR_NOCHANMODES(test) {
 }
 
 module.exports = {
-	checkTopic,
 	setTopic,
+	checkTopic,
 	clearTopic,
 	ERR_NEEDMOREPARAMS,
 	RPL_NOTOPIC,
