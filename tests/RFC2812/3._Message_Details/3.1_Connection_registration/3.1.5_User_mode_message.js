@@ -220,9 +220,8 @@ function removeOperatorFlag(test) {
 			callback(null, ['o', 'O']);
 		}
 	}, {
-		nickname:              'cloudbreaker',
-		username:              'cloudbreaker',
-		log_incoming_messages: true
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
 	});
 
 	client.once('registered', function handler() {
