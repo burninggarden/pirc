@@ -129,6 +129,7 @@ function RPL_UMODEIS(test) {
 	client.once('registered', function handler(connection) {
 		client.addUserMode('r', function handler(error) {
 			test.equals(error, null);
+
 			client.sendRawMessage('MODE cloudbreaker');
 
 			client.awaitReply('RPL_UMODEIS', function handler(reply) {
@@ -209,7 +210,7 @@ function addOperatorFlag(test) {
 }
 
 function removeOperatorFlag(test) {
-	test.expect(9);
+	test.expect(8);
 
 	var client = test.createServerAndClient({
 		authenticateOperator(parameters, callback) {
@@ -219,8 +220,9 @@ function removeOperatorFlag(test) {
 			callback(null, ['o', 'O']);
 		}
 	}, {
-		nickname: 'cloudbreaker',
-		username: 'cloudbreaker'
+		nickname:              'cloudbreaker',
+		username:              'cloudbreaker',
+		log_incoming_messages: true
 	});
 
 	client.once('registered', function handler() {
@@ -231,10 +233,8 @@ function removeOperatorFlag(test) {
 		client.registerAsOperator(username, password, function handler(error) {
 			test.equals(error, null);
 
-			var user_details = client.getUserDetails();
-
-			user_details.addModeChangeCallback(function handler(error) {
-				test.equals(error, null);
+			client.awaitCommand('MODE', function handler(command) {
+				var user_details = client.getUserDetails();
 
 				test.ok(user_details.hasMode('o'));
 				test.ok(user_details.hasMode('O'));

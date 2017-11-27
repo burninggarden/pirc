@@ -68,19 +68,18 @@ function RPL_YOUREOPER(test) {
 
 		client.registerAsOperator(username, password, function handler(error) {
 			test.equals(error, null);
-
-			var user_details = client.getUserDetails();
-
-			user_details.addModeChangeCallback(function handler(error, mode) {
-				test.ok(user_details.hasMode('o'));
-				test.ok(user_details.hasMode('O'));
-
-				test.done();
-			});
 		});
 
 		client.awaitReply('RPL_YOUREOPER', function handler(reply) {
 			test.equals(reply.getReply(), 'RPL_YOUREOPER');
+		});
+
+		client.awaitCommand('MODE', function handler(command) {
+			var user_details = client.getUserDetails();
+
+			test.ok(user_details.hasMode('o'));
+			test.ok(user_details.hasMode('O'));
+			test.done();
 		});
 	});
 }
