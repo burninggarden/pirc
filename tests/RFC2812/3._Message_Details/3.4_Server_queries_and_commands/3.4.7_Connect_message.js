@@ -115,8 +115,10 @@ function localConnect(test) {
 			callback(null, ['o', 'O']);
 		}
 	}, {
-		nickname: 'cloudbreaker',
-		username: 'cloudbreaker'
+		nickname:              'cloudbreaker',
+		username:              'cloudbreaker',
+		log_outgoing_messages: true,
+		log_incoming_messages: true
 	});
 
 	client.once('registered', function handler() {
@@ -147,9 +149,11 @@ function remoteConnect(test) {
 }
 
 module.exports = {
+	/*
 	ERR_NOSUCHSERVER,
 	ERR_NOPRIVILEGES,
 	ERR_NEEDMOREPARAMS,
+	*/
 	localConnect,
 	remoteConnect
 };

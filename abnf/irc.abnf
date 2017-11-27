@@ -204,3 +204,11 @@ tag-key                =  [ vendor "/" ] 1*( ALPHA / DIGIT / "-" )
 tag-value              =  *tag-value-character
 tag-value-character    =  %x01-06 / %x08-09 / %x0B-0C / %x0E-1F / %x21-3A / %x3C-FF
                           ; any octet except NUL, BELL, CR, LF, " ", and ";"
+
+protocol-version       =  4DIGIT 0*10(ALPHA / DIGIT)
+protocol-flags         =  1*10<protocol-character> "|" *90<protocol-character>
+protocol-character     =  %x01-06 / %x08-09 / %x0B-0C / %x0E-7B / %x7D-FF
+                          ; any octet except NUL, BELL, CR, LF, and "|"
+protocol-options       =  *<protocol-option>
+protocol-option        =  "Z" ; enables link compression
+protocol-option        =/ "P" ; enables abuse protection
