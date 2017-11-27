@@ -69,9 +69,8 @@ function joinSingle(test) {
 	test.expect(2);
 
 	var client = test.createServerAndClient({
-		nickname:              'cloudbreaker',
-		username:              'cloudbreaker',
-		log_incoming_messages: true
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
 	});
 
 	client.once('registered', function handler(connection) {
@@ -80,8 +79,6 @@ function joinSingle(test) {
 				test.ok(false, error.toString());
 				return void test.done();
 			}
-
-			console.log('CHECK');
 
 			test.equals(channel.getName(), '#ganondorf');
 			test.deepEquals(channel.getNicknames(), ['cloudbreaker']);
@@ -181,7 +178,19 @@ function receiveJoinMessage(test) {
 }
 
 function ERR_NEEDMOREPARAMS(test) {
-	test.bypass();
+	var client = test.createServerAndClient({
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
+	});
+
+	client.once('registered', function handler(connection) {
+		client.sendRawMessage('JOIN');
+
+		client.awaitReply('ERR_NEEDMOREPARAMS', function handler(reply) {
+			test.equals(reply.getReply(), 'ERR_NEEDMOREPARAMS');
+			test.done();
+		});
+	});
 }
 
 function ERR_INVITEONLYCHAN(test) {
