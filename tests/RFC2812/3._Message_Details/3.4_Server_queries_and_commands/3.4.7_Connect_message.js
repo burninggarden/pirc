@@ -110,9 +110,7 @@ function localConnect(test) {
 	var hostname = 'localhost';
 
 	var client = test.createServerAndClient({
-		password:              'glamdring',
-		log_incoming_messages: true,
-		log_outgoing_messages: true,
+		password: 'glamdring',
 
 		authenticateServer(parameters, callback) {
 			test.equals(parameters.hostname, hostname);
@@ -152,9 +150,7 @@ function localConnect(test) {
 			}
 
 			var server = test.createServer({
-				password:              'orcrist',
-				log_incoming_messages: true,
-				log_outgoing_messages: true,
+				password: 'orcrist',
 
 				authenticateServer(parameters, callback) {
 					test.equals(parameters.hostname, hostname);
@@ -186,11 +182,9 @@ function remoteConnect(test) {
 }
 
 module.exports = {
-	/*
 	ERR_NOSUCHSERVER,
 	ERR_NOPRIVILEGES,
 	ERR_NEEDMOREPARAMS,
-	*/
 	localConnect,
 	remoteConnect
 };
