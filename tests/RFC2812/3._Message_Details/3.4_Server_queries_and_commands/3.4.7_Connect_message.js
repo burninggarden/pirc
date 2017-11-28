@@ -107,7 +107,28 @@ function ERR_NEEDMOREPARAMS(test) {
 }
 
 function localConnect(test) {
+	var hostname = 'localhost';
+
 	var client = test.createServerAndClient({
+		password:              'glamdring',
+		log_incoming_messages: true,
+		log_outgoing_messages: true,
+
+		authenticateServer(parameters, callback) {
+			test.equals(parameters.hostname, hostname);
+			test.equals(parameters.password, 'glamdring');
+
+			if (
+				   parameters.hostname === hostname
+				&& parameters.password === 'orcrist'
+			) {
+				return void callback(null);
+			} else {
+				test.ok(false, 'Credentials mismatch');
+				test.done();
+			}
+		},
+
 		authenticateOperator(parameters, callback) {
 			test.equals(parameters.username, 'charizard');
 			test.equals(parameters.password, 'blastoise');
@@ -115,10 +136,8 @@ function localConnect(test) {
 			callback(null, ['o', 'O']);
 		}
 	}, {
-		nickname:              'cloudbreaker',
-		username:              'cloudbreaker',
-		log_outgoing_messages: true,
-		log_incoming_messages: true
+		nickname: 'cloudbreaker',
+		username: 'cloudbreaker'
 	});
 
 	client.once('registered', function handler() {
@@ -127,15 +146,33 @@ function localConnect(test) {
 			password = 'blastoise';
 
 		client.registerAsOperator(username, password, function handler(error) {
-			test.equals(error, null);
+			if (error) {
+				test.ok(false, error.toString());
+				return void test.done();
+			}
 
 			var server = test.createServer({
-				log_incoming_messages: true
+				password:              'orcrist',
+				log_incoming_messages: true,
+				log_outgoing_messages: true,
+
+				authenticateServer(parameters, callback) {
+					test.equals(parameters.hostname, hostname);
+					test.equals(parameters.password, 'glamdring');
+
+					if (
+						   parameters.hostname === hostname
+						&& parameters.password === 'glamdring'
+					) {
+						return void callback(null);
+					} else {
+						test.ok(false, 'Credentials mismatch');
+						test.done();
+					}
+				}
 			});
 
-			var
-				hostname = '127.0.0.1',
-				port     = server.getPort();
+			var port = server.getPort();
 
 			client.sendConnectMessage(hostname, port, function handler(error) {
 				test.ok(error !== null);

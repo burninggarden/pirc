@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var
-	TestRunner = require('../lib/test-runner'),
+	TestRunner = require('../lib/test/runner'),
 	Server     = require('../lib/server');
 
 var section = process.argv[2];

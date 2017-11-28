@@ -114,6 +114,8 @@ message-body           =  trailing
 
 server-version         =  1*nospcrlfcl
 
+server-token           =  1*DIGIT
+
 motd-text              =  trailing
 
 channel-topic          =  trailing
