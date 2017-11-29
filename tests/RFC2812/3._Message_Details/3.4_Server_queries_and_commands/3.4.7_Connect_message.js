@@ -120,6 +120,7 @@ function localConnect(test) {
 				   parameters.hostname === hostname
 				&& parameters.password === 'orcrist'
 			) {
+				test.clearTimeout();
 				return void callback(null);
 			} else {
 				test.ok(false, 'Credentials mismatch');
