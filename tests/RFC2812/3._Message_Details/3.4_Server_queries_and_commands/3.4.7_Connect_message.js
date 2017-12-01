@@ -151,7 +151,9 @@ function localConnect(test) {
 			}
 
 			var server = test.createServer({
-				password: 'orcrist',
+				password:              'orcrist',
+				log_incoming_messages: true,
+				log_outgoing_messages: true,
 
 				authenticateServer(parameters, callback) {
 					test.equals(parameters.hostname, hostname);
@@ -183,9 +185,11 @@ function remoteConnect(test) {
 }
 
 module.exports = {
+	/*
 	ERR_NOSUCHSERVER,
 	ERR_NOPRIVILEGES,
 	ERR_NEEDMOREPARAMS,
+	*/
 	localConnect,
 	remoteConnect
 };

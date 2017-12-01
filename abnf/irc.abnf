@@ -144,7 +144,7 @@ nick-channel           =  [ <nick-channel-status> ] <channel-name>
                           ; in front of the channel name instead of the user's
                           ; nick. This rule is used by RPL_WHOISCHANNELS.
 
-mode-change            =  ( " " <mode-action> *<mode-char> *( " " <mode-param> )
+mode-change            =  ( <mode-action> *<mode-char> *( " " <mode-param> )
 mode-action            =  ( "-" / "+" )
 mode-param             =  1*<no-mode-action>
 
