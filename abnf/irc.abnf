@@ -125,16 +125,17 @@ channel-privacy        =  ( "=" / "*" / "@" )
                           ; "@" is used for secret channels, "*" for private
                           ; channels, and "=" for others (public channels).
 
-nick-channel-status    =  ( "@" / "+" )
+nick-channel-status    =  ( "@@" / "@" / "+" )
                           ; From RFC-2811:
                           ; Channel operators are identified by the "@" symbol next
                           ; to their nickname whenever it is associated with a
                           ; channel (i.e., replies to the NAMES, WHO and WHOIS
                           ; commands).
                           ;
-                          ; And I can't find a reference to this anywhere, but the
-                          ; "+" symbol denotes that the user was granted voice
-                          ; permissions in a moderated channel.
+                          ; From RFC-2813:.
+						  ; The prefix "@@" indicates that the user is the "channel creator", the
+						  ; character "@" alone indicates a "channel operator", and the character
+						  ; '+' indicates that the user has the voice privilege.
 
 channel-nick           =  [ <nick-channel-status> ] <nickname>
 
