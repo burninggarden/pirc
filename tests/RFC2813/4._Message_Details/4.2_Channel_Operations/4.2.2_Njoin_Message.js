@@ -35,6 +35,9 @@
  */
 
 
+var
+	Promix = require('promix');
+
 
 function ERR_NEEDMOREPARAMS(test) {
 	test.bypass();
@@ -94,14 +97,15 @@ function fromServer(test) {
 	});
 
 	var client_a = test.createClient({
-		nickname: 'cloudbreaker',
-		username: 'cloudbreaker'
-		port:     server_a.getPort()
+		nickname:              'cloudbreaker',
+		username:              'cloudbreaker',
+		port:                  server_a.getPort(),
+		log_outgoing_messages: true
 	});
 
 	var client_b = test.createClient({
 		nickname: 'seventh',
-		username: 'seventh'
+		username: 'seventh',
 		port:     server_b.getPort()
 	});
 
@@ -109,18 +113,21 @@ function fromServer(test) {
 		username = 'charizard',
 		password = 'blastoise';
 
-	client_a.registerAsOperator(username, password, function handler(error) {
-		if (error) {
-			test.ok(false, error.toString());
-			return void test.done();
-		}
+	var chain = Promix.chain();
 
-		var port = server.getPort();
+	chain.andOnce(client_a, 'registered');
+	chain.andOnce(client_b, 'registered');
 
-		client.sendConnectMessage(hostname, port, function handler(error) {
-			test.ok(error !== null);
-		});
-	});
+	chain.then(test.clearTimeout).bind(test);
+
+	chain.then(client_a.registerAsOperator, username, password).bind(client_a);
+	chain.then(client_a.joinChannel, '#pokemon').bind(client_a);
+	chain.then(client_b.joinChannel, '#pokemon').bind(client_b);
+
+	chain.then(client_a.sendConnectMessage, hostname, server_b.getPort());
+	chain.bind(client_a);
+
+	chain.then(test.clearTimeout).bind(test);
 }
 
 module.exports = {
