@@ -49,7 +49,7 @@ var Pirc = require('pirc');
 
 var client = new Pirc.Client('pachet');
 
-client.connectToServer('irc.burninggarden.com', function(error) {
+client.connectToServer('irc.myserver.com', function(error) {
     if (error) {
         throw error;
     }
@@ -99,8 +99,8 @@ The default settings are as follows:
 You will probably want to override these settings. To do so, you can supply an options object to the `Pirc.Server` constructor:
 `````js
 var server = new Pirc.Server({
-    name:          'BurningGarden',
-    hostname:      'irc.burninggarden.com',
+    name:          'πrc',
+    hostname:      'irc.myserver.com',
     port:          1234,
     motd:          'Welcome to Burning Garden's IRC server. Be good, and don't be bad!'
     channel_modes: 'bmnpsq',
@@ -144,7 +144,7 @@ You can also specify additional options when connecting to a specific server, in
 var client = new Pirc.Client();
 
 var options = {
-    hostname: 'irc.burninggarden.com',
+    hostname: 'irc.myserver.com',
     port:     6669,
     nick:     'pachet',
     username: 'pachet',
@@ -180,7 +180,7 @@ var Pirc = require('pirc');
 
 var client = new Pirc.Client();
 
-client.connectToServer('irc.burninggarden.com', function(error) {
+client.connectToServer('irc.myserver.com', function(error) {
     if (error) {
         throw error;
     }

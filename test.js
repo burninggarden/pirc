@@ -37,8 +37,8 @@ function spawnClient() {
 }
 
 var server = new Pirc.Server({
-	name:          'BurningGarden',
-	hostname:      'irc.burninggarden.com',
+	name:          'πrc',
+	hostname:      'irc.myserver.com',
 	motd:          'we will take from the land\nif it refuses to give!',
 	channel_modes: 'biklmnopstv'
 });
