@@ -104,9 +104,9 @@ realname               =  trailing
 
 password               =  1*key
 
-attempted-nickname     =  1*nospcrlfcl
-attempted-command      =  1*nospcrlfcl
-attempted-channel-name =  1*nospcrlfcl
+attempted-nickname     =  trailing
+attempted-command      =  trailing
+attempted-channel-name =  trailing
 
 server-info            =  trailing
 
