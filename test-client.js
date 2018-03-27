@@ -6,7 +6,7 @@ var
 	MessageGenerator = require('./lib/client/message-generator');
 
 
-const CLIENT_COUNT = 50;
+const CLIENT_COUNT = 10;
 
 
 function handleError(error) {
