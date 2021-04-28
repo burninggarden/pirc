@@ -35,6 +35,10 @@ declare module 'pirc' {
 		(error: Error | null): void;
 	}
 
+	interface DestroyCallback {
+		(error: Error | null): void;
+	}
+
 	interface MessageCallback {
 		(message: Message): void;
 	}
@@ -55,7 +59,7 @@ declare module 'pirc' {
 		): void;
 
 		public on(event: 'message', callback: MessageCallback): void;
-
+		public destroy(callback: DestroyCallback): void;
 		public joinChannel(channel: string): void;
 		public sendMessageToChannel(body: string, channel: string): void;
 		public sendMessageToNick(body: string, nick: string): void;
