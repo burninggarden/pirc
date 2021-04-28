@@ -17,6 +17,8 @@ declare module 'pirc' {
 		readonly nick: string;
 		readonly username: string;
 		readonly realname: string;
+		readonly log_incoming_messages?: boolean;
+		readonly log_outgoing_messages?: boolean;
 	}
 
 	class Channel {
