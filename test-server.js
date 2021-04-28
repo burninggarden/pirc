@@ -8,5 +8,4 @@ var server = new Pirc.Server({
 	channel_modes: 'biklmnopstv'
 });
 
-server.listen(6668);
-
+server.listen(6667);
