@@ -1,7 +1,7 @@
 {
 	"name": "pirc",
 	"description": "A combination IRC daemon / client library written in Node.js",
-	"version": "0.0.10",
+	"version": "0.0.11",
 	"license": "ISC",
 	"repository": "https://github.com/pirc/pirc.git",
 	"types": "./index.d.ts",
