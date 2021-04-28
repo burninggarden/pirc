@@ -21,9 +21,10 @@ function spawnClient() {
 
 	client.connectToServer({
 		hostname: '127.0.0.1',
-		port:     6668,
+		port:     6667,
 		nickname: nickname,
-		log_incoming_messages: true
+		log_incoming_messages: true,
+		log_outgoing_messages: true
 	}, function handler(error, server) {
 		if (error) {
 			return void handleError(error);
