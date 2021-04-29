@@ -27,7 +27,7 @@ declare module 'pirc' {
 
 	export class Message {
 		public getBody(): string;
-		public getNick(): string;
+		public getNickname(): string;
 		public hasChannel(): boolean;
 		public getChannel(): Channel;
 		public getChannelName(): string;
