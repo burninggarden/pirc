@@ -195,7 +195,7 @@ function addOperatorFlag(test) {
 				test.done();
 			}, 2000);
 
-			client.on('raw_message', function handler(message) {
+			client.on('message', function handler(message) {
 				clearTimeout(timer);
 
 				test.ok(
@@ -290,7 +290,7 @@ function removeRestrictedFlag(test) {
 					test.done();
 				}, 2000);
 
-				client.on('raw_message', function handler(message) {
+				client.on('message', function handler(message) {
 					clearTimeout(timer);
 					test.ok(false, 'Unexpected message: ' + message.getRawMessage());
 					test.done();
